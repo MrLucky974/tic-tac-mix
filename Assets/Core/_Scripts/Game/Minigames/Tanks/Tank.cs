@@ -23,6 +23,12 @@ namespace RapidPrototyping.TicTacMix.Tanks
             m_character.Initialize(m_cannon.Cannon);
 
             m_health.OnDeath += HandleDeath;
+            GameManager.Instance.OnGameEnded += HandleGameEnd;
+        }
+
+        private void HandleGameEnd()
+        {
+            enabled = false;
         }
 
         private void OnDestroy()
@@ -81,6 +87,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
         private void HandleDeath()
         {
             Instantiate(m_explosionEffect, transform.position, Quaternion.identity);
+            GameManager.EndGame();
             Destroy(gameObject);
         }
     }
