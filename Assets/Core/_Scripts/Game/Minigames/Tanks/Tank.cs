@@ -10,11 +10,19 @@ namespace RapidPrototyping.TicTacMix.Tanks
 
         [SerializeField] private TankCharacter m_character;
         [SerializeField] private TankCannon m_cannon;
+        [SerializeField] private Health m_health;
 
         private void Start()
         {
             m_cannon.Initialize();
             m_character.Initialize(m_cannon.Cannon);
+
+            m_health.OnDeath += HandleDeath;
+        }
+
+        private void OnDestroy()
+        {
+            m_health.OnDeath -= HandleDeath;
         }
 
         private void Update()
@@ -63,6 +71,11 @@ namespace RapidPrototyping.TicTacMix.Tanks
                 m_character.UpdateInput(characterInput);
                 m_character.UpdateCharacter(deltaTime);
             }
+        }
+
+        private void HandleDeath()
+        {
+            Destroy(gameObject);
         }
     }
 }

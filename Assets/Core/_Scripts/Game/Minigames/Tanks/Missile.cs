@@ -44,6 +44,11 @@ namespace RapidPrototyping.TicTacMix
         {
             if (other.CompareTag("Player"))
             {
+                if (other.TryGetComponent(out Health health))
+                {
+                    health.Kill();
+                }
+
                 Destroy(gameObject);
             }
         }
