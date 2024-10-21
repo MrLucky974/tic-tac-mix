@@ -376,6 +376,8 @@ MonoBehaviour:
   m_character: {fileID: 1337112514857107764}
   m_cannon: {fileID: 2889567556691781728}
   m_health: {fileID: 9106524037788392335}
+  m_explosionEffect: {fileID: 2883620193154939874, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312,
+    type: 3}
 --- !u!1 &8822965244474525311
 GameObject:
   m_ObjectHideFlags: 0

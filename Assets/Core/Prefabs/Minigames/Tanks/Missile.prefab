@@ -197,6 +197,8 @@ MonoBehaviour:
   m_wallMask:
     serializedVersion: 2
     m_Bits: 8
+  m_bounceEffect: {fileID: 2708598583397607899, guid: 6398d43fe79ea0140913dc5530c646af,
+    type: 3}
 --- !u!135 &9083109170403497763
 SphereCollider:
   m_ObjectHideFlags: 0

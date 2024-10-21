@@ -1,3 +1,4 @@
+using CartoonFX;
 using UnityEngine;
 
 namespace RapidPrototyping.TicTacMix
@@ -7,6 +8,10 @@ namespace RapidPrototyping.TicTacMix
         [SerializeField] private float m_speed = 10f;
         [SerializeField] private int m_maximumBounces = 2;
         [SerializeField] private LayerMask m_wallMask;
+
+        [Space]
+
+        [SerializeField] private CFXR_Effect m_bounceEffect;
 
         private Vector3 m_velocity;
         private int m_bounceIndex = 0;
@@ -33,6 +38,8 @@ namespace RapidPrototyping.TicTacMix
                 Vector3 reflectedDirection = Vector3.Reflect(m_velocity.normalized, hit.normal);
                 m_velocity = reflectedDirection * m_speed;
                 transform.forward = reflectedDirection;
+
+                Instantiate(m_bounceEffect, transform.position, Quaternion.identity);
                 m_bounceIndex += 1;
             }
 

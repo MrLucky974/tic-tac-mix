@@ -1,3 +1,4 @@
+using CartoonFX;
 using UnityEngine;
 
 namespace RapidPrototyping.TicTacMix.Tanks
@@ -11,6 +12,10 @@ namespace RapidPrototyping.TicTacMix.Tanks
         [SerializeField] private TankCharacter m_character;
         [SerializeField] private TankCannon m_cannon;
         [SerializeField] private Health m_health;
+
+        [Space]
+
+        [SerializeField] private CFXR_Effect m_explosionEffect;
 
         private void Start()
         {
@@ -75,6 +80,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
 
         private void HandleDeath()
         {
+            Instantiate(m_explosionEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
