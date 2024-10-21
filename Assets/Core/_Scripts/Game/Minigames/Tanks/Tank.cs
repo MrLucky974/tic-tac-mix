@@ -86,7 +86,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
 
         private void HandleDeath()
         {
-            Instantiate(m_explosionEffect, transform.position, Quaternion.identity);
+            Instantiate(m_explosionEffect, m_character.transform.position, Quaternion.identity);
             GameManager.EndGame();
             Destroy(gameObject);
         }
