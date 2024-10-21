@@ -1,3 +1,4 @@
+using CartoonFX;
 using UnityEngine;
 
 namespace RapidPrototyping.TicTacMix.Tanks
@@ -14,7 +15,11 @@ namespace RapidPrototyping.TicTacMix.Tanks
         [SerializeField] private Transform m_muzzle;
         [SerializeField] private Missile m_missilePrefab;
 
-        [Space(10)]
+        [Space]
+
+        [SerializeField] private CFXR_Effect m_shootEffect;
+
+        [Space]
 
         [SerializeField] private float m_delay = 0.2f;
 
@@ -59,6 +64,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
         private void Shoot()
         {
             var instance = Instantiate(m_missilePrefab, m_muzzle.position, m_muzzle.rotation);
+            Instantiate(m_shootEffect, m_muzzle.position, m_muzzle.rotation);
         }
     }
 }
