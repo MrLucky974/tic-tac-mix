@@ -1,7 +1,7 @@
 using CartoonFX;
 using UnityEngine;
 
-namespace RapidPrototyping.TicTacMix
+namespace RapidPrototyping.TicTacMix.Tanks
 {
     public class Missile : MonoBehaviour
     {

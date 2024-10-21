@@ -26,7 +26,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
             GameManager.Instance.OnGameEnded += HandleGameEnd;
         }
 
-        private void HandleGameEnd()
+        private void HandleGameEnd(GameManager.GameEndReason reason, int winIndex)
         {
             enabled = false;
         }
@@ -87,7 +87,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
         private void HandleDeath()
         {
             Instantiate(m_explosionEffect, m_character.transform.position, Quaternion.identity);
-            GameManager.EndGame();
+            GameManager.EndGame(GameManager.GameEndReason.PlayerDeath, m_playerIndex);
             Destroy(gameObject);
         }
     }
