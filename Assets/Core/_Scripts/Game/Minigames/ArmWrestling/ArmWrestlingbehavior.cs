@@ -21,8 +21,8 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
         private Inputs m_p1Inputs;
         private Inputs m_p2Inputs;
 
-        private int m_Score = 0;
-        private int m_beforChange;
+        private int m_Score;
+        private int m_beforChange = 5;
 
         void Start()
         {
@@ -41,6 +41,9 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
                 {
                     var movement = input.Movement.ReadValue<Vector2>();
                     ValidInput(m_p1Inputs, movement);
+                    m_beforChange--;
+                    Debug.Log(m_beforChange);
+                    ChangingInput(m_beforChange);
                 }
                 
             }
@@ -59,28 +62,14 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
             m_dictionary.Add(Inputs.RIGHT, new Vector2(1, 0));
         }
 
-        void ChangeInput(int current, Inputs currentPlayerInput)
+        void ChangingInput(int current)
         {
-            if (current == 0)
+            if (current <= 0)
             {
-                int newInput = Random.Range(0, 5);
-                if (newInput == 0)
-                {
-                    currentPlayerInput = Inputs.LEFT;
-                }
-                if (newInput == 1)
-                {
-                    currentPlayerInput = Inputs.RIGHT;
-                }
-                if (newInput == 2)
-                {
-                    currentPlayerInput = Inputs.UP;
-                }
-                if (newInput == 3)
-                {
-                    currentPlayerInput = Inputs.DOWN;
-                }
-                m_beforChange = Random.Range(5, 10);
+                m_p1Inputs = (Inputs)Random.Range(0, 4);
+                Debug.Log(m_p1Inputs.ToString());
+
+                m_beforChange = Random.Range(5, 11);
             }
         }
         void ValidInput(Inputs currentInput, Vector2 playerInput)
