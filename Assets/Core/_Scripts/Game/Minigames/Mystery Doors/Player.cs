@@ -4,6 +4,10 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
 {
     public class Player : MonoBehaviour
     {
+        [SerializeField] private float m_speed = 0.2f;
+
+        [Space]
+
         [SerializeField] private int m_playerIndex;
         [SerializeField] private SpriteRenderer m_spriteRenderer;
 
@@ -29,9 +33,21 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
         {
             var deltaTime = Time.deltaTime;
 
-            m_offset = Mathf.Clamp01(m_offset + 0.2f * deltaTime);
+            if (m_playerIndex == 0)
+            {
+                var input = InputManager.InputActions.P1Gameplay;
+                var movement = input.Movement.ReadValue<Vector2>().x;
+                m_offset = Mathf.Clamp01(m_offset + m_speed * movement * deltaTime);
+            }
+            else if (m_playerIndex == 1)
+            {
+                var input = InputManager.InputActions.P2Gameplay;
+                var movement = input.Movement.ReadValue<Vector2>().x;
+                m_offset = Mathf.Clamp01(m_offset + m_speed * movement * deltaTime);
+            }
+
             Vector3 targetPosition = currentFloor.GetPosition(m_offset);
-            //transform.position = targetPosition;
+            transform.position = targetPosition;
         }
     }
 }
