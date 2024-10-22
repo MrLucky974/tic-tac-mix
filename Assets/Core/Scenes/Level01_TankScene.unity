@@ -4118,6 +4118,56 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tank (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9139705205979726662, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.ctime2
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 9139705205979726662, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0.42500046
+      objectReference: {fileID: 0}
+    - target: {fileID: 9139705205979726662, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0.26274514
+      objectReference: {fileID: 0}
+    - target: {fileID: 9139705205979726662, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9139705205979726662, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0.26274514
+      objectReference: {fileID: 0}
+    - target: {fileID: 9139705205979726662, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.4647577
+      objectReference: {fileID: 0}
+    - target: {fileID: 9139705205979726662, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9139705205979726662, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key2.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9139705205979726662, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key2.g
+      value: 0.59607846
+      objectReference: {fileID: 0}
+    - target: {fileID: 9139705205979726662, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key2.r
+      value: 0.2627451
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

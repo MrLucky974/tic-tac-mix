@@ -18,6 +18,8 @@ namespace RapidPrototyping.TicTacMix.Tanks
         [Space]
 
         [SerializeField] private CFXR_Effect m_shootEffect;
+        [SerializeField] private LineRenderer m_lineRenderer;
+        [SerializeField] private LayerMask m_wallMask;
 
         [Space]
 
@@ -52,6 +54,18 @@ namespace RapidPrototyping.TicTacMix.Tanks
                 m_requestedShoot = false;
                 m_nextShot = Time.time + m_delay;
             }
+
+            Vector3 targetPosition = Vector3.zero;
+            Ray ray = new Ray(m_muzzle.position, m_muzzle.forward);
+            if (Physics.Raycast(ray, out var hit, 1000f, m_wallMask))
+            {
+                targetPosition = m_muzzle.InverseTransformPoint(hit.point);
+            }
+            else
+            {
+                targetPosition = m_muzzle.forward * 10f;
+            }
+            m_lineRenderer.SetPosition(1, targetPosition);
         }
 
         public void UpdateRotation(float deltaTime)
