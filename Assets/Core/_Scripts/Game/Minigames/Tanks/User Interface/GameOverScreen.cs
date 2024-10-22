@@ -32,9 +32,9 @@ namespace RapidPrototyping.TicTacMix.Tanks
 
             if (winIndex != -1)
             {
-                var text = winIndex == 0 ? "<color=#6982FF>Player X wins!</color>" : "<color=#FF6A6E>Player O wins!</color>";
+                var text = winIndex == 1 ? "<color=#6982FF>Player X wins!</color>" : "<color=#FF6A6E>Player O wins!</color>";
                 m_winnerLabel.SetText(text);
-            } 
+            }
             else
             {
                 m_winnerLabel.SetText("It's a tie :(");
