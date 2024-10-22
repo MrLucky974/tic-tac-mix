@@ -31,7 +31,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
 
             m_offset = Mathf.Clamp01(m_offset + 0.2f * deltaTime);
             Vector3 targetPosition = currentFloor.GetPosition(m_offset);
-            transform.position = targetPosition;
+            //transform.position = targetPosition;
         }
     }
 }
