@@ -8,6 +8,7 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
 {
     public class ArmWrestlingbehavior : MonoBehaviour
     {
+        [SerializeField] ArmWreslingGameManager m_gameManager;
         [SerializeField] private int m_playerIndex;
         private enum Inputs
         {
@@ -44,14 +45,22 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
                     m_beforChange--;
                     Debug.Log(m_beforChange);
                     ChangingInput(m_beforChange);
+                    m_gameManager.IncreaseScore();
                 }
                 
             }
             else
             {
                 var input = InputManager.InputActions.P2Gameplay;
-                var movement = input.Movement.ReadValue<Vector2>();
-                ValidInput(m_p2Inputs, movement);
+                if (input.Movement.WasPressedThisFrame())
+                {
+                    var movement = input.Movement.ReadValue<Vector2>();
+                    ValidInput(m_p2Inputs, movement);
+                    m_beforChange--;
+                    Debug.Log(m_beforChange);
+                    ChangingInput(m_beforChange);
+                    m_gameManager.DecreaseScore();
+                }
             }
         }
         void InitDictionary()
