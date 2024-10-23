@@ -8,9 +8,10 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
 {
     public class ArmWrestlingbehavior : MonoBehaviour
     {
+        [SerializeField] ArmWreslingUIManager m_uiManager;
         [SerializeField] ArmWreslingGameManager m_gameManager;
         [SerializeField] private int m_playerIndex;
-        private enum Inputs
+        public enum Inputs
         {
             UP,
             DOWN,
@@ -23,8 +24,8 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
         private Inputs m_p2Inputs;
 
         private int m_Score;
-        private int m_beforChange = 5;
-
+        private int m_beforChangeP1 = 5;
+        private int m_beforChangeP2 = 5;
         void Start()
         {
             InitDictionary();
@@ -41,11 +42,10 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
                 if (input.Movement.WasPressedThisFrame())
                 {
                     var movement = input.Movement.ReadValue<Vector2>();
-                    ValidInput(m_p1Inputs, movement);
-                    m_beforChange--;
-                    Debug.Log(m_beforChange);
-                    ChangingInput(m_beforChange);
-                    m_gameManager.IncreaseScore();
+                    ValidInput(m_p1Inputs, movement, m_playerIndex);
+                    m_beforChangeP1--;
+                    Debug.Log(m_beforChangeP1);
+                    ChangingInput(m_beforChangeP1, m_p1Inputs);
                 }
                 
             }
@@ -55,11 +55,10 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
                 if (input.Movement.WasPressedThisFrame())
                 {
                     var movement = input.Movement.ReadValue<Vector2>();
-                    ValidInput(m_p2Inputs, movement);
-                    m_beforChange--;
-                    Debug.Log(m_beforChange);
-                    ChangingInput(m_beforChange);
-                    m_gameManager.DecreaseScore();
+                    ValidInput(m_p2Inputs, movement, m_playerIndex);
+                    m_beforChangeP2--;
+                    Debug.Log(m_beforChangeP2);
+                    ChangingInput(m_beforChangeP2, m_p2Inputs);
                 }
             }
         }
@@ -71,17 +70,47 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
             m_dictionary.Add(Inputs.RIGHT, new Vector2(1, 0));
         }
 
-        void ChangingInput(int current)
+        void ChangingInput(int current, Inputs playerinput)
         {
             if (current <= 0)
             {
-                m_p1Inputs = (Inputs)Random.Range(0, 4);
-                Debug.Log(m_p1Inputs.ToString());
+                if (playerinput == m_p1Inputs)
+                {
+                    m_p1Inputs = (Inputs)Random.Range(0, 4);
+                    m_uiManager.ShowRightIcon(m_p1Inputs, this);
+                    Debug.Log(GetPlayerIndex());
+                    Debug.Log($"current input for p1 {playerinput.ToString()}, new input for p1 {m_p1Inputs.ToString()}");
+                }
+                else
+                {
+                    m_p2Inputs = (Inputs)Random.Range(0, 4);
+                    m_uiManager.ShowRightIcon(m_p2Inputs, this);
 
-                m_beforChange = Random.Range(5, 11);
+                    Debug.Log(GetPlayerIndex());
+                    Debug.Log($"current input for p2 : {playerinput.ToString()}, new input for p2 {m_p2Inputs.ToString()}");
+                }
+
+                if (m_beforChangeP1 == current)
+                {
+                    m_beforChangeP1 = Random.Range(10, 30);
+                }
+                else
+                {
+                    m_beforChangeP2 = Random.Range(10, 30);
+                }
             }
         }
-        void ValidInput(Inputs currentInput, Vector2 playerInput)
+
+        public bool GetPlayerIndex()
+        {
+            bool IsPlayer1 = false;
+            if (m_playerIndex == 0)
+            {
+                IsPlayer1 = true;
+            }
+            return IsPlayer1;
+        }
+        void ValidInput(Inputs currentInput, Vector2 playerInput, int playerindex)
         {
             Vector2 value = new Vector2(0, 0);
             int count = 0;
@@ -96,7 +125,17 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
 
             if (playerInput == value)
             {
-                Debug.Log("yes right thing");
+                if (playerindex == 0)
+                {
+                    Debug.Log("right input for player 1");
+                    m_gameManager.IncreaseScore();
+                }
+                else if (playerindex == 1)
+                {
+                    Debug.Log("right input for player 2");
+                    m_gameManager.DecreaseScore();
+                }
+
             }
         }
     }
