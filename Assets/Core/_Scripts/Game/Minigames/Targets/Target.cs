@@ -5,6 +5,8 @@ namespace RapidPrototyping.TicTacMix.Targets
     [RequireComponent(typeof(Collider))]
     public class Target : MonoBehaviour
     {
+        [SerializeField] private Destructible m_destructible;
+
         private Collider m_collider;
 
         private void Start()
@@ -15,6 +17,10 @@ namespace RapidPrototyping.TicTacMix.Targets
         private void OnCollisionEnter(Collision collision)
         {
             Debug.Log(collision.gameObject);
+            if (m_destructible)
+            {
+                m_destructible.Destroy();
+            }
         }
     }
 }
