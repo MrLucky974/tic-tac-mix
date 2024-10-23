@@ -7,24 +7,23 @@ namespace RapidPrototyping.TicTacMix.Marelle
 {
     public class Player : MonoBehaviour
     {
-        [SerializeField] private GameObject _victoryPanel;
-        [SerializeField] private TMP_Text text;
+        
+        [SerializeField] private bool _isPlayerO;
+
+        [SerializeField] private GameManager _gameManager;
+
 
         private void Start()
         {
-            _victoryPanel.SetActive(false);
+            _gameManager = FindObjectOfType<GameManager>();
         }
-
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Victory"))
             {
-
+                _gameManager.PlayerFinished(_isPlayerO);
                 Time.timeScale = 0;
-
-                _victoryPanel.SetActive(true);
-
-                text.text = "Victory: " + gameObject.name;
+                
             }
         }
     }

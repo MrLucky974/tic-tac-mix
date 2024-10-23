@@ -2009,6 +2009,7 @@ GameObject:
   m_Component:
   - component: {fileID: 858770371}
   - component: {fileID: 858770370}
+  - component: {fileID: 858770372}
   m_Layer: 0
   m_Name: MANAGERS
   m_TagString: Untagged
@@ -2066,6 +2067,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &858770372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858770369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34cc42d526ca0db4a87777e095956ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isFinishedO: 0
+  _isFinishedX: 0
+  _victoryPanel: {fileID: 914873737}
+  text: {fileID: 392087042}
 --- !u!1 &883264370
 GameObject:
   m_ObjectHideFlags: 0
@@ -2903,9 +2920,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6733421dc49f1384a89e356cf32b2e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _victoryPanel: {fileID: 914873737}
-  text: {fileID: 392087042}
-  _victory: 0
+  _isPlayerO: 1
+  _gameManager: {fileID: 858770372}
 --- !u!1 &1591554819
 GameObject:
   m_ObjectHideFlags: 0
@@ -3294,9 +3310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6733421dc49f1384a89e356cf32b2e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _victoryPanel: {fileID: 914873737}
-  text: {fileID: 392087042}
-  _victory: 0
+  _isPlayerO: 0
+  _gameManager: {fileID: 0}
 --- !u!1 &2062231373
 GameObject:
   m_ObjectHideFlags: 0
