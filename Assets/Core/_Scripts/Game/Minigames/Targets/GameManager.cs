@@ -14,6 +14,7 @@ namespace RapidPrototyping.TicTacMix.Targets
         private bool m_gameRunning = true;
         public static bool GameRunning => Instance.m_gameRunning;
         private float m_currentTime;
+        public static float RemainingTime => Instance.m_currentTime;
 
         private int m_p1Score, m_p2Score;
 
