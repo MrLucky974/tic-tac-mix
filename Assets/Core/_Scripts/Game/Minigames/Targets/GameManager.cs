@@ -12,11 +12,13 @@ namespace RapidPrototyping.TicTacMix.Targets
 
         [SerializeField] private float m_totalDuration;
         private bool m_gameRunning = true;
+        public static bool GameRunning => Instance.m_gameRunning;
         private float m_currentTime;
 
         private int m_p1Score, m_p2Score;
 
         public event Action OnScoreChanged;
+        public event Action<int> OnGameEnded;
 
         private void Start()
         {
@@ -52,6 +54,8 @@ namespace RapidPrototyping.TicTacMix.Targets
         {
             if (Instance.m_gameRunning is false)
                 return;
+
+            Instance.OnGameEnded?.Invoke(winIndex);
 
             Instance.m_gameRunning = false;
         }

@@ -32,6 +32,12 @@ namespace RapidPrototyping.TicTacMix.Targets
         {
             m_camera = Camera.main;
             UpdateWeapon();
+            GameManager.Instance.OnGameEnded += HandleGameEnded;
+        }
+
+        private void HandleGameEnded(int winIndex)
+        {
+            enabled = false;
         }
 
         private void Update()

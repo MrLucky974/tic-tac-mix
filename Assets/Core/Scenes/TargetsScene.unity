@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerIndex: 1
-  m_speed: 6
+  m_speed: 3
   m_response: 25
   m_projectileMask:
     serializedVersion: 2
@@ -835,7 +835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerIndex: 0
-  m_speed: 6
+  m_speed: 3
   m_response: 25
   m_projectileMask:
     serializedVersion: 2

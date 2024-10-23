@@ -88,6 +88,12 @@ public static class JRandom
         return RollDice(n, s, 0);
     }
 
+    public static T PickRandomUnity<T>(this T[] array)
+    {
+        int index = Random.Range(0, array.Length);
+        return array[index];
+    }
+
     public static T PickRandom<T>(this T[] array, System.Random random)
     {
         int index = random.Next(array.Length);

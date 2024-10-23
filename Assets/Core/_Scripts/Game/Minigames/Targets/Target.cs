@@ -1,4 +1,5 @@
 using CartoonFX;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -15,6 +16,8 @@ namespace RapidPrototyping.TicTacMix.Targets
 
         [SerializeField] private CFXR_Effect m_disableEffect;
         [SerializeField] private CFXR_Effect m_impactEffect;
+
+        public event Action OnTargetDestroyed;
 
         private Collider m_collider;
 
@@ -49,6 +52,7 @@ namespace RapidPrototyping.TicTacMix.Targets
             transform.rotation = targetRotation;
             yield return null;
             Instantiate(m_disableEffect, transform.position, Quaternion.identity);
+            OnTargetDestroyed?.Invoke();
             Destroy(gameObject);
         }
 
@@ -62,13 +66,14 @@ namespace RapidPrototyping.TicTacMix.Targets
             if (collision.gameObject.TryGetComponent<Projectile>(out var projectile))
             {
                 OnProjectileHit(projectile.PlayerIndex);
-
                 Instantiate(m_impactEffect, collision.contacts[0].point, Quaternion.identity);
 
                 if (m_destructible)
                 {
                     m_destructible.Destroy();
                 }
+
+                OnTargetDestroyed?.Invoke();
             }
         }
     }

@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8997942d52d802f488df368e77baefa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_lifetime: 3
+  m_lifetime: 1.5
   m_score: -1
   m_destructible: {fileID: 718916259526243661}
   m_disableEffect: {fileID: 8771972552311404739, guid: bbf9e36a48d6c5648a13889afab076fd,

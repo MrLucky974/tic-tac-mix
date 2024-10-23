@@ -19,6 +19,8 @@ namespace RapidPrototyping.TicTacMix.Targets
                     body.AddExplosionForce(power, transform.position, radius, 3.0F);
                 }
             }
+
+            Destroy(gameObject, 10f);
         }
     }
 }
