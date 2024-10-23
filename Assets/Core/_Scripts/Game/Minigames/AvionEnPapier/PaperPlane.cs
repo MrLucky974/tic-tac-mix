@@ -16,8 +16,15 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
         [Header("Spawner")]
         [SerializeField] private Spawner _spawner;
 
+
+        [Header("GameManager")]
+        [SerializeField] private GameManager _gameManager;
+        [SerializeField] private bool isPlayerA;
+
+
         private void Start()
         {
+            _gameManager = FindObjectOfType<GameManager>();
             _spawner = FindObjectOfType<Spawner>();
             _rb = GetComponent<Rigidbody>();
         }
@@ -59,10 +66,11 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
                 StartCoroutine(waitSpawnR());
 
             }
-
+ //FIN//
             if(collision.gameObject.CompareTag("Finish"))
             {
                 print("end");
+                _gameManager.PlayerFinished(isPlayerA);
             }
         }
 
