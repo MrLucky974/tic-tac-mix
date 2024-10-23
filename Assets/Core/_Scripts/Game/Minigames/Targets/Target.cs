@@ -1,21 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace RapidPrototyping.TicTacMix
+namespace RapidPrototyping.TicTacMix.Targets
 {
+    [RequireComponent(typeof(Collider))]
     public class Target : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        private Collider m_collider;
+
+        private void Start()
         {
-        
+            m_collider = GetComponent<Collider>();
         }
 
-        // Update is called once per frame
-        void Update()
+        private void OnCollisionEnter(Collision collision)
         {
-        
+            Debug.Log(collision.gameObject);
         }
     }
 }
