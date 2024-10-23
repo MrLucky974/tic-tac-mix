@@ -45,23 +45,47 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
         private void OnCollisionEnter(Collision collision)
         {
 
-            if(collision.gameObject.CompareTag("Terrain"))
+            if(collision.gameObject.CompareTag("Right"))
             {
+                Flip();
+
+                StartCoroutine(waitSpawnL());
+
+            }
+            if (collision.gameObject.CompareTag("Left"))
+            {
+                Flip();
+
+                StartCoroutine(waitSpawnR());
+
+            }
+
+            if(collision.gameObject.CompareTag("Finish"))
+            {
+                print("end");
+            }
+        }
+
+        void Flip()
+        {
             Vector3 flip = new Vector3(0, 180, 0);
 
             transform.Rotate(flip);
             _rb.velocity = Vector3.up * 4;
-
-                StartCoroutine(waitSpawn());
-
-            }
         }
 
-        IEnumerator waitSpawn()
+        IEnumerator waitSpawnL()
         {
-            yield return new WaitForSeconds(0.2f);
-            _spawner.SpawnR();
-            _spawner.SpawnL();
+            yield return new WaitForSeconds(0.4f);
+            _spawner.SpawnL() ;
+
         }
+        IEnumerator waitSpawnR()
+        {
+            yield return new WaitForSeconds(0.4f);
+            _spawner.SpawnR();
+
+        }
+
     }
 }
