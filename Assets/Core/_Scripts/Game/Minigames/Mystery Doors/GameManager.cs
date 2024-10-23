@@ -8,7 +8,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
     {
         public enum GameEndReason
         {
-            PlayerDeath,
+            ExitDoorOpened,
             TimeUp
         }
 

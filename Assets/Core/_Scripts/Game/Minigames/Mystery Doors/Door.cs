@@ -4,7 +4,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
 {
     public class Door : MonoBehaviour
     {
-        private Player m_playerOne, m_playerTwo;
+        protected Player m_playerOne, m_playerTwo;
         private bool m_isTrapped;
 
         public void Initialize(bool trapped)
@@ -12,7 +12,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
             m_isTrapped = trapped;
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             if (!m_playerOne && !m_playerTwo)
                 return;
@@ -21,7 +21,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
             {
                 var input = InputManager.InputActions.P1Gameplay;
                 var movement = input.Movement.ReadValue<Vector2>().y;
-                if (input.Movement.WasPressedThisFrame() && movement >= 1f)
+                if (input.Movement.WasPressedThisFrame() && movement > 0f)
                 {
                     if (m_isTrapped)
                     {
@@ -43,7 +43,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
             {
                 var input = InputManager.InputActions.P2Gameplay;
                 var movement = input.Movement.ReadValue<Vector2>().y;
-                if (input.Movement.WasPressedThisFrame() && movement >= 1f)
+                if (input.Movement.WasPressedThisFrame() && movement > 0f)
                 {
                     if (m_isTrapped)
                     {
@@ -62,7 +62,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.TryGetComponent<Player>(out var player))
             {
@@ -78,7 +78,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
             }
         }
 
-        private void OnTriggerExit2D(Collider2D collision)
+        protected virtual void OnTriggerExit2D(Collider2D collision)
         {
             if (collision.TryGetComponent<Player>(out var player))
             {
