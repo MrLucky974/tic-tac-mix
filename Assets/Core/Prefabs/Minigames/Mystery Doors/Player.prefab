@@ -167,10 +167,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 593e4855d0fa5a34a87244a941fda712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 0.2
+  m_speed: 0.5
   m_playerIndex: 0
   m_spriteRenderer: {fileID: 5902781650259016372}
-  currentFloor: {fileID: 0}
+  currentStage: {fileID: 0}
 --- !u!50 &1187611044657904515
 Rigidbody2D:
   serializedVersion: 4

@@ -692,12 +692,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_camera: {fileID: 1214855563}
   m_floorHeight: 3
-  m_tower: {fileID: 1734068196}
-  m_floorPrefabs:
-  - {fileID: 4143238894416823134, guid: 170a5cc67b81ee04b81850b5d5477fdc, type: 3}
-  m_groundFloor: {fileID: 2056973145}
   m_playerPrefab: {fileID: 5377586974075744185, guid: 4ae6267675c6051428e900be5294f768,
     type: 3}
+  m_tower: {fileID: 1734068196}
+  m_groundFloor: {fileID: 2056973145}
+  m_floorPrefabs:
+  - {fileID: 4143238894416823134, guid: 170a5cc67b81ee04b81850b5d5477fdc, type: 3}
+  m_totalDuration: 60
 --- !u!1 &1604560512
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,6 +1041,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2098636031864733259}
+  - component: {fileID: 8161168688785448931}
+  - component: {fileID: 8161168688785448932}
   m_Layer: 0
   m_Name: Exit Door
   m_TagString: Untagged
@@ -1047,6 +1050,63 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8161168688785448931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8161168688785448930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e75cf2c82e609484c8a296efb1fee4cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &8161168688785448932
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8161168688785448930}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.25, y: 2.05}
+  m_EdgeRadius: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
