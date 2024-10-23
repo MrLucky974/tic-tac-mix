@@ -7,10 +7,13 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
     {
         public Stage previousStage;
 
+        [SerializeField] private SpriteRenderer m_wall;
         [SerializeField] private Door[] m_doors;
 
-        public void Initialize()
+        public void Initialize(Color color)
         {
+            m_wall.color = color;
+
             var doors = new List<Door>(m_doors);
 
             // This code only executes if the number of doors provided is at least

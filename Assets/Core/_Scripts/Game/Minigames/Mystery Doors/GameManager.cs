@@ -1,6 +1,7 @@
 using LuckiusDev.Utils;
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace RapidPrototyping.TicTacMix.MysteryDoors
 {
@@ -17,6 +18,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
         [Space]
 
         [SerializeField] private float m_floorHeight = 3f;
+        [SerializeField] private int m_floorCount = 6;
 
         [Space]
 
@@ -24,6 +26,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
         [SerializeField] private Transform m_tower;
         [SerializeField] private Ground m_groundFloor;
         [SerializeField] private Floor[] m_floorPrefabs;
+        [SerializeField] private Color[] m_floorColors;
 
         private Floor m_topFloor;
 
@@ -79,18 +82,24 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
 
             Floor previousFloor = null;
             Vector3 position = m_groundFloor.transform.position;
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < m_floorCount; i++)
             {
                 // Get this floor position
                 position += Vector3.up * m_floorHeight;
 
                 // Instantiate a new floor
-                var prefab = m_floorPrefabs[0];
+                var prefab = m_floorPrefabs[Random.Range(0, m_floorPrefabs.Length)];
                 var floor = Instantiate(prefab, position, Quaternion.identity);
                 floor.transform.parent = m_tower;
                 floor.name = $"Floor_{i + 1}";
 
-                floor.Initialize();
+                Color color = Color.white;
+                if (m_floorColors != null && m_floorColors.Length > 0)
+                {
+                    int colorIndex = i % m_floorColors.Length;
+                    color = m_floorColors[colorIndex];
+                }
+                floor.Initialize(color);
 
                 // This piece of code will link each stage with each other
                 // to let the player navigate in between them with doors.

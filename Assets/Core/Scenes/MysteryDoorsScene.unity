@@ -692,12 +692,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_camera: {fileID: 1214855563}
   m_floorHeight: 3
+  m_floorCount: 6
   m_playerPrefab: {fileID: 5377586974075744185, guid: 4ae6267675c6051428e900be5294f768,
     type: 3}
   m_tower: {fileID: 1734068196}
   m_groundFloor: {fileID: 2056973145}
   m_floorPrefabs:
+  - {fileID: 4143238894416823134, guid: e682006a940552149abb5174278a1e66, type: 3}
+  - {fileID: 4143238894416823134, guid: bb97c87c8902f9747ae7bcfa87a56c1f, type: 3}
   - {fileID: 4143238894416823134, guid: 170a5cc67b81ee04b81850b5d5477fdc, type: 3}
+  m_floorColors:
+  - {r: 0.9490196, g: 0.18431373, b: 0.41960785, a: 1}
+  - {r: 0.9490196, g: 0.27450982, b: 0.46666667, a: 1}
   m_totalDuration: 60
 --- !u!1 &1604560512
 GameObject:
