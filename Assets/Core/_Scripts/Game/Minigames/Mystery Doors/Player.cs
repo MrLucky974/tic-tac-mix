@@ -11,22 +11,27 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
         [SerializeField] private int m_playerIndex;
         [SerializeField] private SpriteRenderer m_spriteRenderer;
 
-        [HideInInspector] public Floor currentFloor;
+        [HideInInspector] public Stage currentStage;
 
         private float m_offset;
 
-        public void Initialize(int playerIndex, Floor floor)
+        public void Initialize(int playerIndex, Stage stage)
         {
-            currentFloor = floor;
+            name = $"Player_{(playerIndex + 1)}";
+
+            currentStage = stage;
             m_playerIndex = playerIndex;
             m_offset = playerIndex == 0 ? 0f : 1f;
-            SetPosition(currentFloor.GetPosition(m_offset));
+
+            transform.position = currentStage.GetPosition(m_offset);
             m_spriteRenderer.color = playerIndex == 0 ? Color.blue : Color.red;
         }
 
-        public void SetPosition(Vector3 position)
+        public void SetNewStage(Stage stage)
         {
-            transform.position = position;
+            currentStage = stage;
+            m_offset = stage is Ground ? 0f : (m_playerIndex == 0 ? 0f : 1f);
+            transform.position = currentStage.GetPosition(m_offset);
         }
 
         private void Update()
@@ -46,8 +51,10 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
                 m_offset = Mathf.Clamp01(m_offset + m_speed * movement * deltaTime);
             }
 
-            Vector3 targetPosition = currentFloor.GetPosition(m_offset);
+            Vector3 targetPosition = currentStage.GetPosition(m_offset);
             transform.position = targetPosition;
         }
+
+        public int PlayerIndex => m_playerIndex;
     }
 }
