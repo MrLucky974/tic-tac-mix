@@ -171,7 +171,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_leftHandle: {fileID: 527918484298677847}
   m_rightHandle: {fileID: 4786103207945386086}
-  nextFloor: {fileID: 0}
+  previousStage: {fileID: 0}
+  m_doors:
+  - {fileID: 1942716366422074537}
+  - {fileID: 1132446448628319780}
+  - {fileID: 4854454235290716127}
+  - {fileID: 8835334105910789062}
+  - {fileID: 671686259140033803}
 --- !u!1 &5129036388780584114
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,6 +454,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 71892691615087906}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8835334105910789062 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8818614917744377572, guid: 1f77ef2e1ccbac841882fb826b301baf,
+    type: 3}
+  m_PrefabInstance: {fileID: 71892691615087906}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 095d4bdd7f34730449356f6fed41febb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4124311973309053243
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -522,6 +540,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4124311973309053243}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4854454235290716127 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8818614917744377572, guid: 1f77ef2e1ccbac841882fb826b301baf,
+    type: 3}
+  m_PrefabInstance: {fileID: 4124311973309053243}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 095d4bdd7f34730449356f6fed41febb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6960288714483423821
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -590,6 +620,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f77ef2e1ccbac841882fb826b301baf, type: 3}
+--- !u!114 &1942716366422074537 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8818614917744377572, guid: 1f77ef2e1ccbac841882fb826b301baf,
+    type: 3}
+  m_PrefabInstance: {fileID: 6960288714483423821}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 095d4bdd7f34730449356f6fed41febb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5006392390091295398 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2733032894588883179, guid: 1f77ef2e1ccbac841882fb826b301baf,
@@ -664,6 +706,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f77ef2e1ccbac841882fb826b301baf, type: 3}
+--- !u!114 &671686259140033803 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8818614917744377572, guid: 1f77ef2e1ccbac841882fb826b301baf,
+    type: 3}
+  m_PrefabInstance: {fileID: 8300218309158126575}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 095d4bdd7f34730449356f6fed41febb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6259408081919005444 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2733032894588883179, guid: 1f77ef2e1ccbac841882fb826b301baf,
@@ -738,6 +792,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f77ef2e1ccbac841882fb826b301baf, type: 3}
+--- !u!114 &1132446448628319780 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8818614917744377572, guid: 1f77ef2e1ccbac841882fb826b301baf,
+    type: 3}
+  m_PrefabInstance: {fileID: 8490764694359505088}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 095d4bdd7f34730449356f6fed41febb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5780633382284453931 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2733032894588883179, guid: 1f77ef2e1ccbac841882fb826b301baf,

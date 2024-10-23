@@ -23,10 +23,18 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
                 var movement = input.Movement.ReadValue<Vector2>().y;
                 if (input.Movement.WasPressedThisFrame() && movement >= 1f)
                 {
-                    if (m_playerOne.currentStage is Floor floor)
+                    if (m_isTrapped)
                     {
-                        var nextStage = floor.previousStage;
-                        m_playerOne.SetNewStage(nextStage);
+                        var topStage = GameManager.TopFloor;
+                        m_playerOne.SetNewStage(topStage);
+                    }
+                    else
+                    {
+                        if (m_playerOne.currentStage is Floor floor)
+                        {
+                            var nextStage = floor.previousStage;
+                            m_playerOne.SetNewStage(nextStage);
+                        }
                     }
                 }
             }
@@ -37,10 +45,18 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
                 var movement = input.Movement.ReadValue<Vector2>().y;
                 if (input.Movement.WasPressedThisFrame() && movement >= 1f)
                 {
-                    if (m_playerTwo.currentStage is Floor floor)
+                    if (m_isTrapped)
                     {
-                        var nextStage = floor.previousStage;
-                        m_playerTwo.SetNewStage(nextStage);
+                        var topStage = GameManager.TopFloor;
+                        m_playerTwo.SetNewStage(topStage);
+                    }
+                    else
+                    {
+                        if (m_playerTwo.currentStage is Floor floor)
+                        {
+                            var nextStage = floor.previousStage;
+                            m_playerTwo.SetNewStage(nextStage);
+                        }
                     }
                 }
             }

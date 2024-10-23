@@ -50,6 +50,8 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
                 floor.transform.parent = m_tower;
                 floor.name = $"Floor_{i + 1}";
 
+                floor.Initialize();
+
                 // This piece of code will link each stage with each other
                 // to let the player navigate in between them with doors.
                 if (previousFloor != null) // If a floor was generated before this one...
