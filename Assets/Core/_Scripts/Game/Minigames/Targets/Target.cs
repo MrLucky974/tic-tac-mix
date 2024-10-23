@@ -17,7 +17,7 @@ namespace RapidPrototyping.TicTacMix.Targets
 
         public virtual void OnProjectileHit(int playerIndex)
         {
-            GameManager.AddScore(m_score, playerIndex);
+            GameManager.UpdateScore(m_score, playerIndex);
         }
 
         private void OnCollisionEnter(Collision collision)

@@ -1,4 +1,5 @@
 using LuckiusDev.Utils;
+using System;
 
 namespace RapidPrototyping.TicTacMix.Targets
 {
@@ -9,7 +10,14 @@ namespace RapidPrototyping.TicTacMix.Targets
 
         private int m_p1Score, m_p2Score;
 
-        public static void AddScore(int score, int playerIndex)
+        public event Action OnScoreChanged;
+
+        private void Start()
+        {
+            OnScoreChanged?.Invoke();
+        }
+
+        public static void UpdateScore(int score, int playerIndex)
         {
             switch (playerIndex)
             {
@@ -20,22 +28,11 @@ namespace RapidPrototyping.TicTacMix.Targets
                     Instance.m_p2Score += score;
                     break;
             }
+
+            Instance.OnScoreChanged?.Invoke();
         }
 
-        public static void RemoveScore(int score, int playerIndex)
-        {
-            switch (playerIndex)
-            {
-                case PLAYER_ONE_INDEX:
-                    Instance.m_p1Score -= score;
-                    break;
-                case PLAYER_TWO_INDEX:
-                    Instance.m_p2Score -= score;
-                    break;
-            }
-        }
-
-        public int P1Score => m_p1Score;
-        public int P2Score => m_p2Score;
+        public static int P1Score => Instance.m_p1Score;
+        public static int P2Score => Instance.m_p2Score;
     }
 }
