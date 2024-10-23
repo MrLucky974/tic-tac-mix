@@ -25,6 +25,13 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
 
             transform.position = currentStage.GetPosition(m_offset);
             m_spriteRenderer.color = playerIndex == 0 ? Color.blue : Color.red;
+
+            GameManager.Instance.OnGameEnded += HandleGameEnd;
+        }
+
+        private void HandleGameEnd(GameManager.GameEndReason reason, int winIndex)
+        {
+            enabled = false;
         }
 
         public void SetNewStage(Stage stage)
