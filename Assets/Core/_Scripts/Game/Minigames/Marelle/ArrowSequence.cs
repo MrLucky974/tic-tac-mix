@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 namespace RapidPrototyping.TicTacMix
@@ -24,16 +25,28 @@ namespace RapidPrototyping.TicTacMix
         private List<GameObject> _instanciatedKey = new List<GameObject>();
         private List<GameObject> _instanciatedArrow = new List<GameObject>();
 
+        [Header("Jump")]
+        [SerializeField] private GameObject[] _characters;
+        [SerializeField] private float _distance;
+        [SerializeField] private float _jumpForce;
+
+        [SerializeField] private Vector3[] _startPos;
+
 
         private void Start()
         {
+            _startPos[0] = _characters[0].transform.position;
+            _startPos[1] = _characters[1].transform.position;
 
             RandomArrowsSequence(_allDirectionsKeys, _sequenceNumber[0], _inputSequenceKey, _placement[0], _instanciatedKey );
             RandomArrowsSequence(_allDirectionsArrows, _sequenceNumber[1], _inputSequenceArrow, _placement[1], _instanciatedArrow);
+
+
         }
 
         private void Update()
-        {          
+        { 
+///////////////////////////////PLAYER KEY(blue)////////////////////////////////////////////////////
 
             //Si la touche cliquée est la même que la séquence; continuer la séquence
             if (Input.anyKeyDown)
@@ -44,7 +57,6 @@ namespace RapidPrototyping.TicTacMix
                 {
                     if (pressedKey == _inputSequenceKey[_currentIndex[0]])
                     {
-                        print(pressedKey + ":" + _inputSequenceKey[_currentIndex[0]]);
                         _currentIndex[0]++;
                         Destroy(_instanciatedKey[_currentIndex[0] - 1]);
 
@@ -53,6 +65,8 @@ namespace RapidPrototyping.TicTacMix
                         // Vérifier si la séquence est complète
                         if (_currentIndex[0] >= _inputSequenceKey.Count)
                         {
+ //JUMP
+                            Jump(_characters[0]);
 
                             _currentIndex[0] = 0;
                             _instanciatedKey.Clear();
@@ -63,12 +77,17 @@ namespace RapidPrototyping.TicTacMix
                     }
                     else
                     {
-                        ResetSequence(_instanciatedKey, _inputSequenceKey);
+
+//RESET
+                        _characters[0].transform.position = _startPos[0];
+                        //ResetSequence(_instanciatedKey, _inputSequenceKey);
                         print("wrong");
                         //Mauvaise touche : Retour à la case départ + Reset
 
                     }
                 }
+
+///////////////////////////////PLAYER ARROW(red)////////////////////////////////////////////////////
                 KeyCode pressedArrow = GetPressedKey(_allDirectionsArrows);
                 if (pressedArrow != KeyCode.None)
                 {
@@ -82,6 +101,8 @@ namespace RapidPrototyping.TicTacMix
                         // Vérifier si la séquence est complète
                         if (_currentIndex[1] >= _inputSequenceArrow.Count)
                         {
+ //JUMP
+                            Jump(_characters[1]);
 
                             _currentIndex[1] = 0;
                             _instanciatedArrow.Clear();
@@ -91,7 +112,9 @@ namespace RapidPrototyping.TicTacMix
                     }
                     else
                     {
-                        ResetSequence(_instanciatedArrow, _inputSequenceArrow);
+//RESET
+                        _characters[1].transform.position = _startPos[1];
+                        //ResetSequence(_instanciatedArrow, _inputSequenceArrow);
                         print("wrong");
                         //Mauvaise touche : Retour à la case départ + Reset
 
@@ -251,5 +274,15 @@ namespace RapidPrototyping.TicTacMix
             return null;
         }
 
+        void Jump(GameObject character)
+        {
+            print("jump");
+            Vector3 Jump = character.transform.right * _distance + Vector3.up * _jumpForce;
+
+            character.GetComponent<Rigidbody>().AddForce(Jump, ForceMode.Impulse);
+            
+        }
+
     }
+ 
 }
