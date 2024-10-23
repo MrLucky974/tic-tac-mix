@@ -14,6 +14,7 @@ namespace RapidPrototyping.TicTacMix.Targets
 
         [Space]
 
+        [SerializeField] private LayerMask m_projectileMask;
         [SerializeField] private Transform m_muzzle;
         [SerializeField] private Projectile m_projectilePrefab;
         [SerializeField] private Image m_cursor;
@@ -58,7 +59,7 @@ namespace RapidPrototyping.TicTacMix.Targets
 
                     Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(m_canvas.worldCamera, m_cursor.rectTransform.position);
                     Ray ray = m_camera.ScreenPointToRay(screenPoint);
-                    if (Physics.Raycast(ray, out var hit))
+                    if (Physics.Raycast(ray, out var hit, 10f, m_projectileMask))
                     {
                         projectile.StartMovement(hit.point);
                     }
@@ -78,6 +79,18 @@ namespace RapidPrototyping.TicTacMix.Targets
                     targetVelocity,
                     1f - Mathf.Exp(-m_response * deltaTime)
                 );
+
+                if (input.Primary.WasPressedThisFrame())
+                {
+                    var projectile = Instantiate(m_projectilePrefab, m_muzzle.position, Quaternion.identity);
+
+                    Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(m_canvas.worldCamera, m_cursor.rectTransform.position);
+                    Ray ray = m_camera.ScreenPointToRay(screenPoint);
+                    if (Physics.Raycast(ray, out var hit, 10f, m_projectileMask))
+                    {
+                        projectile.StartMovement(hit.point);
+                    }
+                }
             }
 
             UpdateWeapon();
