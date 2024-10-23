@@ -38,7 +38,7 @@ namespace RapidPrototyping.TicTacMix.Targets
         {
             var deltaTime = Time.deltaTime;
 
-            if (m_playerIndex == 0)
+            if (m_playerIndex == GameManager.PLAYER_ONE_INDEX)
             {
                 var input = InputManager.InputActions.P1Gameplay;
                 var movement = input.Movement.ReadValue<Vector2>();
@@ -56,6 +56,7 @@ namespace RapidPrototyping.TicTacMix.Targets
                 if (input.Primary.WasPressedThisFrame())
                 {
                     var projectile = Instantiate(m_projectilePrefab, m_muzzle.position, Quaternion.identity);
+                    projectile.Initialize(m_playerIndex);
 
                     Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(m_canvas.worldCamera, m_cursor.rectTransform.position);
                     Ray ray = m_camera.ScreenPointToRay(screenPoint);
@@ -65,7 +66,7 @@ namespace RapidPrototyping.TicTacMix.Targets
                     }
                 }
             }
-            else if (m_playerIndex == 1)
+            else if (m_playerIndex == GameManager.PLAYER_TWO_INDEX)
             {
                 var input = InputManager.InputActions.P2Gameplay;
                 var movement = input.Movement.ReadValue<Vector2>();
@@ -83,6 +84,7 @@ namespace RapidPrototyping.TicTacMix.Targets
                 if (input.Primary.WasPressedThisFrame())
                 {
                     var projectile = Instantiate(m_projectilePrefab, m_muzzle.position, Quaternion.identity);
+                    projectile.Initialize(m_playerIndex);
 
                     Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(m_canvas.worldCamera, m_cursor.rectTransform.position);
                     Ray ray = m_camera.ScreenPointToRay(screenPoint);

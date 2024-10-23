@@ -13,6 +13,14 @@ namespace RapidPrototyping.TicTacMix.Targets
         private float m_startTime;
         private bool m_isMoving = false;
 
+        private int m_playerIndex;
+        public int PlayerIndex => m_playerIndex;
+
+        public void Initialize(int playerIndex)
+        {
+            m_playerIndex = playerIndex;
+        }
+
         public void StartMovement(Vector3 targetPosition)
         {
             m_startPosition = transform.position;
@@ -48,6 +56,11 @@ namespace RapidPrototyping.TicTacMix.Targets
             {
                 m_isMoving = false;
             }
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            Destroy(gameObject);
         }
     }
 }

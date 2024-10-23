@@ -5,6 +5,7 @@ namespace RapidPrototyping.TicTacMix.Targets
     [RequireComponent(typeof(Collider))]
     public class Target : MonoBehaviour
     {
+        [SerializeField] private int m_score = 1;
         [SerializeField] private Destructible m_destructible;
 
         private Collider m_collider;
@@ -14,12 +15,21 @@ namespace RapidPrototyping.TicTacMix.Targets
             m_collider = GetComponent<Collider>();
         }
 
+        public virtual void OnProjectileHit(int playerIndex)
+        {
+            GameManager.AddScore(m_score, playerIndex);
+        }
+
         private void OnCollisionEnter(Collision collision)
         {
-            Debug.Log(collision.gameObject);
-            if (m_destructible)
+            if (collision.gameObject.TryGetComponent<Projectile>(out var projectile))
             {
-                m_destructible.Destroy();
+                OnProjectileHit(projectile.PlayerIndex);
+
+                if (m_destructible)
+                {
+                    m_destructible.Destroy();
+                }
             }
         }
     }
