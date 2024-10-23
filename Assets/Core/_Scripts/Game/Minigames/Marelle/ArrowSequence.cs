@@ -40,7 +40,6 @@ namespace RapidPrototyping.TicTacMix.Marelle
             RandomArrowsSequence(_allDirectionsKeys, _sequenceNumber[0], _inputSequenceKey, _placement[0], _instanciatedKey);
             RandomArrowsSequence(_allDirectionsArrows, _sequenceNumber[1], _inputSequenceArrow, _placement[1], _instanciatedArrow);
 
-
         }
 
         private void Update()

@@ -9,7 +9,6 @@ namespace RapidPrototyping.TicTacMix.Marelle
     {
         [SerializeField] private GameObject _victoryPanel;
         [SerializeField] private TMP_Text text;
-        public bool _victory = false;
 
         private void Start()
         {
@@ -20,7 +19,6 @@ namespace RapidPrototyping.TicTacMix.Marelle
         {
             if (other.CompareTag("Victory"))
             {
-                _victory = true;
 
                 Time.timeScale = 0;
 
