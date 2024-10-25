@@ -11,6 +11,9 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
         [SerializeField] private int m_playerIndex;
         [SerializeField] private SpriteRenderer m_spriteRenderer;
 
+        [SerializeField] private Color m_blueColor;
+        [SerializeField] private Color m_redColor;
+
         [HideInInspector] public Stage currentStage;
 
         private float m_offset;
@@ -24,7 +27,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
             m_offset = playerIndex == 0 ? 0f : 1f;
 
             transform.position = currentStage.GetPosition(m_offset);
-            m_spriteRenderer.color = playerIndex == 0 ? Color.blue : Color.red;
+            m_spriteRenderer.color = playerIndex == 0 ? m_blueColor : m_redColor;
 
             GameManager.Instance.OnGameEnded += HandleGameEnd;
         }
@@ -50,12 +53,20 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
                 var input = InputManager.InputActions.P1Gameplay;
                 var movement = input.Movement.ReadValue<Vector2>().x;
                 m_offset = Mathf.Clamp01(m_offset + m_speed * movement * deltaTime);
+                if (movement != 0f)
+                {
+                    m_spriteRenderer.flipX = movement < 0f;
+                }
             }
             else if (m_playerIndex == 1)
             {
                 var input = InputManager.InputActions.P2Gameplay;
                 var movement = input.Movement.ReadValue<Vector2>().x;
                 m_offset = Mathf.Clamp01(m_offset + m_speed * movement * deltaTime);
+                if (movement != 0f)
+                {
+                    m_spriteRenderer.flipX = movement < 0f;
+                }
             }
 
             Vector3 targetPosition = currentStage.GetPosition(m_offset);
