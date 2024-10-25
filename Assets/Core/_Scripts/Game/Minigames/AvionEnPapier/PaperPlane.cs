@@ -19,7 +19,7 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
 
         [Header("GameManager")]
         [SerializeField] private GameManager _gameManager;
-        [SerializeField] private bool isPlayerA;
+        [SerializeField] private bool isPlayerO;
 
 
         private void Start()
@@ -70,7 +70,7 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
             if(collision.gameObject.CompareTag("Finish"))
             {
                 print("end");
-                _gameManager.PlayerFinished(isPlayerA);
+                _gameManager.PlayerFinished(isPlayerO);
             }
         }
 
@@ -79,7 +79,7 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
             Vector3 flip = new Vector3(0, 180, 0);
 
             transform.Rotate(flip);
-            _rb.velocity = Vector3.up * 4;
+            _rb.velocity = Vector3.up * 3;
         }
 
         IEnumerator waitSpawnL()
