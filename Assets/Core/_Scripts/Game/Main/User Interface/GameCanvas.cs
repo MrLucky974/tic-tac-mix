@@ -40,7 +40,7 @@ namespace RapidPrototyping.TicTacMix.Main
 
         private void Start()
         {
-            GameManager.Instance.OnGridChanged += UpdateGrid;
+            GridManager.Instance.OnGridChanged += UpdateGrid;
             GameDataHandler.Instance.OnTurnChanged += HandlePlayerTurn;
             HandlePlayerTurn(GameDataHandler.CurrentTurn);
         }
@@ -58,7 +58,7 @@ namespace RapidPrototyping.TicTacMix.Main
             }
         }
 
-        private void UpdateGrid(GameManager.Symbol[] grid)
+        private void UpdateGrid(GridManager.Symbol[] grid)
         {
             foreach (var cell in m_cellImages)
             {
@@ -72,16 +72,16 @@ namespace RapidPrototyping.TicTacMix.Main
                     Mathf.FloorToInt(position.y / m_worldCellSize.y)
                 );
 
-                var symbol = GameManager.GetSymbol(gridPosition.x, gridPosition.y);
+                var symbol = GridManager.GetSymbol(gridPosition.x, gridPosition.y);
                 switch (symbol)
                 {
-                    case GameManager.Symbol.None:
+                    case GridManager.Symbol.None:
                         cell.sprite = m_emptySprite;
                         break;
-                    case GameManager.Symbol.Cross:
+                    case GridManager.Symbol.Cross:
                         cell.sprite = m_crossSprite;
                         break;
-                    case GameManager.Symbol.Circle:
+                    case GridManager.Symbol.Circle:
                         cell.sprite = m_circleSprite;
                         break;
                 }
@@ -117,7 +117,7 @@ namespace RapidPrototyping.TicTacMix.Main
 
                 if (input.Primary.WasPressedThisFrame() && m_canSelectMinigame)
                 {
-                    bool cellEmpty = GameManager.IsCellEmpty(m_gridPosition.x,
+                    bool cellEmpty = GridManager.IsCellEmpty(m_gridPosition.x,
                         m_gridPosition.y);
                     if (cellEmpty)
                     {
@@ -147,7 +147,7 @@ namespace RapidPrototyping.TicTacMix.Main
 
                 if (input.Primary.WasPressedThisFrame() && m_canSelectMinigame)
                 {
-                    bool cellEmpty = GameManager.IsCellEmpty(m_gridPosition.x,
+                    bool cellEmpty = GridManager.IsCellEmpty(m_gridPosition.x,
                         m_gridPosition.y);
                     if (cellEmpty)
                     {
