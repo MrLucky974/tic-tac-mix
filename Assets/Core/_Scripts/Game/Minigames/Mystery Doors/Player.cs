@@ -47,13 +47,13 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
         private void Update()
         {
             var deltaTime = Time.deltaTime;
+            float normalizedSpeed = m_speed / currentStage.GetDistance();
 
             if (m_playerIndex == 0)
             {
                 var input = InputManager.InputActions.P1Gameplay;
                 var movement = input.Movement.ReadValue<Vector2>().x;
 
-                float normalizedSpeed = m_speed / currentStage.GetDistance();
                 m_offset = Mathf.Clamp01(m_offset + normalizedSpeed * movement * deltaTime);
                 if (movement != 0f)
                 {
@@ -64,7 +64,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
             {
                 var input = InputManager.InputActions.P2Gameplay;
                 var movement = input.Movement.ReadValue<Vector2>().x;
-                m_offset = Mathf.Clamp01(m_offset + m_speed * movement * deltaTime);
+                m_offset = Mathf.Clamp01(m_offset + normalizedSpeed * movement * deltaTime);
                 if (movement != 0f)
                 {
                     m_spriteRenderer.flipX = movement < 0f;
