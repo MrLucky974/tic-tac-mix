@@ -54,7 +54,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
             var gridPosition = GameDataHandler.DataHolder.GridPosition;
             if (winIndex != -1)
             {
-                var symbol = winIndex == 0 ? GridManager.Symbol.Cross : GridManager.Symbol.Circle;
+                var symbol = winIndex == 1 ? GridManager.Symbol.Cross : GridManager.Symbol.Circle;
                 GridManager.PlaceSymbol(symbol, gridPosition.x, gridPosition.y);
             }
             GameDataHandler.ChangeTurn();
