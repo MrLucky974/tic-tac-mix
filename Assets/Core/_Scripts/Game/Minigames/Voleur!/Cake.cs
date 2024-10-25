@@ -7,7 +7,7 @@ namespace RapidPrototyping.TicTacMix.Voleur
 {
     public class Cake : MonoBehaviour
     {
-        [SerializeField] private int _pieceOfCake;
+        private int _pieceOfCake; //Random
 
         [SerializeField] private TMP_Text _text;
 

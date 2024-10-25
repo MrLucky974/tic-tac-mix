@@ -17,13 +17,13 @@ namespace RapidPrototyping.TicTacMix.Voleur
 
         [Header("End2_EndTimeBetterScore")]
         //CHRONO OF THE GAME
-        [SerializeField] private float _time;
+        private float _time;
         [SerializeField] private float _endTime;
 
         private int _chrono;
         [SerializeField] private TMP_Text _chronoText;
 
-        [SerializeField] private PlayerController[] _playerController;
+        private PlayerController[] _playerController;
         [SerializeField] private TMP_Text[] _scoreText;
 
         private void Start()

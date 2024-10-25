@@ -21,14 +21,6 @@ namespace RapidPrototyping.TicTacMix.Voleur
         [Header("Animation")]
         private Animator _animator;
 
-        /// Clique = prend un gateau OK
-        /// Gateau = parts => Disparait OK
-        /// Spawner de gateau OK
-        /// Score / Barre de progression? OK
-        /// Ennemi regarde = ne pas prendre de gateau = fin
-        /// Systeme de fin : vue par le watcher, avoir le plus de part dans un temps OK
-        /// Animation, bouge? OK
-
         private void Start()
         {
             _animator = GetComponent<Animator>();

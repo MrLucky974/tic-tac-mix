@@ -10,19 +10,20 @@ namespace RapidPrototyping.TicTacMix.Voleur
         [Header("Player")]
         [SerializeField] private PlayerController[] _playerController;
 
-        [Header("WatchDelay")]
-        [SerializeField] private float _time;
-        [SerializeField] private float _targetTime;
+        [Header("StartWatchDelay")]
+        private float _time;
+        private float _targetTime; //Random
 
-        [SerializeField] private bool _isWatching;
-        [SerializeField] private float _watchTime;
-        [SerializeField] private float _targetWatchTime;
+        [Header("WatchingDelay")]
+        private bool _isWatching;
+        private float _watchTime;
+        private float _targetWatchTime; //Random
 
         [Header("Animation")]
         private Animator _animator;
 
         [Header("GameManager")]
-        [SerializeField] private GameManager _gameManager;
+        private GameManager _gameManager;
 
 
 

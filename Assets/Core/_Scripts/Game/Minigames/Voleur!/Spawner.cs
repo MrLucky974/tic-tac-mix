@@ -10,12 +10,12 @@ namespace RapidPrototyping.TicTacMix.Voleur
         [SerializeField] private GameObject _cake;
         [SerializeField] private Transform _pos;
 
-        [SerializeField] private float _time;
-        [SerializeField] private float _targetTime;
+        private float _time;
+        private float _targetTime; //Random
 
         [Header("GivePlayerCakeRef")]
         private Cake _spawnedCake;
-        [SerializeField] private PlayerController[] _playerController;
+        private PlayerController[] _playerController;
 
         private void Start()
         {
