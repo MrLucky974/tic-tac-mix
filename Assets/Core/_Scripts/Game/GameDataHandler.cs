@@ -1,0 +1,67 @@
+using LuckiusDev.Utils;
+using System;
+
+namespace RapidPrototyping.TicTacMix
+{
+    public class GameDataHandler : PersistentSingleton<GameDataHandler>
+    {
+        // Indicates who's going to try to place their symbol on the grid.
+        #region Turn
+
+        public enum Turn
+        {
+            PLAYER_1,
+            PLAYER_2,
+        }
+
+        private Turn m_currentTurn = Turn.PLAYER_1;
+        public Turn CurrentTurn => m_currentTurn;
+        public event Action<Turn> OnTurnChanged;
+
+        public void ChangeTurn()
+        {
+            m_currentTurn = m_currentTurn == Turn.PLAYER_1 ?
+                Turn.PLAYER_2 : Turn.PLAYER_1;
+        }
+
+        #endregion
+
+        // The score in this script indicates how much games were won
+        // by player one and two.
+        #region Score
+
+        private int m_playerOneScore;
+        public int PlayerOneScore => m_playerOneScore;
+        private int m_playerTwoScore;
+        public int PlayerTwoScore => m_playerTwoScore;
+
+        public event Action<int, int> OnScoreChanged;
+
+        /// <summary>
+        /// Add one point to player one score.
+        /// </summary>
+        public void AddP1Score()
+        {
+            m_playerOneScore++;
+        }
+
+        /// <summary>
+        /// Add one point to player two score.
+        /// </summary>
+        public void AddP2Score()
+        {
+            m_playerTwoScore++;
+        }
+
+        /// <summary>
+        /// Set both player scores by zero.
+        /// </summary>
+        public void ResetScores()
+        {
+            m_playerOneScore = 0;
+            m_playerTwoScore = 0;
+        }
+
+        #endregion
+    }
+}
