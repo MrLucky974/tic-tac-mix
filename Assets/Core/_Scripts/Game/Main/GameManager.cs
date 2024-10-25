@@ -1,5 +1,6 @@
 using LuckiusDev.Utils;
 using System;
+using UnityEngine;
 
 namespace RapidPrototyping.TicTacMix.Main
 {
@@ -7,6 +8,7 @@ namespace RapidPrototyping.TicTacMix.Main
     {
         private const int GRID_SIZE = 3;
 
+        [Serializable]
         public enum Symbol
         {
             None = 0,
@@ -23,6 +25,11 @@ namespace RapidPrototyping.TicTacMix.Main
             InitializeGrid();
         }
 
+        private void Start()
+        {
+            OnGridChanged?.Invoke(m_grid);
+        }
+
         private void InitializeGrid()
         {
             // Initialize a 3*3 grid of symbols (none, cross, circle)
@@ -31,29 +38,36 @@ namespace RapidPrototyping.TicTacMix.Main
             {
                 m_grid[i] = Symbol.None;
             }
-            OnGridChanged?.Invoke(m_grid);
         }
 
-        public bool IsCellEmpty(int x, int y)
+        public static bool IsCellEmpty(int x, int y)
         {
-            int index = y + x * GRID_SIZE;
-            if (m_grid[index] != Symbol.None)
+            int index = x + y * GRID_SIZE;
+            if (Instance.m_grid[index] != Symbol.None)
             {
                 return false;
             }
             return true;
         }
 
-        public bool SetSymbol(Symbol symbol, int x, int y)
+        public static Symbol GetSymbol(int x, int y)
         {
-            int index = y + x * GRID_SIZE;
-            if (m_grid[index] != Symbol.None)
+            int index = x + y * GRID_SIZE;
+            return Instance.m_grid[index];
+        }
+
+        public static bool PlaceSymbol(Symbol symbol, int x, int y)
+        {
+            int index = x + y * GRID_SIZE;
+            Debug.Log($"{x} + {y} * {GRID_SIZE} = {index}");
+            if (Instance.m_grid[index] != Symbol.None)
             {
+                Debug.LogWarning("Can't place symbol here!");
                 return false;
             }
 
-            m_grid[index] = symbol;
-            OnGridChanged?.Invoke(m_grid);
+            Instance.m_grid[index] = symbol;
+            Instance.OnGridChanged?.Invoke(Instance.m_grid);
             return true;
         }
     }
