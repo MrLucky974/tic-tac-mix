@@ -41,8 +41,14 @@ namespace RapidPrototyping.TicTacMix.Main
         private void Start()
         {
             GridManager.Instance.OnGridChanged += UpdateGrid;
+            UpdateGrid(GridManager.Grid);
             GameDataHandler.Instance.OnTurnChanged += HandlePlayerTurn;
             HandlePlayerTurn(GameDataHandler.CurrentTurn);
+
+            m_gridPosition = GameDataHandler.DataHolder.GridPosition;
+            var targetPosition = m_gridPosition * m_worldCellSize;
+            targetPosition.y *= -1f;
+            m_cursor.rectTransform.anchoredPosition = targetPosition;
         }
 
         private void HandlePlayerTurn(GameDataHandler.Turn turn)
@@ -112,6 +118,7 @@ namespace RapidPrototyping.TicTacMix.Main
                     }
                     m_gridPosition.x = Mathf.Clamp(m_gridPosition.x, 0, 2);
                     m_gridPosition.y = Mathf.Clamp(m_gridPosition.y, 0, 2);
+                    GameDataHandler.DataHolder.GridPosition = m_gridPosition;
                     AnimateCursor();
                 }
 
@@ -138,10 +145,11 @@ namespace RapidPrototyping.TicTacMix.Main
                     }
                     else if (movement.y != 0f)
                     {
-                        m_gridPosition.y += Mathf.CeilToInt(movement.y);
+                        m_gridPosition.y -= Mathf.CeilToInt(movement.y);
                     }
                     m_gridPosition.x = Mathf.Clamp(m_gridPosition.x, 0, 2);
                     m_gridPosition.y = Mathf.Clamp(m_gridPosition.y, 0, 2);
+                    GameDataHandler.DataHolder.GridPosition = m_gridPosition;
                     AnimateCursor();
                 }
 

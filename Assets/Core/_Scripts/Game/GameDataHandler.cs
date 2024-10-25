@@ -9,6 +9,14 @@ namespace RapidPrototyping.TicTacMix
 {
     public class GameDataHandler : PersistentSingleton<GameDataHandler>
     {
+        [SerializeField] private SceneReference m_mainMenuSceneReference;
+        public static SceneReference MainMenuSceneReference => Instance.m_mainMenuSceneReference;
+        [SerializeField] private SceneReference m_mainGameplaySceneReference;
+        public static SceneReference MainGameplaySceneReference => Instance.m_mainGameplaySceneReference;
+
+        [SerializeField] private DataHolder m_dataHolder;
+        public static DataHolder DataHolder => Instance.m_dataHolder;
+
         // Indicates who's going to try to place their symbol on the grid.
         #region Turn
 
@@ -183,8 +191,16 @@ namespace RapidPrototyping.TicTacMix
             }
         }
 
-        private void Start()
+        protected override void Awake()
         {
+            base.Awake();
+
+            if (m_dataHolder == null)
+            {
+                m_dataHolder = ScriptableObject.CreateInstance<DataHolder>();
+                m_dataHolder.name = "Game Data Holder";
+            }
+
             InitializeMinigames();
         }
     }

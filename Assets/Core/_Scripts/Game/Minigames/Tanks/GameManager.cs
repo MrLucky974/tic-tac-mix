@@ -1,6 +1,7 @@
 using LuckiusDev.Utils;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace RapidPrototyping.TicTacMix.Tanks
 {
@@ -44,6 +45,20 @@ namespace RapidPrototyping.TicTacMix.Tanks
 
             Instance.OnGameEnded?.Invoke(reason, winIndex);
             Instance.m_gameRunning = false;
+
+            CompleteGame(winIndex);
+        }
+
+        public static void CompleteGame(int winIndex)
+        {
+            var gridPosition = GameDataHandler.DataHolder.GridPosition;
+            if (winIndex != -1)
+            {
+                var symbol = winIndex == 0 ? GridManager.Symbol.Cross : GridManager.Symbol.Circle;
+                GridManager.PlaceSymbol(symbol, gridPosition.x, gridPosition.y);
+            }
+            GameDataHandler.ChangeTurn();
+            SceneManager.LoadScene(GameDataHandler.MainGameplaySceneReference);
         }
     }
 }
