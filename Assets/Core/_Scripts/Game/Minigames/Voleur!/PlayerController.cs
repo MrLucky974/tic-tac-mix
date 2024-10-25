@@ -8,11 +8,11 @@ namespace RapidPrototyping.TicTacMix.Voleur
     public class PlayerController : MonoBehaviour
     {
         [Header("PlayerTakeCake")]
-        [SerializeField] private bool _isPlayerO;
+        public bool _isPlayerO;
 
         [SerializeField] private KeyCode _keyToTake;
         public Cake _appearingCake;
-        private int _obtainedCake;
+        public int _obtainedCake;
         public bool _isTakingCake;
 
         [Header("UI")]
@@ -26,8 +26,8 @@ namespace RapidPrototyping.TicTacMix.Voleur
         /// Spawner de gateau OK
         /// Score / Barre de progression? OK
         /// Ennemi regarde = ne pas prendre de gateau = fin
-        /// Systeme de fin
-        /// Animation, bouge? 
+        /// Systeme de fin : vue par le watcher, avoir le plus de part dans un temps OK
+        /// Animation, bouge? OK
 
         private void Start()
         {
@@ -40,9 +40,11 @@ namespace RapidPrototyping.TicTacMix.Voleur
                 if (Input.GetKeyDown(_keyToTake))
                 {
                     _animator.SetTrigger("TakeCake");
+
                 }
             }
         }
+        //Animation
         public void TakeCakes()
         {
             if (_appearingCake != null)
@@ -54,12 +56,21 @@ namespace RapidPrototyping.TicTacMix.Voleur
                 Score();
             }
         }
-
         void Score()
         {
             
            _text.text = _obtainedCake.ToString();
          
+        }
+   
+        public void IsTakingCake()
+        {
+            _isTakingCake = true;
+        }
+
+        public void NotTakingCake()
+        {
+            _isTakingCake = false;
         }
     }
 }
