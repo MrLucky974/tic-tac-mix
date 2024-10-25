@@ -13,5 +13,10 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
             return Vector3.Lerp(m_leftHandle.position,
                 m_rightHandle.position, offset);
         }
+
+        public float GetDistance()
+        {
+            return Vector3.Distance(m_leftHandle.position, m_rightHandle.position);
+        }
     }
 }

@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 593e4855d0fa5a34a87244a941fda712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 0.5
+  m_speed: 6
   m_playerIndex: 0
   m_spriteRenderer: {fileID: 5902781650259016372}
   m_blueColor: {r: 0.42352945, g: 0.58431375, b: 0.6901961, a: 1}
