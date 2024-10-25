@@ -35,6 +35,8 @@ namespace RapidPrototyping.TicTacMix
 
             DetermineWinner();
             }
+
+            Time.timeScale = 0f;
         }
 
 
