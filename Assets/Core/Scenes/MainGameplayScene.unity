@@ -2095,6 +2095,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f849ea45f8f0743a4be68090c8d754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_minigames:
+  - {fileID: 11400000, guid: 8a2008fe3feae954c810d159f4da2c23, type: 2}
+  - {fileID: 11400000, guid: 8d95563eb6c2467419b4bfe51de2fdb8, type: 2}
+  - {fileID: 11400000, guid: 4d79b7734fb8d154e870f9d38d092663, type: 2}
 --- !u!1 &2039539968
 GameObject:
   m_ObjectHideFlags: 0

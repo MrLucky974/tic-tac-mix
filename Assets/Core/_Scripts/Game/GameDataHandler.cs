@@ -1,5 +1,9 @@
 using LuckiusDev.Utils;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 namespace RapidPrototyping.TicTacMix
 {
@@ -63,5 +67,125 @@ namespace RapidPrototyping.TicTacMix
         }
 
         #endregion
+
+        [Serializable]
+        public struct WeightData
+        {
+            public MinigameData Minigame { get; private set; }
+
+            [SerializeField] private float baseWeight;
+            [SerializeField] private float minWeight;
+            [SerializeField] private float weightRecoveryRate;
+            [SerializeField] private float currentWeight;
+
+            public float CurrentWeight => currentWeight;
+
+            public WeightData(MinigameData minigame, float baseWeight = 1f, float minWeight = 0.1f, float recoveryRate = 0.2f)
+            {
+                Minigame = minigame;
+                this.baseWeight = baseWeight;
+                this.minWeight = minWeight;
+                this.weightRecoveryRate = recoveryRate;
+                this.currentWeight = baseWeight;
+            }
+
+            public void Reset()
+            {
+                currentWeight = baseWeight;
+            }
+
+            public void Reduce()
+            {
+                currentWeight = Mathf.Max(minWeight, currentWeight * 0.5f);
+            }
+
+            public void Recover()
+            {
+                currentWeight = Mathf.Min(baseWeight, currentWeight + weightRecoveryRate);
+            }
+        }
+
+        [SerializeField] private MinigameData[] m_minigames;
+        private List<WeightData> m_weightedMinigames;
+
+        public static void SelectRandomMinigame()
+        {
+            // Guard clause in case there are no minigames
+            if (Instance.m_weightedMinigames == null || Instance.m_weightedMinigames.Count == 0)
+            {
+                Debug.LogError("No minigames available!");
+                return;
+            }
+
+            // Calculate total weight
+            float totalWeight = 0f;
+            foreach (var weightData in Instance.m_weightedMinigames)
+            {
+                totalWeight += weightData.CurrentWeight;
+            }
+
+            // Select a random point in the total weight range
+            float randomPoint = Random.Range(0f, totalWeight);
+
+            // Find the selected minigame
+            WeightData selectedWeight = default;
+            float currentWeight = 0f;
+
+            foreach (var weightData in Instance.m_weightedMinigames)
+            {
+                currentWeight += weightData.CurrentWeight;
+                if (randomPoint <= currentWeight)
+                {
+                    selectedWeight = weightData;
+                    break;
+                }
+            }
+
+            // This shouldn't happen, but just in case
+            if (selectedWeight.Minigame == null)
+            {
+                selectedWeight = Instance.m_weightedMinigames[Instance.m_weightedMinigames.Count - 1];
+            }
+
+            // Reduce the weight of the selected minigame
+            int selectedIndex = Instance.m_weightedMinigames.FindIndex(w => w.Minigame == selectedWeight.Minigame);
+            if (selectedIndex != -1)
+            {
+                var updatedWeight = Instance.m_weightedMinigames[selectedIndex];
+                updatedWeight.Reduce();
+                Instance.m_weightedMinigames[selectedIndex] = updatedWeight;
+            }
+
+            // Recover weights of non-selected minigames
+            for (int i = 0; i < Instance.m_weightedMinigames.Count; i++)
+            {
+                if (i != selectedIndex)
+                {
+                    var weightData = Instance.m_weightedMinigames[i];
+                    weightData.Recover();
+                    Instance.m_weightedMinigames[i] = weightData;
+                }
+            }
+
+            // Get the random scene name from the selected minigame
+            string sceneName = selectedWeight.Minigame.GetRandomSceneName();
+
+            // Load the scene
+            SceneManager.LoadScene(sceneName);
+        }
+
+        private void InitializeMinigames()
+        {
+            m_weightedMinigames = new List<WeightData>();
+            foreach (var minigame in m_minigames)
+            {
+                m_weightedMinigames.Add(new WeightData(minigame));
+            }
+        }
+
+        private void Start()
+        {
+            InitializeMinigames();
+        }
     }
 }

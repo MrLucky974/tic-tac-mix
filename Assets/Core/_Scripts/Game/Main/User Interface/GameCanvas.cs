@@ -7,6 +7,7 @@ namespace RapidPrototyping.TicTacMix.Main
 {
     public class GameCanvas : MonoBehaviour
     {
+        [Header("Main")]
         [SerializeField] private Vector2 m_worldCellSize;
 
         [SerializeField] private Color m_crossColor;
@@ -16,15 +17,15 @@ namespace RapidPrototyping.TicTacMix.Main
 
         [Header("Cursor")]
         [SerializeField] private float m_animationDuration = 0.4f;
+        [SerializeField] private Image m_cursor;
 
         [Space]
-
-        [SerializeField] private Image m_cursor;
 
         #endregion
 
         #region Grid Variables
 
+        [Header("Grid")]
         [SerializeField] private List<Image> m_cellImages = new List<Image>();
 
         [SerializeField] private Sprite m_emptySprite;
@@ -35,6 +36,7 @@ namespace RapidPrototyping.TicTacMix.Main
 
         private Vector2Int m_gridPosition = Vector2Int.zero;
         private Coroutine m_movementCoroutine;
+        private bool m_canSelectMinigame = true;
 
         private void Start()
         {
@@ -113,13 +115,13 @@ namespace RapidPrototyping.TicTacMix.Main
                     AnimateCursor();
                 }
 
-                if (input.Primary.WasPressedThisFrame())
+                if (input.Primary.WasPressedThisFrame() && m_canSelectMinigame)
                 {
                     bool cellEmpty = GameManager.IsCellEmpty(m_gridPosition.x,
                         m_gridPosition.y);
                     if (cellEmpty)
                     {
-
+                        GameDataHandler.SelectRandomMinigame();
                     }
                 }
             }
@@ -142,11 +144,23 @@ namespace RapidPrototyping.TicTacMix.Main
                     m_gridPosition.y = Mathf.Clamp(m_gridPosition.y, 0, 2);
                     AnimateCursor();
                 }
+
+                if (input.Primary.WasPressedThisFrame() && m_canSelectMinigame)
+                {
+                    bool cellEmpty = GameManager.IsCellEmpty(m_gridPosition.x,
+                        m_gridPosition.y);
+                    if (cellEmpty)
+                    {
+                        GameDataHandler.SelectRandomMinigame();
+                    }
+                }
             }
         }
 
         private IEnumerator UpdateCursorPosition()
         {
+            m_canSelectMinigame = false;
+
             var currentPosition = m_cursor.rectTransform.anchoredPosition;
             var targetPosition = m_gridPosition * m_worldCellSize;
             targetPosition.y *= -1f;
@@ -165,6 +179,8 @@ namespace RapidPrototyping.TicTacMix.Main
             }
 
             m_cursor.rectTransform.anchoredPosition = targetPosition;
+
+            m_canSelectMinigame = true;
         }
 
         private void AnimateCursor()
