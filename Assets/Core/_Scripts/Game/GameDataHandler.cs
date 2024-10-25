@@ -15,12 +15,12 @@ namespace RapidPrototyping.TicTacMix
         }
 
         private Turn m_currentTurn = Turn.PLAYER_1;
-        public Turn CurrentTurn => m_currentTurn;
+        public static Turn CurrentTurn => Instance.m_currentTurn;
         public event Action<Turn> OnTurnChanged;
 
-        public void ChangeTurn()
+        public static void ChangeTurn()
         {
-            m_currentTurn = m_currentTurn == Turn.PLAYER_1 ?
+            Instance.m_currentTurn = Instance.m_currentTurn == Turn.PLAYER_1 ?
                 Turn.PLAYER_2 : Turn.PLAYER_1;
         }
 
@@ -31,35 +31,35 @@ namespace RapidPrototyping.TicTacMix
         #region Score
 
         private int m_playerOneScore;
-        public int PlayerOneScore => m_playerOneScore;
+        public static int PlayerOneScore => Instance.m_playerOneScore;
         private int m_playerTwoScore;
-        public int PlayerTwoScore => m_playerTwoScore;
+        public static int PlayerTwoScore => Instance.m_playerTwoScore;
 
         public event Action<int, int> OnScoreChanged;
 
         /// <summary>
         /// Add one point to player one score.
         /// </summary>
-        public void AddP1Score()
+        public static void AddP1Score()
         {
-            m_playerOneScore++;
+            Instance.m_playerOneScore++;
         }
 
         /// <summary>
         /// Add one point to player two score.
         /// </summary>
-        public void AddP2Score()
+        public static void AddP2Score()
         {
-            m_playerTwoScore++;
+            Instance.m_playerTwoScore++;
         }
 
         /// <summary>
         /// Set both player scores by zero.
         /// </summary>
-        public void ResetScores()
+        public static void ResetScores()
         {
-            m_playerOneScore = 0;
-            m_playerTwoScore = 0;
+            Instance.m_playerOneScore = 0;
+            Instance.m_playerTwoScore = 0;
         }
 
         #endregion
