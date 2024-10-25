@@ -25,7 +25,6 @@ namespace RapidPrototyping.TicTacMix.Voleur
         private void Update()
         {
             _time += Time.deltaTime;
-            _targetTime = Random.Range(4, 7);
 
             if(_time >= _targetTime)
             {
@@ -35,6 +34,7 @@ namespace RapidPrototyping.TicTacMix.Voleur
                 }
 
                 Spawn();
+                _targetTime = Random.Range(3, 10);
                 _time = 0;
             }
         }

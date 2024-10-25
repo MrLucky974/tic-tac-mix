@@ -15,10 +15,13 @@ namespace RapidPrototyping.TicTacMix.Voleur
         [SerializeField] private GameObject _victoryPanel;
         [SerializeField] private TMP_Text _text;
 
-        [Header("End2_BetterScore")]
+        [Header("End2_EndTimeBetterScore")]
         //CHRONO OF THE GAME
         [SerializeField] private float _time;
         [SerializeField] private float _endTime;
+
+        private int _chrono;
+        [SerializeField] private TMP_Text _chronoText;
 
         [SerializeField] private PlayerController[] _playerController;
         [SerializeField] private TMP_Text[] _scoreText;
@@ -31,6 +34,8 @@ namespace RapidPrototyping.TicTacMix.Voleur
         private void Update()
         {
             _time += Time.deltaTime;
+            _chrono = (int)_time;
+            _chronoText.text = _chrono.ToString();
 
             if (_time >= _endTime)
             {

@@ -37,11 +37,11 @@ namespace RapidPrototyping.TicTacMix.Voleur
         {
 
             _time += Time.deltaTime;
-            _targetTime = Random.Range(4, 7);
 
             if (_time >= _targetTime)
             {
                 _animator.SetBool("isWatching", true);
+                _targetTime = Random.Range(3, 7);
                 _time = 0;
             }
 
@@ -76,11 +76,11 @@ namespace RapidPrototyping.TicTacMix.Voleur
         public void IsWatchingDelay()
         {
             _watchTime += Time.deltaTime;
-            _targetWatchTime = Random.Range(2, 7);
 
 
             if ( _watchTime >= _targetWatchTime)
             {
+                _targetWatchTime = Random.Range(2, 7);
                 _animator.SetBool("isWatching", false);
                 _isWatching = false;
                 _watchTime = 0;
