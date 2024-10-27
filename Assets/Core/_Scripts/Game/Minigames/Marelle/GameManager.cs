@@ -13,6 +13,32 @@ namespace RapidPrototyping.TicTacMix.Marelle
         [SerializeField] private GameObject _victoryPanel;
         [SerializeField] private TMP_Text _text;
 
+        [Header("CHRONO")]
+        //CHRONO OF THE GAME
+        private float _time;
+        [SerializeField] private float _endTime;
+        private int _chrono;
+        [SerializeField] private TMP_Text _chronoText;
+
+        private void Update()
+        {
+
+            _time += Time.deltaTime;
+            _chrono = (int)_time;
+            _chronoText.text = _chrono.ToString();
+
+            if (_time >= _endTime)
+            {
+                _victoryPanel.SetActive(true);
+                DetermineWinner();
+
+                if (_time <= 0)
+                {
+                    _time = 0;
+                }
+            }
+        }
+
         public void PlayerFinished(bool isPlayerO) 
         {
             if (isPlayerO)
@@ -40,6 +66,10 @@ namespace RapidPrototyping.TicTacMix.Marelle
                 _text.GetComponent<TMP_Text>().color = Color.blue;
                 _text.text = "Victory: Player X";
         }
+        else
+            {
+                _text.text = "Victory: Tie";
+            }
 
             Time.timeScale = 0;
         
