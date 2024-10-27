@@ -11,7 +11,7 @@ namespace RapidPrototyping.TicTacMix.Marelle
         [SerializeField] private bool _isFinishedX;
 
         [SerializeField] private GameObject _victoryPanel;
-        [SerializeField] private TMP_Text text;
+        [SerializeField] private TMP_Text _text;
 
         public void PlayerFinished(bool isPlayerO) 
         {
@@ -32,12 +32,14 @@ namespace RapidPrototyping.TicTacMix.Marelle
 
         if (_isFinishedO)
         {
-            text.text = "Victory: Player O";
+            _text.text = "Victory: Player O";
         }
         else if (_isFinishedX)
         {
-            text.text = "Victory: Player X";
+            _text.text = "Victory: Player X";
         }
+
+            Time.timeScale = 0;
         
     }
     }
