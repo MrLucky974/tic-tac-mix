@@ -32,11 +32,13 @@ namespace RapidPrototyping.TicTacMix.Marelle
 
         if (_isFinishedO)
         {
-            _text.text = "Victory: Player O";
+                _text.GetComponent<TMP_Text>().color = Color.red;
+                _text.text = "Victory: Player O";
         }
         else if (_isFinishedX)
         {
-            _text.text = "Victory: Player X";
+                _text.GetComponent<TMP_Text>().color = Color.blue;
+                _text.text = "Victory: Player X";
         }
 
             Time.timeScale = 0;
