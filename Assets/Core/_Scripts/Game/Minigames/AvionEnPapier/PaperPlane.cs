@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace RapidPrototyping.TicTacMix.AvionEnPapier
@@ -30,8 +31,17 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
         }
 
         private void Update()
-        {
-            Move();
+        {     
+
+            if(_gameManager._canMove) 
+            {
+                _rb.isKinematic = false;
+                Move();
+            }
+            else
+            {
+                _rb.isKinematic = true;
+            }
 
             if (Input.GetKeyDown(_keyToJump))
             {
@@ -95,5 +105,6 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
 
         }
 
+      
     }
 }

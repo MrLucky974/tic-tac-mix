@@ -24,13 +24,6 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
         [SerializeField] private float _time;
         [SerializeField] private float _timeMoreHands;
 
-        [SerializeField] private GameObject _platform;
-
-
-        private void Start()
-        {
-            Destroy(_platform, 2f);
-        }
         private void Update()
         {
 
@@ -75,34 +68,57 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
             }
             _handsR.Clear();
 
+            // Créer une liste temporaire de positions disponibles
+            List<Transform> availablePositions = new List<Transform>(_posR);
+
             for (int i = 0; i < _nbHands; i++)
             {
-                int randomPos = Random.Range(0, _posR.Length);
+                // Vérifier qu'il reste des positions disponibles
+                if (availablePositions.Count == 0)
+                    break;
 
-                GameObject instanciatedhand = Instantiate(_hand, _posR[randomPos]);
-                _handsR.Add(instanciatedhand);
+                // Sélectionner une position au hasard dans la liste des positions disponibles
+                int randomPosIndex = Random.Range(0, availablePositions.Count);
+                Transform chosenPosition = availablePositions[randomPosIndex];
+
+                // Instancier la main à la position choisie
+                GameObject instanciatedHand = Instantiate(_hand, chosenPosition);
+                _handsR.Add(instanciatedHand);
+
+                // Retirer la position choisie de la liste des positions disponibles
+                availablePositions.RemoveAt(randomPosIndex);
             }
-
         }
 
         public void SpawnL()
         {
-
             foreach (GameObject hand in _handsL)
             {
                 Destroy(hand);
             }
             _handsL.Clear();
 
+            // Créer une liste temporaire de positions disponibles
+            List<Transform> availablePositions = new List<Transform>(_posL);
 
             for (int i = 0; i < _nbHands; i++)
             {
-                int randomPos = Random.Range(0, _posL.Length);
-                GameObject instanciatedhand = Instantiate(_hand, _posL[randomPos].position, Quaternion.Euler(0, 180, 0));
-                RandomSprite(instanciatedhand);
-                _handsL.Add(instanciatedhand);
-            }
+                // Vérifier qu'il reste des positions disponibles
+                if (availablePositions.Count == 0)
+                    break;
 
+                // Sélectionner une position au hasard dans la liste des positions disponibles
+                int randomPosIndex = Random.Range(0, availablePositions.Count);
+                Transform chosenPosition = availablePositions[randomPosIndex];
+
+                // Instancier la main à la position choisie avec rotation et sprite aléatoires
+                GameObject instanciatedHand = Instantiate(_hand, chosenPosition.position, Quaternion.Euler(0, 180, 0));
+                RandomSprite(instanciatedHand);
+                _handsL.Add(instanciatedHand);
+
+                // Retirer la position choisie de la liste des positions disponibles
+                availablePositions.RemoveAt(randomPosIndex);
+            }
         }
 
         void RandomSprite(GameObject spawnedHandSprite)
@@ -111,7 +127,7 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
             spawnedHandSprite.GetComponentInChildren<SpriteRenderer>().sprite = _handSprite[RandomHandSprite];
 
             int RandomHandFlip = Random.Range(0, 2);
-            print("randomFlip"+RandomHandFlip);
+
             if (RandomHandFlip == 0)
             {
                 spawnedHandSprite.GetComponentInChildren<SpriteRenderer>().flipX = false;
