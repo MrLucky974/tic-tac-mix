@@ -6,7 +6,7 @@ namespace RapidPrototyping.TicTacMix
 {
     public class Spawner : MonoBehaviour
     {
-        [SerializeField] private GameObject _star;
+        [SerializeField] private GameObject[] _star;
         [SerializeField] private Transform _posy;
         private float _limit = 8f;
 
@@ -25,9 +25,18 @@ namespace RapidPrototyping.TicTacMix
 
             Vector3 pos = new Vector3(RandomposX, _posy.transform.position.y , RandomposZ);
 
-            Instantiate(_star, pos, Quaternion.identity);
+            int RandomItem = Random.Range(0, 2);
 
-        }
+            if (RandomItem == 0)
+            {
+                Instantiate(_star[0], pos, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(_star[1], pos, Quaternion.identity);
+            }
+
+            }
 
         void Timer()
         {

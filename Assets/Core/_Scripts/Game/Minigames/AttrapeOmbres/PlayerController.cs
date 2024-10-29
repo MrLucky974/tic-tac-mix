@@ -21,8 +21,12 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
 
         [SerializeField] private string[] _nameInput;
 
+        [Header("GameManager")]
+        private GameManager _gameManager;
+
         private void Start()
         {
+            _gameManager = FindObjectOfType<GameManager>();
             _rb = GetComponent<Rigidbody>();
         }
         private void Update()
@@ -53,7 +57,7 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
 
             if(other.CompareTag("Finish"))
             {
-                //InstantDead
+                _gameManager.Score();
             }
         }
     }

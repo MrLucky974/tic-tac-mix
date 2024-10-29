@@ -49,7 +49,7 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
             }
         }
 
-        void Score()
+        public void Score()
         {
             //Player[0] = X & Player[1] = O
             if (_player[0]._score > _player[1]._score)
