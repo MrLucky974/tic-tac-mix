@@ -8,24 +8,37 @@ namespace RapidPrototyping.TicTacMix
     {
         [SerializeField] private GameObject _star;
         [SerializeField] private Transform _posy;
+        private float _limit = 8f;
+
+        private float _time;
+        private float _targetTime; //Random
 
 
         private void Update()
         {
-            if(Input.GetKeyUp(KeyCode.E))
-            {
-                Spawn();
-            }
+            Timer();
         }
         void Spawn()
         {
-            float RandomposX = Random.Range(-8f, 8f);
-            float RandomposZ = Random.Range(-4f, 4f);
+            float RandomposX = Random.Range(-_limit, _limit);
+            float RandomposZ = Random.Range(-_limit/2, _limit/2);
 
             Vector3 pos = new Vector3(RandomposX, _posy.transform.position.y , RandomposZ);
 
-            GameObject star = Instantiate(_star, pos, Quaternion.identity);
-            Destroy(star, 3f);
+            Instantiate(_star, pos, Quaternion.identity);
+
+        }
+
+        void Timer()
+        {
+            _time += Time.deltaTime;
+
+            if (_time >= _targetTime)
+            {             
+                Spawn();
+                _targetTime = Random.Range(3, 10);
+                _time = 0;
+            }
         }
     }
 }

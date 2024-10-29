@@ -100,8 +100,8 @@ GameObject:
   - component: {fileID: 6918130481234567134}
   - component: {fileID: 2100930905615672247}
   m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
+  m_Name: Bomb
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,7 +150,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c4dbad0116bedc14f94c41e0d2f42148, type: 2}
+  - {fileID: 2100000, guid: ed50d39f1028f5840ba7f6f6943e67e4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
