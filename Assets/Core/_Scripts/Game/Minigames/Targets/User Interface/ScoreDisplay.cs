@@ -10,7 +10,7 @@ namespace RapidPrototyping.TicTacMix.Targets
 
         private void Start()
         {
-            GameManager.Instance.OnScoreChanged += HandleScore;
+            ((GameManager)GameManager.Instance).OnScoreChanged += HandleScore;
         }
 
         private void HandleScore()

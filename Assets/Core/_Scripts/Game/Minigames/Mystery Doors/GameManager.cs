@@ -1,19 +1,22 @@
-using LuckiusDev.Utils;
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 namespace RapidPrototyping.TicTacMix.MysteryDoors
 {
-    public class GameManager : Singleton<GameManager>
+    public enum MatchResult
     {
-        public enum GameEndReason
-        {
-            ExitDoorOpened,
-            TimeUp
-        }
+        ExitDoorOpened,
+        TimeUp
+    }
 
+    public struct GameData
+    {
+        public MatchResult Result;
+        public int PlayerIndex;
+    }
+
+    public class GameManager : MinigameManager<GameData>
+    {
         [SerializeField] private CameraController m_camera;
 
         [Space]
@@ -30,37 +33,25 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
         [SerializeField] private Color[] m_floorColors;
 
         private Floor m_topFloor;
-
-        [Space]
-
-        [SerializeField] private float m_totalDuration;
-
-        public event Action<GameEndReason, int> OnGameEnded;
-
-        private bool m_gameRunning = true;
+        public static Floor TopFloor => ((GameManager)Instance).m_topFloor;
 
         private void Start()
         {
-            // Generate the tower and spawn the players in the top floor
+            // Generate the tower
             GenerateTower();
+
+            // Spawn the players in the top floor
             SetupPlayers();
         }
 
-        public static void TimerGameEnd()
+        public static void ConcludeGameOnTimeout()
         {
-            EndGame(GameEndReason.TimeUp, -1);
-        }
-
-        public static void EndGame(GameEndReason reason, int winIndex)
-        {
-            if (Instance.m_gameRunning is false)
-                return;
-
-            Instance.OnGameEnded?.Invoke(reason, winIndex);
-            Instance.m_gameRunning = false;
-
-            GameDataHandler.ChangeTurn();
-            SceneManager.LoadScene(GameDataHandler.MainGameplaySceneReference);
+            var data = new GameData
+            {
+                Result = MatchResult.TimeUp,
+                PlayerIndex = TIE_INDEX,
+            };
+            EndGame(data);
         }
 
         private void GenerateTower()
@@ -130,7 +121,5 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
             playerTwo.Initialize(1, m_topFloor);
             m_camera.AddTarget(playerTwo.transform);
         }
-
-        public static Floor TopFloor => Instance.m_topFloor;
     }
 }

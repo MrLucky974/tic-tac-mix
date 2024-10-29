@@ -15,7 +15,12 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
                 var movement = input.Movement.ReadValue<Vector2>().y;
                 if (input.Movement.WasPressedThisFrame() && movement > 0f)
                 {
-                    GameManager.EndGame(GameManager.GameEndReason.ExitDoorOpened, 0);
+                    var data = new GameData
+                    {
+                        Result = MatchResult.ExitDoorOpened,
+                        PlayerIndex = 0,
+                    };
+                    GameManager.EndGame(data);
                 }
             }
 
@@ -25,7 +30,12 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
                 var movement = input.Movement.ReadValue<Vector2>().y;
                 if (input.Movement.WasPressedThisFrame() && movement > 0f)
                 {
-                    GameManager.EndGame(GameManager.GameEndReason.ExitDoorOpened, 1);
+                    var data = new GameData
+                    {
+                        Result = MatchResult.ExitDoorOpened,
+                        PlayerIndex = 1,
+                    };
+                    GameManager.EndGame(data);
                 }
             }
         }

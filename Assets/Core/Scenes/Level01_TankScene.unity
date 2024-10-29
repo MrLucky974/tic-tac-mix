@@ -8000,7 +8000,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2099698538}
         m_TargetAssemblyTypeName: RapidPrototyping.TicTacMix.Tanks.GameManager, Assembly-CSharp
-        m_MethodName: TimerGameEnd
+        m_MethodName: ConcludeGameOnTimeout
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

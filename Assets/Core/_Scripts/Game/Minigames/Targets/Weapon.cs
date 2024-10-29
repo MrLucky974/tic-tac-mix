@@ -35,7 +35,7 @@ namespace RapidPrototyping.TicTacMix.Targets
             GameManager.Instance.OnGameEnded += HandleGameEnded;
         }
 
-        private void HandleGameEnded(int winIndex)
+        private void HandleGameEnded(GameData data)
         {
             enabled = false;
         }

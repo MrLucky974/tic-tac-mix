@@ -16,23 +16,23 @@ namespace RapidPrototyping.TicTacMix.Tanks
             GameManager.Instance.OnGameEnded += HandleEndGame;
         }
 
-        private void HandleEndGame(GameManager.GameEndReason reason, int winIndex)
+        private void HandleEndGame(GameData data)
         {
             m_panel.SetActive(true);
 
-            switch (reason)
+            switch (data.Result)
             {
-                case GameManager.GameEndReason.PlayerDeath:
+                case MatchResult.PlayerDeath:
                     m_header.SetText("Game Over");
                     break;
-                case GameManager.GameEndReason.TimeUp:
+                case MatchResult.TimeUp:
                     m_header.SetText("Times up!");
                     break;
             }
 
-            if (winIndex != -1)
+            if (data.PlayerIndex != GameManager.TIE_INDEX)
             {
-                var text = winIndex == 1 ? "<color=#6982FF>Player X wins!</color>" : "<color=#FF6A6E>Player O wins!</color>";
+                var text = data.PlayerIndex == GameManager.PLAYER_ONE_INDEX ? "<color=#6982FF>Player X wins!</color>" : "<color=#FF6A6E>Player O wins!</color>";
                 m_winnerLabel.SetText(text);
             }
             else

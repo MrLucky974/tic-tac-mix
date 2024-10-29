@@ -32,7 +32,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
             GameManager.Instance.OnGameEnded += HandleGameEnd;
         }
 
-        private void HandleGameEnd(GameManager.GameEndReason reason, int winIndex)
+        private void HandleGameEnd(GameData data)
         {
             enabled = false;
         }
