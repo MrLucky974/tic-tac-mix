@@ -17,3 +17,5 @@ MonoBehaviour:
   Scenes:
   - m_sceneAsset: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
     m_sceneName: Level01_TankScene
+  - m_sceneAsset: {fileID: 102900000, guid: 4f28c1a06b9efb54791e370aa1abf119, type: 3}
+    m_sceneName: Level02_TankScene
