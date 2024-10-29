@@ -5,8 +5,8 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
 {
     public enum MatchResult
     {
-        ExitDoorOpened,
-        TimeUp
+        EXIT_DOOR_OPENED,
+        TIMES_UP
     }
 
     public struct GameData
@@ -48,7 +48,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
         {
             var data = new GameData
             {
-                Result = MatchResult.TimeUp,
+                Result = MatchResult.TIMES_UP,
                 PlayerIndex = TIE_INDEX,
             };
             EndGame(data);

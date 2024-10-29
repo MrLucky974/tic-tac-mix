@@ -22,10 +22,10 @@ namespace RapidPrototyping.TicTacMix.Tanks
 
             switch (data.Result)
             {
-                case MatchResult.PlayerDeath:
+                case MatchResult.PLAYER_DEATH:
                     m_header.SetText("Game Over");
                     break;
-                case MatchResult.TimeUp:
+                case MatchResult.TIMES_UP:
                     m_header.SetText("Times up!");
                     break;
             }

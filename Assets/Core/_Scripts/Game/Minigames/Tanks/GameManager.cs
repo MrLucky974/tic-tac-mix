@@ -2,8 +2,8 @@ namespace RapidPrototyping.TicTacMix.Tanks
 {
     public enum MatchResult
     {
-        PlayerDeath,
-        TimeUp
+        PLAYER_DEATH,
+        TIMES_UP
     }
 
     public struct GameData
@@ -18,7 +18,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
         {
             var data = new GameData
             {
-                Result = MatchResult.TimeUp,
+                Result = MatchResult.TIMES_UP,
                 PlayerIndex = TIE_INDEX
             };
 

@@ -90,7 +90,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
 
             var data = new GameData
             {
-                Result = MatchResult.PlayerDeath,
+                Result = MatchResult.PLAYER_DEATH,
                 PlayerIndex = m_playerIndex == GameManager.PLAYER_ONE_INDEX ? GameManager.PLAYER_TWO_INDEX : GameManager.PLAYER_ONE_INDEX,
             };
             GameManager.EndGame(data);

@@ -17,7 +17,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
                 {
                     var data = new GameData
                     {
-                        Result = MatchResult.ExitDoorOpened,
+                        Result = MatchResult.EXIT_DOOR_OPENED,
                         PlayerIndex = 0,
                     };
                     GameManager.EndGame(data);
@@ -32,7 +32,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
                 {
                     var data = new GameData
                     {
-                        Result = MatchResult.ExitDoorOpened,
+                        Result = MatchResult.EXIT_DOOR_OPENED,
                         PlayerIndex = 1,
                     };
                     GameManager.EndGame(data);
