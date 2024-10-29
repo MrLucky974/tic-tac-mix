@@ -7745,6 +7745,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2099698539}
   - component: {fileID: 2099698538}
+  - component: {fileID: 2099698540}
   m_Layer: 0
   m_Name: '[GAME MANAGER]'
   m_TagString: Untagged
@@ -7780,6 +7781,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2099698540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099698537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdb3d34edc487d40a27e5cc58c9a749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_totalDuration: 60
+  OnTimerComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2099698538}
+        m_TargetAssemblyTypeName: RapidPrototyping.TicTacMix.Tanks.GameManager, Assembly-CSharp
+        m_MethodName: TimerGameEnd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2101517510 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3c9a63b1e12d8684789e5648494dd453,

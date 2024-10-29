@@ -1,6 +1,7 @@
 using LuckiusDev.Utils;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 namespace RapidPrototyping.TicTacMix.MysteryDoors
@@ -37,28 +38,17 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
         public event Action<GameEndReason, int> OnGameEnded;
 
         private bool m_gameRunning = true;
-        private float m_currentTime;
 
         private void Start()
         {
-            m_currentTime = m_totalDuration;
-
             // Generate the tower and spawn the players in the top floor
             GenerateTower();
             SetupPlayers();
         }
 
-        private void Update()
+        public static void TimerGameEnd()
         {
-            if (m_gameRunning is false)
-                return;
-
-            m_currentTime -= Time.deltaTime;
-
-            if (m_currentTime <= 0f)
-            {
-                EndGame(GameEndReason.TimeUp, -1);
-            }
+            EndGame(GameEndReason.TimeUp, -1);
         }
 
         public static void EndGame(GameEndReason reason, int winIndex)
@@ -68,6 +58,9 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
 
             Instance.OnGameEnded?.Invoke(reason, winIndex);
             Instance.m_gameRunning = false;
+
+            GameDataHandler.ChangeTurn();
+            SceneManager.LoadScene(GameDataHandler.MainGameplaySceneReference);
         }
 
         private void GenerateTower()

@@ -1610,6 +1610,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1233269233}
   - component: {fileID: 1233269234}
+  - component: {fileID: 1233269235}
   m_Layer: 0
   m_Name: '[GAME MANAGER]'
   m_TagString: GameController
@@ -1644,7 +1645,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa613d009bcff144aaf6c69490e25eea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1233269235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233269232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdb3d34edc487d40a27e5cc58c9a749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_totalDuration: 30
+  OnTimerComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1233269234}
+        m_TargetAssemblyTypeName: RapidPrototyping.TicTacMix.Targets.GameManager,
+          Assembly-CSharp
+        m_MethodName: StopGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1266319837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2451,6 +2480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e989a29e2375495449c861f629606813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_timer: {fileID: 1233269235}
   m_timerLabel: {fileID: 1727591606}
 --- !u!1 &1990365888
 GameObject:

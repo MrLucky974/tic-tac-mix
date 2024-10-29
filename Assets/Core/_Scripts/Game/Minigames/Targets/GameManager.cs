@@ -1,6 +1,6 @@
 using LuckiusDev.Utils;
 using System;
-using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace RapidPrototyping.TicTacMix.Targets
 {
@@ -10,11 +10,8 @@ namespace RapidPrototyping.TicTacMix.Targets
         public const int PLAYER_ONE_INDEX = 0;
         public const int PLAYER_TWO_INDEX = 1;
 
-        [SerializeField] private float m_totalDuration;
         private bool m_gameRunning = true;
         public static bool GameRunning => Instance.m_gameRunning;
-        private float m_currentTime;
-        public static float RemainingTime => Instance.m_currentTime;
 
         private int m_p1Score, m_p2Score;
 
@@ -23,42 +20,35 @@ namespace RapidPrototyping.TicTacMix.Targets
 
         private void Start()
         {
-            m_currentTime = m_totalDuration;
             OnScoreChanged?.Invoke();
         }
 
-        private void Update()
+        public static void StopGame()
         {
-            if (m_gameRunning is false)
-                return;
-
-            m_currentTime -= Time.deltaTime;
-
-            if (m_currentTime <= 0f)
+            // By default, set -1 as the winner (indicating that it's a tie)
+            var winIndex = TIE_INDEX;
+            if (Instance.m_p1Score > Instance.m_p2Score) // If player one has a bigger score than player two...
             {
-                // By default, set -1 as the winner (indicating that it's a tie)
-                var winIndex = TIE_INDEX;
-                if (m_p1Score > m_p2Score) // If player one has a bigger score than player two...
-                {
-                    winIndex = PLAYER_ONE_INDEX;
-                }
-                else if (m_p2Score > m_p1Score) // Else, if player two has a bigger score...
-                {
-                    winIndex = PLAYER_TWO_INDEX;
-                }
-
-                EndGame(winIndex); // End the game.
+                winIndex = PLAYER_ONE_INDEX;
             }
+            else if (Instance.m_p2Score > Instance.m_p1Score) // Else, if player two has a bigger score...
+            {
+                winIndex = PLAYER_TWO_INDEX;
+            }
+
+            EndGame(winIndex); // End the game.
         }
 
-        public static void EndGame(int winIndex)
+        private static void EndGame(int winIndex)
         {
             if (Instance.m_gameRunning is false)
                 return;
 
             Instance.OnGameEnded?.Invoke(winIndex);
-
             Instance.m_gameRunning = false;
+
+            GameDataHandler.ChangeTurn();
+            SceneManager.LoadScene(GameDataHandler.MainGameplaySceneReference);
         }
 
         public static void UpdateScore(int score, int playerIndex)

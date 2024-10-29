@@ -1,6 +1,5 @@
 using LuckiusDev.Utils;
 using System;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace RapidPrototyping.TicTacMix.Tanks
@@ -13,29 +12,12 @@ namespace RapidPrototyping.TicTacMix.Tanks
             TimeUp
         }
 
-        [SerializeField] private float m_totalDuration;
-
         public event Action<GameEndReason, int> OnGameEnded;
-
         private bool m_gameRunning = true;
-        private float m_currentTime;
 
-        private void Start()
+        public static void TimerGameEnd()
         {
-            m_currentTime = m_totalDuration;
-        }
-
-        private void Update()
-        {
-            if (m_gameRunning is false)
-                return;
-
-            m_currentTime -= Time.deltaTime;
-
-            if (m_currentTime <= 0f)
-            {
-                EndGame(GameEndReason.TimeUp, -1);
-            }
+            EndGame(GameEndReason.TimeUp, -1);
         }
 
         public static void EndGame(GameEndReason reason, int winIndex)
