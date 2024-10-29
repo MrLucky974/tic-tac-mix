@@ -8,7 +8,7 @@ namespace RapidPrototyping.TicTacMix.Targets
         [SerializeField] private TextMeshProUGUI m_playerOneLabel;
         [SerializeField] private TextMeshProUGUI m_playerTwoLabel;
 
-        private void Start()
+        private void Awake()
         {
             ((GameManager)GameManager.Instance).OnScoreChanged += HandleScore;
         }

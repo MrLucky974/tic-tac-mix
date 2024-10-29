@@ -16,6 +16,12 @@ namespace RapidPrototyping.TicTacMix.Targets
         private void Start()
         {
             OnScoreChanged?.Invoke();
+            OnGameEnded += HandleGameEnd;
+        }
+
+        private void HandleGameEnd(GameData data)
+        {
+            MarkWinningSymbol(data.PlayerIndex);
         }
 
         public static void StopGame()
