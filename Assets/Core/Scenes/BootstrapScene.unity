@@ -160,6 +160,8 @@ MonoBehaviour:
   m_dataHolder: {fileID: 0}
   m_minigames:
   - {fileID: 11400000, guid: 8a2008fe3feae954c810d159f4da2c23, type: 2}
+  - {fileID: 11400000, guid: 8d95563eb6c2467419b4bfe51de2fdb8, type: 2}
+  - {fileID: 11400000, guid: 4d79b7734fb8d154e870f9d38d092663, type: 2}
 --- !u!4 &1553795450
 Transform:
   m_ObjectHideFlags: 0
