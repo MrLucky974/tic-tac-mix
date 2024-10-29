@@ -16,8 +16,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
 
     public class GameManager : MinigameManager<GameData>
     {
-        [SerializeField] private GameTimer m_timer;
-        public static GameTimer Timer => ((GameManager)Instance).m_timer;
+        [SerializeField] private GameTimer m_gameTimer;
 
         public void Start()
         {
@@ -26,6 +25,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
 
         private void HandleGameEnd(GameData data)
         {
+            m_gameTimer.Stop();
             MarkWinningSymbol(data.PlayerIndex);
         }
 

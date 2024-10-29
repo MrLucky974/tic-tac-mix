@@ -88,7 +88,6 @@ namespace RapidPrototyping.TicTacMix.Tanks
         {
             Instantiate(m_explosionEffect, m_character.transform.position, Quaternion.identity);
 
-            GameManager.Timer.Stop();
             var data = new GameData
             {
                 Result = MatchResult.PLAYER_DEATH,
