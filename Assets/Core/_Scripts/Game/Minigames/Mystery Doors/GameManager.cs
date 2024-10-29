@@ -17,6 +17,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
 
     public class GameManager : MinigameManager<GameData>
     {
+        [SerializeField] private GameTimer m_gameTimer;
         [SerializeField] private CameraController m_camera;
 
         [Space]
@@ -42,6 +43,14 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
 
             // Spawn the players in the top floor
             SetupPlayers();
+
+            OnGameEnded += HandleGameEnd;
+        }
+
+        private void HandleGameEnd(GameData data)
+        {
+            m_gameTimer.Stop();
+            MarkWinningSymbol(data.PlayerIndex);
         }
 
         public static void ConcludeGameOnTimeout()

@@ -914,6 +914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4bc26c9c478f914b878e00d4fa966a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_gameTimer: {fileID: 1344943546}
   m_camera: {fileID: 1214855563}
   m_floorHeight: 3
   m_floorCount: 6
