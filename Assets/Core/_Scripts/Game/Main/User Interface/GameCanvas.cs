@@ -147,7 +147,7 @@ namespace RapidPrototyping.TicTacMix.Main
                     }
                     else if (movement.y != 0f)
                     {
-                        m_gridPosition.y += Mathf.CeilToInt(movement.y);
+                        m_gridPosition.y -= Mathf.CeilToInt(movement.y);
                     }
                     m_gridPosition.x = Mathf.Clamp(m_gridPosition.x, 0, 2);
                     m_gridPosition.y = Mathf.Clamp(m_gridPosition.y, 0, 2);
