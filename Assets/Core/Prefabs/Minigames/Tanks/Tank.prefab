@@ -424,7 +424,7 @@ MonoBehaviour:
   m_wallMask:
     serializedVersion: 2
     m_Bits: 9
-  m_delay: 0.2
+  m_delay: 0.8
 --- !u!114 &9106524037788392335
 MonoBehaviour:
   m_ObjectHideFlags: 0
