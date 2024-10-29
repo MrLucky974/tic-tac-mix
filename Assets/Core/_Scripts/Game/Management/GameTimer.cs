@@ -16,6 +16,7 @@ namespace RapidPrototyping.TicTacMix
         public float RemainingTime => m_remainingTime;
 
         private bool m_isComplete;
+        private bool m_isStopped;
 
         private void Start()
         {
@@ -27,6 +28,9 @@ namespace RapidPrototyping.TicTacMix
             if (m_isComplete)
                 return;
 
+            if (m_isStopped)
+                return;
+
             m_remainingTime -= Time.deltaTime;
 
             if (m_remainingTime <= 0f)
@@ -34,6 +38,35 @@ namespace RapidPrototyping.TicTacMix
                 OnTimerComplete?.Invoke();
                 m_isComplete = true;
             }
+        }
+
+        public void ResetTimer()
+        {
+            m_remainingTime = m_totalDuration;
+            m_isStopped = false;
+            m_isComplete = false;
+        }
+
+        public void Resume()
+        {
+            if (m_isComplete)
+                return;
+
+            if (m_isStopped is false)
+                return;
+
+            m_isStopped = false;
+        }
+
+        public void Stop()
+        {
+            if (m_isComplete)
+                return;
+
+            if (m_isStopped)
+                return;
+
+            m_isStopped = true;
         }
     }
 }
