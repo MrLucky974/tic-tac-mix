@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -20,12 +21,44 @@ namespace RapidPrototyping.TicTacMix
         private float _timeSpike;
         private float _targetTimeSpike; //Random
 
+        [Header("Countdown")]
+        [SerializeField] private TMP_Text _countdownText;
+        private bool _canMove = false;
+
+
 
         private void Update()
         {
-            Timer();
-            TimerSpike();
+            if(!_canMove)
+            {
+                StartCoroutine(Countdown());
+            }
+            if (_canMove)
+            {
+                TimerItem();
+                TimerSpike();
+            }
         }
+
+        IEnumerator Countdown()
+        {
+
+            _countdownText.gameObject.SetActive(true);
+
+            _countdownText.text = "3";
+            yield return new WaitForSeconds(1f);
+            _countdownText.text = "2";
+            yield return new WaitForSeconds(1f);
+            _countdownText.text = "1";
+            yield return new WaitForSeconds(1f);
+            _countdownText.text = "GO!";
+            yield return new WaitForSeconds(0.5f);
+
+            _countdownText.gameObject.SetActive(false);
+
+            _canMove = true;
+        }
+
         void Spawn()
         {
             float RandomposX = Random.Range(-_limit, _limit);
@@ -46,7 +79,7 @@ namespace RapidPrototyping.TicTacMix
 
         }
 
-        void Timer()
+        void TimerItem()
         {
             _time += Time.deltaTime;
 
@@ -99,12 +132,12 @@ namespace RapidPrototyping.TicTacMix
             for (int i = 0; i < 2; i++)
             {
             yield return new WaitForSeconds(0.2f);
-            randomspike.GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+            randomspike.GetComponentInChildren<MeshRenderer>().material.color = Color.white;
             yield return new WaitForSeconds(0.2f);
-            randomspike.GetComponentInChildren<MeshRenderer>().material.color = Color.blue;
+            randomspike.GetComponentInChildren<MeshRenderer>().material.color = Color.black;
 
             }
-            randomspike.GetComponentInChildren<MeshRenderer>().material.color = Color.white;
+            randomspike.GetComponentInChildren<MeshRenderer>().material.color = Color.red;
             randomspike.GetComponentInChildren<BoxCollider>().enabled = true;
             Destroy(randomspike, 2);
         }

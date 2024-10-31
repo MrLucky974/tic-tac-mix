@@ -7,6 +7,7 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
 {
     public class GameManager : MonoBehaviour
     {
+        
         [Header("CHRONO")]
         //CHRONO OF THE GAME
         private float _time;
