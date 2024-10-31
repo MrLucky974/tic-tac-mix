@@ -26,6 +26,11 @@ namespace RapidPrototyping.TicTacMix.Voleur
         private PlayerController[] _playerController;
         [SerializeField] private TMP_Text[] _scoreText;
 
+        [Header("Countdown")]
+        [SerializeField]
+        private TMP_Text _countdownText;
+        public bool _canMove = false;
+
         private void Start()
         {
             _playerController = FindObjectsOfType<PlayerController>();
@@ -33,6 +38,13 @@ namespace RapidPrototyping.TicTacMix.Voleur
 
         private void Update()
         {
+            if(!_canMove)
+            {
+                StartCoroutine(Countdown());
+            }
+            if (_canMove)
+            {
+                
             _time += Time.deltaTime;
             _chrono = (int)_time;
             _chronoText.text = _chrono.ToString();
@@ -47,7 +59,28 @@ namespace RapidPrototyping.TicTacMix.Voleur
                     _time = 0;
                 }
             }
+            }
         }
+
+        IEnumerator Countdown()
+        {
+
+            _countdownText.gameObject.SetActive(true);
+
+            _countdownText.text = "3";
+            yield return new WaitForSeconds(1f);
+            _countdownText.text = "2";
+            yield return new WaitForSeconds(1f);
+            _countdownText.text = "1";
+            yield return new WaitForSeconds(1f);
+            _countdownText.text = "GO!";
+            yield return new WaitForSeconds(0.5f);
+
+            _countdownText.gameObject.SetActive(false);
+
+            _canMove = true;
+        }
+
 
         public void PlayerFinished(bool isPlayerO)
         {

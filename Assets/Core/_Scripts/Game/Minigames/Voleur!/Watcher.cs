@@ -81,7 +81,7 @@ namespace RapidPrototyping.TicTacMix.Voleur
 
             if ( _watchTime >= _targetWatchTime)
             {
-                _targetWatchTime = Random.Range(2, 7);
+                _targetWatchTime = Random.Range(2, 6);
                 _animator.SetBool("isWatching", false);
                 _isWatching = false;
                 _watchTime = 0;
