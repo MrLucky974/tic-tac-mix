@@ -30,20 +30,22 @@ namespace RapidPrototyping.TicTacMix.Marelle
 
         private void Update()
         {
-
-            _time += Time.deltaTime;
-            _chrono = (int)_time;
-            _chronoText.text = _chrono.ToString();
-
-            if (_time >= _endTime)
+            if (_arrowSequence._canMove)
             {
-                _victoryPanel.SetActive(true);
-                DetermineWinner();
-                _arrowSequence._canMove = false;
+                _time += Time.deltaTime;
+                _chrono = (int)_time;
+                _chronoText.text = _chrono.ToString();
 
-                if (_time <= 0)
+                if (_time >= _endTime)
                 {
-                    _time = 0;
+                    _victoryPanel.SetActive(true);
+                    DetermineWinner();
+                    _arrowSequence._canMove = false;
+
+                    if (_time <= 0)
+                    {
+                        _time = 0;
+                    }
                 }
             }
         }
