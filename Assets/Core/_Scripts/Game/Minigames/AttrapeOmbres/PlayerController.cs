@@ -59,7 +59,7 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
             }
 
             _score++;
-            _rb.drag += 2;
+            _rb.drag ++;
             _rb.mass++;
 
 
