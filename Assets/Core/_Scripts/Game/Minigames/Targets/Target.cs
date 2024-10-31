@@ -31,7 +31,11 @@ namespace RapidPrototyping.TicTacMix.Targets
 
         private void OnDestroy()
         {
-            GameManager.Instance.OnGameEnded -= HandleGameEnd;
+            var gameManager = GameManager.Instance;
+            if (gameManager == null)
+                return;
+
+            gameManager.OnGameEnded -= HandleGameEnd;
         }
 
         private void HandleGameEnd(GameData data)
