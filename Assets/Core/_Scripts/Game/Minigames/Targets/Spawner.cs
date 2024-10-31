@@ -28,9 +28,10 @@ namespace RapidPrototyping.TicTacMix.Targets
                 return;
 
             var targetPrefab = SelectTarget();
-            var spawnPosition = SelectSpawnPosition();
+            var spawnPoint = SelectSpawnPoint();
 
-            var target = Instantiate(targetPrefab, spawnPosition, Quaternion.identity);
+            var target = Instantiate(targetPrefab, spawnPoint.position, Quaternion.identity);
+            target.transform.parent = spawnPoint;
             target.OnTargetDestroyed += HandleTargetDestroyed;
         }
 
@@ -39,10 +40,9 @@ namespace RapidPrototyping.TicTacMix.Targets
             SpawnTarget();
         }
 
-        public Vector3 SelectSpawnPosition()
+        public Transform SelectSpawnPoint()
         {
-            var spawnPoint = m_spawnPoints.PickRandomUnity();
-            return spawnPoint.position;
+            return m_spawnPoints.PickRandomUnity();
         }
 
         public Target SelectTarget()
