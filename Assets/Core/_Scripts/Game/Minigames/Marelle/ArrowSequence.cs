@@ -1,6 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 namespace RapidPrototyping.TicTacMix.Marelle
@@ -31,21 +32,34 @@ namespace RapidPrototyping.TicTacMix.Marelle
 
         private Vector3[] _startPos = { new Vector3(0f, 0f, 0f), new Vector3(0f, 0f, 0f) };
 
+        [Header("Countdown")]
+        [SerializeField] private TMP_Text _countdownText;
+        public bool _canMove = false;
+
 
         private void Start()
         {
             _startPos[0] = _characters[0].transform.position;
             _startPos[1] = _characters[1].transform.position;
 
+            if( !_canMove )
+            {
+            StartCoroutine(Countdown());
+
+            }
+
             RandomArrowsSequence(_allDirectionsKeys, _sequenceNumber[0], _inputSequenceKey, _placement[0], _instanciatedKey);
             RandomArrowsSequence(_allDirectionsArrows, _sequenceNumber[1], _inputSequenceArrow, _placement[1], _instanciatedArrow);
+
 
         }
 
         private void Update()
-        { 
+        {
+            if (_canMove)
+            {         
 
-///////////////////////////////PLAYER KEY(blue)////////////////////////////////////////////////////
+            ///////////////////////////////PLAYER KEY(blue)////////////////////////////////////////////////////
 
             //Si la touche cliquée est la même que la séquence; continuer la séquence
             if (Input.anyKeyDown)
@@ -130,7 +144,28 @@ namespace RapidPrototyping.TicTacMix.Marelle
                 }
             }
 
+            }
         }
+
+        IEnumerator Countdown()
+        {
+
+            _countdownText.gameObject.SetActive(true);
+
+            _countdownText.text = "3";
+            yield return new WaitForSeconds(1f);
+            _countdownText.text = "2";
+            yield return new WaitForSeconds(1f);
+            _countdownText.text = "1";
+            yield return new WaitForSeconds(1f);
+            _countdownText.text = "GO!";
+            yield return new WaitForSeconds(0.5f);
+
+            _countdownText.gameObject.SetActive(false);
+
+            _canMove = true;
+        }
+
 
         /*
             //NE FONCTIONNE PAS

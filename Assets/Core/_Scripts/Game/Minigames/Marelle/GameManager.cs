@@ -20,6 +20,14 @@ namespace RapidPrototyping.TicTacMix.Marelle
         private int _chrono;
         [SerializeField] private TMP_Text _chronoText;
 
+        [Header("ArrowSequence")]
+        private ArrowSequence _arrowSequence;
+
+        private void Start()
+        {
+            _arrowSequence = GetComponent<ArrowSequence>();
+        }
+
         private void Update()
         {
 
@@ -31,6 +39,7 @@ namespace RapidPrototyping.TicTacMix.Marelle
             {
                 _victoryPanel.SetActive(true);
                 DetermineWinner();
+                _arrowSequence._canMove = false;
 
                 if (_time <= 0)
                 {
@@ -41,6 +50,8 @@ namespace RapidPrototyping.TicTacMix.Marelle
 
         public void PlayerFinished(bool isPlayerO) 
         {
+            _arrowSequence._canMove = false;
+
             if (isPlayerO)
             {
                 _isFinishedO = true;
