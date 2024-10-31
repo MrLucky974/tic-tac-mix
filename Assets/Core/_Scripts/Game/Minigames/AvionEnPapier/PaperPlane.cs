@@ -20,7 +20,7 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
 
         [Header("GameManager")]
         [SerializeField] private GameManager _gameManager;
-        [SerializeField] private bool isPlayerO;
+        [SerializeField] private bool _isPlayerO;
 
 
         private void Start()
@@ -80,7 +80,7 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
             if(collision.gameObject.CompareTag("Finish"))
             {
                 print("end");
-                _gameManager.PlayerFinished(isPlayerO);
+                _gameManager.PlayerFinished(_isPlayerO);
             }
         }
 
