@@ -30,8 +30,11 @@ namespace RapidPrototyping.TicTacMix
 
                 _shadow.transform.localScale = Vector3.one * hitDistance;
 
+
+
+                Color shadColor = _shadow.GetComponent<SpriteRenderer>().color;
                 //Rendre plus foncé
-                _shadow.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1/hitDistance); ;
+                _shadow.GetComponent<SpriteRenderer>().color = new Color(shadColor.r, shadColor.g, shadColor.b, 1/hitDistance); ;
                 
 
             }

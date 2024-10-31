@@ -25,9 +25,9 @@ namespace RapidPrototyping.TicTacMix
 
             Vector3 pos = new Vector3(RandomposX, _posy.transform.position.y , RandomposZ);
 
-            int RandomItem = Random.Range(0, 2);
+            int dice = Random.Range(0, 100);
 
-            if (RandomItem == 0)
+            if (dice <= 70)
             {
                 Instantiate(_star[0], pos, Quaternion.identity);
             }
@@ -45,7 +45,7 @@ namespace RapidPrototyping.TicTacMix
             if (_time >= _targetTime)
             {             
                 Spawn();
-                _targetTime = Random.Range(3, 10);
+                _targetTime = Random.Range(2, 5);
                 _time = 0;
             }
         }

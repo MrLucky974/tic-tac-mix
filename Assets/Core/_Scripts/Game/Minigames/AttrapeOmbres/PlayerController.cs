@@ -51,14 +51,18 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
         private void OnTriggerEnter(Collider other)
         {
             Destroy(other.gameObject);
+
+            if (other.CompareTag("Finish"))
+            {
+                _gameManager.PlayerDead(_isPlayerO);
+                return;
+            }
+
             _score++;
 
             _scoreText.text = _score.ToString();
 
-            if(other.CompareTag("Finish"))
-            {
-                _gameManager.Score();
-            }
+            
         }
     }
 }
