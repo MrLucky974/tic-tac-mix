@@ -26,6 +26,17 @@ namespace RapidPrototyping.TicTacMix.Targets
         {
             m_collider = GetComponent<Collider>();
             Invoke(nameof(Disable), m_lifetime);
+            GameManager.Instance.OnGameEnded += HandleGameEnd;
+        }
+
+        private void OnDestroy()
+        {
+            GameManager.Instance.OnGameEnded -= HandleGameEnd;
+        }
+
+        private void HandleGameEnd(GameData data)
+        {
+            Destroy(gameObject);
         }
 
         private void Disable()
