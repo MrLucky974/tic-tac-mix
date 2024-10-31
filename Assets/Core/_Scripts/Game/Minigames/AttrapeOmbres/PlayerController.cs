@@ -45,7 +45,7 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
 
         private void FixedUpdate()
         {
-            _rb.velocity = new Vector3(_horizontal, 0, _vertical) * _speed;
+            _rb.velocity = new Vector3(_horizontal, transform.position.y, _vertical) * _speed;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -59,6 +59,9 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
             }
 
             _score++;
+            _rb.drag += 5;
+            _rb.mass++;
+
 
             _scoreText.text = _score.ToString();
 
