@@ -20,6 +20,7 @@ namespace RapidPrototyping.TicTacMix.Targets
         public event Action OnTargetDestroyed;
 
         private Collider m_collider;
+        private bool m_enabled = true;
 
         private void Start()
         {
@@ -29,7 +30,6 @@ namespace RapidPrototyping.TicTacMix.Targets
 
         private void Disable()
         {
-            m_collider.enabled = false;
             StartCoroutine(nameof(Rotate));
         }
 
@@ -45,8 +45,19 @@ namespace RapidPrototyping.TicTacMix.Targets
             {
                 time += Time.deltaTime;
                 yield return null;
+
+                float t = time / duration;
+
+                // Rotate the target around
                 transform.rotation = Quaternion.Lerp(baseRotation,
-                    targetRotation, time / duration);
+                    targetRotation, t);
+
+                // If the animation is past half the duration and the collider
+                // is still enabled, disable it
+                if (t >= 0.5f && m_collider.enabled)
+                {
+                    m_collider.enabled = false;
+                }
             }
 
             transform.rotation = targetRotation;
@@ -63,6 +74,9 @@ namespace RapidPrototyping.TicTacMix.Targets
 
         private void OnCollisionEnter(Collision collision)
         {
+            if (m_enabled is false)
+                return;
+
             if (collision.gameObject.TryGetComponent<Projectile>(out var projectile))
             {
                 OnProjectileHit(projectile.PlayerIndex);
@@ -74,6 +88,7 @@ namespace RapidPrototyping.TicTacMix.Targets
                 }
 
                 OnTargetDestroyed?.Invoke();
+                m_enabled = false;
             }
         }
     }

@@ -66,9 +66,15 @@ namespace RapidPrototyping.TicTacMix.Targets
 
                     Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(m_canvas.worldCamera, m_cursor.rectTransform.position);
                     Ray ray = m_camera.ScreenPointToRay(screenPoint);
+
                     if (Physics.Raycast(ray, out var hit, 10f, m_projectileMask))
                     {
-                        projectile.StartMovement(hit.point);
+                        var direction = (hit.point - m_muzzle.position).normalized;
+                        projectile.Fire(direction);
+                    }
+                    else
+                    {
+                        projectile.Fire(ray.direction);
                     }
                 }
             }
@@ -94,9 +100,15 @@ namespace RapidPrototyping.TicTacMix.Targets
 
                     Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(m_canvas.worldCamera, m_cursor.rectTransform.position);
                     Ray ray = m_camera.ScreenPointToRay(screenPoint);
+
                     if (Physics.Raycast(ray, out var hit, 10f, m_projectileMask))
                     {
-                        projectile.StartMovement(hit.point);
+                        var direction = (hit.point - m_muzzle.position).normalized;
+                        projectile.Fire(direction);
+                    }
+                    else
+                    {
+                        projectile.Fire(ray.direction);
                     }
                 }
             }
