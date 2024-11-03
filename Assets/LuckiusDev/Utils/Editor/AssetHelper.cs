@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 
-namespace LuckiusDev.Utils
+namespace LuckiusDev.Utils.Editor
 {
     public struct AssetHelper
     {

@@ -6,8 +6,10 @@
 
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace LuckiusDev.Utils
 {
@@ -236,7 +238,10 @@ namespace LuckiusDev.Utils
             return true;
         }
 
-        #region MenuItem
+        #region Editor Utilities
+
+#if UNITY_EDITOR
+
         [MenuItem("GameObject/Create Empty (Tags)", false, 0)]
         static void CreateEmptyWithTag(MenuCommand menuCommand)
         {
@@ -253,6 +258,9 @@ namespace LuckiusDev.Utils
             Undo.RegisterCreatedObjectUndo(go, "Create " + go.name);
             Selection.activeObject = go;
         }
-        #endregion
+
+#endif
+
+#endregion
     }
 }
