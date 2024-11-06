@@ -17,6 +17,7 @@ namespace RapidPrototyping.TicTacMix
         }
 
         private Symbol[] m_grid;
+
         public static Symbol[] Grid => Instance.m_grid;
         public event Action<Symbol[]> OnGridChanged;
 
