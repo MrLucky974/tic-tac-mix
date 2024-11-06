@@ -271,8 +271,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Time for X to play!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 395c5197cfa285c4c8f692b38327c9c0, type: 2}
+  m_sharedMaterial: {fileID: -259145782516613734, guid: 395c5197cfa285c4c8f692b38327c9c0,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -973,8 +974,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press "ZQSD" to move
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 395c5197cfa285c4c8f692b38327c9c0, type: 2}
+  m_sharedMaterial: {fileID: -259145782516613734, guid: 395c5197cfa285c4c8f692b38327c9c0,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
