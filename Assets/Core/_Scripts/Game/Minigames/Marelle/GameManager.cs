@@ -13,6 +13,8 @@ namespace RapidPrototyping.TicTacMix.Marelle
         [SerializeField] private GameObject _victoryPanel;
         [SerializeField] private TMP_Text _text;
 
+        [SerializeField] private Color[] _color;
+
         [Header("CHRONO")]
         //CHRONO OF THE GAME
         private float _time;
@@ -71,12 +73,12 @@ namespace RapidPrototyping.TicTacMix.Marelle
 
         if (_isFinishedO)
         {
-                _text.GetComponent<TMP_Text>().color = Color.red;
+                _text.GetComponent<TMP_Text>().color = _color[0];
                 _text.text = "Victory: Player O";
         }
         else if (_isFinishedX)
         {
-                _text.GetComponent<TMP_Text>().color = Color.blue;
+                _text.GetComponent<TMP_Text>().color = _color[0];
                 _text.text = "Victory: Player X";
         }
         else

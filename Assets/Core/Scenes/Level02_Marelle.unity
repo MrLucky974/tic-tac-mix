@@ -987,8 +987,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: VICTORY
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 395c5197cfa285c4c8f692b38327c9c0, type: 2}
+  m_sharedMaterial: {fileID: -259145782516613734, guid: 395c5197cfa285c4c8f692b38327c9c0,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1012,8 +1013,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 101.87
-  m_fontSizeBase: 101.87
+  m_fontSize: 200
+  m_fontSizeBase: 200
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2146,6 +2147,9 @@ MonoBehaviour:
   _isFinishedX: 0
   _victoryPanel: {fileID: 914873737}
   _text: {fileID: 392087042}
+  _color:
+  - {r: 0.93725497, g: 0.227451, b: 0.31764707, a: 1}
+  - {r: 0.25490198, g: 0.6, b: 0.94117653, a: 1}
   _endTime: 30
   _chronoText: {fileID: 1371023840}
 --- !u!1 &883264370
@@ -3058,8 +3062,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 395c5197cfa285c4c8f692b38327c9c0, type: 2}
+  m_sharedMaterial: {fileID: -259145782516613734, guid: 395c5197cfa285c4c8f692b38327c9c0,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3291,7 +3296,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -150, y: -181}
+  m_AnchoredPosition: {x: -150, y: -73}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1416172514
@@ -3322,8 +3327,9 @@ MonoBehaviour:
 
     D'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 395c5197cfa285c4c8f692b38327c9c0, type: 2}
+  m_sharedMaterial: {fileID: -259145782516613734, guid: 395c5197cfa285c4c8f692b38327c9c0,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3876,7 +3882,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: -194}
+  m_AnchoredPosition: {x: 150, y: -86}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1583430091
@@ -3901,8 +3907,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Haut \nGauche \nBas\nDroite"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 395c5197cfa285c4c8f692b38327c9c0, type: 2}
+  m_sharedMaterial: {fileID: -259145782516613734, guid: 395c5197cfa285c4c8f692b38327c9c0,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4390,7 +4397,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -72.9}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2002146142
@@ -4415,8 +4422,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 3
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 395c5197cfa285c4c8f692b38327c9c0, type: 2}
+  m_sharedMaterial: {fileID: -259145782516613734, guid: 395c5197cfa285c4c8f692b38327c9c0,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4549,8 +4557,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Arrive au ciel en premier en tappant sur les bonnes touches!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 395c5197cfa285c4c8f692b38327c9c0, type: 2}
+  m_sharedMaterial: {fileID: -259145782516613734, guid: 395c5197cfa285c4c8f692b38327c9c0,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
