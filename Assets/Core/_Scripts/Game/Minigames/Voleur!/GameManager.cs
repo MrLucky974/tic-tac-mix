@@ -34,14 +34,16 @@ namespace RapidPrototyping.TicTacMix.Voleur
         private void Start()
         {
             _playerController = FindObjectsOfType<PlayerController>();
+
+            if (!_canMove)
+            {
+                StartCoroutine(Countdown());
+            }
         }
 
         private void Update()
         {
-            if(!_canMove)
-            {
-                StartCoroutine(Countdown());
-            }
+         
             if (_canMove)
             {
                 
