@@ -30,13 +30,18 @@ namespace RapidPrototyping.TicTacMix
         private int _chrono;
         [SerializeField] private TMP_Text _chronoText;
 
-        private void Update()
+
+        private void Start()
         {
             if (!_canMove)
             {
                 StartCoroutine(Countdown());
             }
 
+        }
+        private void Update()
+        {
+          
             if(_canMove)
             {
 
