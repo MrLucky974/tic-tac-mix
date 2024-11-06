@@ -197,8 +197,8 @@ namespace RapidPrototyping.TicTacMix
 
             if (m_dataHolder == null)
             {
-                m_dataHolder = ScriptableObject.CreateInstance<DataHolder>();
-                m_dataHolder.name = "Game Data Holder";
+                m_dataHolder = new DataHolder();
+                m_dataHolder.Reset();
             }
 
             InitializeMinigames();
