@@ -13,10 +13,10 @@ TagManager:
   - Terrain
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Projectiles
+  - Ignore All
+  - Player 1 Only
+  - Player 2 Only
   - 
   - 
   - 

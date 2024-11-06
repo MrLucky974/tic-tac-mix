@@ -1,7 +1,7 @@
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
-namespace LuckiusDev.Utils
+namespace LuckiusDev.Utils.Editor
 {
     /// <summary>
     /// This class contain custom drawer for ReadOnly attribute.
