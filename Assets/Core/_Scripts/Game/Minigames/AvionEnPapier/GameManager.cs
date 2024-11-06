@@ -23,6 +23,8 @@ namespace RapidPrototyping.TicTacMix
         [SerializeField] private GameObject _victoryPanel;
         [SerializeField] private TMP_Text _text;
 
+        [SerializeField] private Color[] _color;
+
         [Header("End2_CHRONO")]
         //CHRONO OF THE GAME
         private float _time;
@@ -112,13 +114,13 @@ namespace RapidPrototyping.TicTacMix
 
             if (!playerOIsAlive && playerXIsAlive)
             {
-                _text.GetComponent<TMP_Text>().color = Color.blue;
+                _text.GetComponent<TMP_Text>().color = _color[0];
                 _text.text = "Victory: Player X" ;
             }
           
             else if (!playerXIsAlive && playerOIsAlive)
             {
-                _text.GetComponent<TMP_Text>().color = Color.red;
+                _text.GetComponent<TMP_Text>().color = _color[1];
                 _text.text = "Victory: Player O";
             }
             
