@@ -1,5 +1,6 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +23,11 @@ namespace RapidPrototyping.TicTacMix.Main
         [Space]
 
         #endregion
+
+        [Header("Text")]
+
+        [SerializeField] private TextMeshProUGUI m_playerLabel;
+        [SerializeField] private TextMeshProUGUI m_tutorialLabel;
 
         #region Grid Variables
 
@@ -59,9 +65,27 @@ namespace RapidPrototyping.TicTacMix.Main
             switch (turn)
             {
                 case GameDataHandler.Turn.PLAYER_1:
+                    // Update information labels text
+                    m_playerLabel.SetText("Time for X to play!");
+                    m_tutorialLabel.SetText("Press \"ZQSD\" to move");
+
+                    // Update information labels color
+                    m_playerLabel.color = m_crossColor;
+                    m_tutorialLabel.color = m_crossColor;
+
+                    // Update cursor color
                     m_cursor.color = m_crossColor;
                     break;
                 case GameDataHandler.Turn.PLAYER_2:
+                    // Update information labels text
+                    m_playerLabel.SetText("Time for O to play!");
+                    m_tutorialLabel.SetText("Press \"↑←↓→\" to move");
+
+                    // Update information labels color
+                    m_playerLabel.color = m_circleColor;
+                    m_tutorialLabel.color = m_circleColor;
+
+                    // Update cursor color
                     m_cursor.color = m_circleColor;
                     break;
             }

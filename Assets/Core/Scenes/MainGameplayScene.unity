@@ -1121,6 +1121,8 @@ MonoBehaviour:
   m_circleColor: {r: 0.69411767, g: 0.30980393, b: 0.2627451, a: 1}
   m_animationDuration: 0.4
   m_cursor: {fileID: 1050300118}
+  m_playerLabel: {fileID: 156383220}
+  m_tutorialLabel: {fileID: 619625416}
   m_cellImages:
   - {fileID: 745534425}
   - {fileID: 263102648}
