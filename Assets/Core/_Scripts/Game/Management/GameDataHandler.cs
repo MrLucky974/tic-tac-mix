@@ -203,5 +203,10 @@ namespace RapidPrototyping.TicTacMix
 
             InitializeMinigames();
         }
+
+        private void Start()
+        {
+            OnScoreChanged?.Invoke(PlayerOneScore, PlayerTwoScore);
+        }
     }
 }
