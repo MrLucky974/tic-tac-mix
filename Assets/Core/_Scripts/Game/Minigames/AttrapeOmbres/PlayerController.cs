@@ -41,11 +41,23 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
             float limitsz = Mathf.Clamp(transform.position.z, -_limit/2, _limit/2);
 
             transform.position = new Vector3(limitsx, transform.position.y, limitsz);
+
+             // Rotation vers la direction du mouvement
+            Vector3 moveDirection = new Vector3(_horizontal, 0, _vertical);
+            if (moveDirection.magnitude > 0.1f) // Vérifier si on se déplace 
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f); // Ajuste la vitesse de rotation
+            }
         }
 
         private void FixedUpdate()
         {
-            _rb.velocity = new Vector3(_horizontal, transform.position.y, _vertical) * _speed;
+            // _rb.velocity = new Vector3(_horizontal, transform.position.y, _vertical) * _speed;
+
+            // Appliquer le mouvement dans la direction actuelle
+            Vector3 moveDirection = transform.forward * _speed * new Vector3(_horizontal, 0, _vertical).magnitude;
+            _rb.velocity = new Vector3(moveDirection.x, _rb.velocity.y, moveDirection.z);
         }
 
         private void OnTriggerEnter(Collider other)
