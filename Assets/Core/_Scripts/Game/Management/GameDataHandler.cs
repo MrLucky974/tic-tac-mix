@@ -208,5 +208,12 @@ namespace RapidPrototyping.TicTacMix
         {
             OnScoreChanged?.Invoke(PlayerOneScore, PlayerTwoScore);
         }
+
+        public static void ResetGame()
+        {
+            DataHolder.Reset();
+            Instance.m_currentTurn = Turn.PLAYER_1;
+            GridManager.Clear();
+        }
     }
 }

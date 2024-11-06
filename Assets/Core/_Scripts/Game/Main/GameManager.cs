@@ -1,9 +1,13 @@
+using LuckiusDev.Utils;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace RapidPrototyping.TicTacMix.Main
 {
     public class GameManager : MonoBehaviour
     {
+        [SerializeField] private SceneReference m_mainMenuScene;
+
         public enum GameResult
         {
             None,       // Game is ongoing
@@ -25,12 +29,32 @@ namespace RapidPrototyping.TicTacMix.Main
             {
                 case GameResult.PlayerOne:
                     Debug.Log("Player One wins!");
+                    GameDataHandler.AddP1Score();
+                    GameDataHandler.ResetGame();
+                    if (m_mainMenuScene != null &&
+                        string.IsNullOrEmpty(m_mainMenuScene) is false)
+                    {
+                        SceneManager.LoadScene(m_mainMenuScene);
+                    }
                     break;
                 case GameResult.PlayerTwo:
                     Debug.Log("Player Two wins!");
+                    GameDataHandler.AddP2Score();
+                    GameDataHandler.ResetGame();
+                    if (m_mainMenuScene != null &&
+                        string.IsNullOrEmpty(m_mainMenuScene) is false)
+                    {
+                        SceneManager.LoadScene(m_mainMenuScene);
+                    }
                     break;
                 case GameResult.Tie:
                     Debug.Log("It's a tie!");
+                    GameDataHandler.ResetGame();
+                    if (m_mainMenuScene != null &&
+                        string.IsNullOrEmpty(m_mainMenuScene) is false)
+                    {
+                        SceneManager.LoadScene(m_mainMenuScene);
+                    }
                     break;
                 case GameResult.None:
                     Debug.Log("Game is ongoing.");

@@ -42,6 +42,11 @@ namespace RapidPrototyping.TicTacMix
             }
         }
 
+        public static void Clear()
+        {
+            Instance.InitializeGrid();
+        }
+
         public static bool IsCellEmpty(int x, int y)
         {
             int index = x + y * GRID_SIZE;
