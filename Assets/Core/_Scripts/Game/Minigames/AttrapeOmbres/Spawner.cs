@@ -26,13 +26,17 @@ namespace RapidPrototyping.TicTacMix
         private bool _canMove = false;
 
 
-
-        private void Update()
+        private void Start()
         {
-            if(!_canMove)
+            if (!_canMove)
             {
                 StartCoroutine(Countdown());
             }
+        }
+
+        private void Update()
+        {
+          
             if (_canMove)
             {
                 TimerItem();
