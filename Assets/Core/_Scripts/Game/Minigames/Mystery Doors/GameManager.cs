@@ -36,6 +36,9 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
         private Floor m_topFloor;
         public static Floor TopFloor => ((GameManager)Instance).m_topFloor;
 
+        private Player m_playerOne;
+        private Player m_playerTwo;
+
         private void Start()
         {
             // Generate the tower
@@ -85,6 +88,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
                 var floor = Instantiate(prefab, position, Quaternion.identity);
                 floor.transform.parent = m_tower;
                 floor.name = $"Floor_{i + 1}";
+                floor.SetIndex(i);
 
                 Color color = Color.white;
                 if (m_floorColors != null && m_floorColors.Length > 0)
@@ -121,14 +125,14 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
                 return;
 
             // Instantiate the first player on the left side of the top floor
-            var playerOne = Instantiate(m_playerPrefab, Vector3.zero, Quaternion.identity);
-            playerOne.Initialize(0, m_topFloor);
-            m_camera.AddTarget(playerOne.transform);
+            m_playerOne = Instantiate(m_playerPrefab, Vector3.zero, Quaternion.identity);
+            m_playerOne.Initialize(0, m_topFloor);
+            m_camera.AddTarget(m_playerOne.transform);
 
             // Instantiate the second player on the right side of the top floor
-            var playerTwo = Instantiate(m_playerPrefab, Vector3.zero, Quaternion.identity);
-            playerTwo.Initialize(1, m_topFloor);
-            m_camera.AddTarget(playerTwo.transform);
+            m_playerTwo = Instantiate(m_playerPrefab, Vector3.zero, Quaternion.identity);
+            m_playerTwo.Initialize(1, m_topFloor);
+            m_camera.AddTarget(m_playerTwo.transform);
         }
     }
 }
