@@ -24,6 +24,8 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
         [SerializeField] private TMP_Text _text;
         [SerializeField] private TMP_Text[] _scoreText;
 
+        [SerializeField] private Color[] _colors;
+
 
         private void Start()
         {
@@ -57,13 +59,13 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
 
                 if (_player[0]._isPlayerO)
                 {
-                    _text.GetComponent<TMP_Text>().color = Color.red;
+                    _text.GetComponent<TMP_Text>().color = _colors[1];
                     _text.text = "Victory: Player O";
 
                 }
                 else 
                 {
-                    _text.GetComponent<TMP_Text>().color = Color.blue;
+                    _text.GetComponent<TMP_Text>().color = _colors[0];
                     _text.text = "Victory: Player X";
                 }
             }
@@ -72,13 +74,13 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
 
                 if (!_player[1]._isPlayerO)
                 {
-                    _text.GetComponent<TMP_Text>().color = Color.blue;
+                    _text.GetComponent<TMP_Text>().color = _colors[0];
                     _text.text = "Victory: Player X";
 
                 }
                 else
                 {
-                    _text.GetComponent<TMP_Text>().color = Color.red;
+                    _text.GetComponent<TMP_Text>().color = _colors[1];
                     _text.text = "Victory: Player O";
 
                 }
@@ -99,12 +101,12 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
 
             if (isPlayerO)
             {
-                _text.GetComponent<TMP_Text>().color = Color.blue;
+                _text.GetComponent<TMP_Text>().color = _colors[0];
                 _text.text = "Victory: Player X";
             }
             else
             {
-                _text.GetComponent<TMP_Text>().color = Color.red;
+                _text.GetComponent<TMP_Text>().color = _colors[1];
                 _text.text = "Victory: Player O";
             }
 
