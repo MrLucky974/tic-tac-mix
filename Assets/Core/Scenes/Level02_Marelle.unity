@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 159784786}
   - component: {fileID: 159784785}
   m_Layer: 5
-  m_Name: Sprite
+  m_Name: SpritePlacement(Key)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2685,8 +2685,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 159784784}
-  - {fileID: 1539621608}
   - {fileID: 750441850}
+  - {fileID: 1539621608}
   - {fileID: 268186682}
   - {fileID: 1371023842}
   - {fileID: 2002146141}
@@ -3083,13 +3083,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -3434,7 +3434,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 94e7635f3a92a7245abb4b56e5834fa2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3476,8 +3476,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.51138496, y: 0.4883497, z: -0.4883497, w: 0.51138496}
   m_LocalPosition: {x: -0.1085, y: 0.07, z: 6.73}
-  m_LocalScale: {x: 0.5, y: 0.51185, z: 0.5}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 557067357}
   m_Father: {fileID: 0}
@@ -3674,7 +3674,7 @@ GameObject:
   - component: {fileID: 1539621610}
   - component: {fileID: 1539621609}
   m_Layer: 5
-  m_Name: Sprite (1)
+  m_Name: SpritePlacement(Arrow)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4013,7 +4013,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 94e7635f3a92a7245abb4b56e5834fa2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4055,8 +4055,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.51138496, y: 0.4883497, z: -0.4883497, w: 0.51138496}
   m_LocalPosition: {x: -0.1085, y: 0.07, z: -5.7}
-  m_LocalScale: {x: 0.5, y: 0.51185, z: 0.5}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 499708336}
   m_Father: {fileID: 0}
@@ -4413,7 +4413,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Countdown
+  m_text: 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4440,8 +4440,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
