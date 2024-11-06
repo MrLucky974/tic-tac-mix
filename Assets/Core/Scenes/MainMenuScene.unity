@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 58189917}
   - component: {fileID: 58189916}
   - component: {fileID: 58189915}
+  - component: {fileID: 58189919}
   m_Layer: 0
   m_Name: Return Button
   m_TagString: Untagged
@@ -418,6 +419,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58189913}
   m_CullTransparentMesh: 1
+--- !u!114 &58189919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58189913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1eef5cc47dc55b4a9de694247531305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_audio:
+    Hover: {fileID: 8300000, guid: 480b51e8fe1761e46b416c0bc3cc8d4b, type: 3}
+    Click: {fileID: 8300000, guid: 3d40286fd7bf3d1479944ac718b6da9e, type: 3}
 --- !u!1 &64851995
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,6 +888,7 @@ GameObject:
   - component: {fileID: 167566330}
   - component: {fileID: 167566329}
   - component: {fileID: 167566332}
+  - component: {fileID: 167566333}
   m_Layer: 0
   m_Name: Credits Button
   m_TagString: Untagged
@@ -1008,6 +1025,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_menuManager: {fileID: 1877052014}
   m_menuScreenType: 2
+--- !u!114 &167566333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167566327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1eef5cc47dc55b4a9de694247531305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_audio:
+    Hover: {fileID: 8300000, guid: 480b51e8fe1761e46b416c0bc3cc8d4b, type: 3}
+    Click: {fileID: 8300000, guid: 235d1fe6483b19741820f737d14f056a, type: 3}
 --- !u!1 &274528066
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,6 +1231,7 @@ GameObject:
   - component: {fileID: 468156297}
   - component: {fileID: 468156296}
   - component: {fileID: 468156295}
+  - component: {fileID: 468156298}
   m_Layer: 0
   m_Name: Quit Button
   m_TagString: Untagged
@@ -1320,6 +1353,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468156293}
   m_CullTransparentMesh: 1
+--- !u!114 &468156298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468156293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1eef5cc47dc55b4a9de694247531305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_audio:
+    Hover: {fileID: 8300000, guid: 480b51e8fe1761e46b416c0bc3cc8d4b, type: 3}
+    Click: {fileID: 0}
 --- !u!1 &531968872
 GameObject:
   m_ObjectHideFlags: 0
@@ -2066,6 +2114,7 @@ GameObject:
   - component: {fileID: 714806065}
   - component: {fileID: 714806064}
   - component: {fileID: 714806067}
+  - component: {fileID: 714806068}
   m_Layer: 0
   m_Name: Settings Button
   m_TagString: Untagged
@@ -2202,6 +2251,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_menuManager: {fileID: 1877052014}
   m_menuScreenType: 1
+--- !u!114 &714806068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714806062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1eef5cc47dc55b4a9de694247531305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_audio:
+    Hover: {fileID: 8300000, guid: 480b51e8fe1761e46b416c0bc3cc8d4b, type: 3}
+    Click: {fileID: 8300000, guid: 235d1fe6483b19741820f737d14f056a, type: 3}
 --- !u!1 &788802323
 GameObject:
   m_ObjectHideFlags: 0
@@ -3259,6 +3323,7 @@ GameObject:
   - component: {fileID: 1187409032}
   - component: {fileID: 1187409031}
   - component: {fileID: 1187409030}
+  - component: {fileID: 1187409034}
   m_Layer: 0
   m_Name: Return Button
   m_TagString: Untagged
@@ -3395,6 +3460,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187409028}
   m_CullTransparentMesh: 1
+--- !u!114 &1187409034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187409028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1eef5cc47dc55b4a9de694247531305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_audio:
+    Hover: {fileID: 8300000, guid: 480b51e8fe1761e46b416c0bc3cc8d4b, type: 3}
+    Click: {fileID: 8300000, guid: 3d40286fd7bf3d1479944ac718b6da9e, type: 3}
 --- !u!1 &1207622945
 GameObject:
   m_ObjectHideFlags: 0
@@ -5267,6 +5347,7 @@ GameObject:
   - component: {fileID: 2047419458}
   - component: {fileID: 2047419457}
   - component: {fileID: 2047419460}
+  - component: {fileID: 2047419461}
   m_Layer: 0
   m_Name: Play Button
   m_TagString: Untagged
@@ -5403,6 +5484,21 @@ MonoBehaviour:
   m_sceneReference:
     m_sceneAsset: {fileID: 102900000, guid: b27cad8e745f19541ab6c2fc272cc175, type: 3}
     m_sceneName: MainGameplayScene
+--- !u!114 &2047419461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2047419455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1eef5cc47dc55b4a9de694247531305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_audio:
+    Hover: {fileID: 8300000, guid: 480b51e8fe1761e46b416c0bc3cc8d4b, type: 3}
+    Click: {fileID: 8300000, guid: e73c45114a7c87449ad2a88ef64ebc0b, type: 3}
 --- !u!1 &2061660639
 GameObject:
   m_ObjectHideFlags: 0
