@@ -4,6 +4,37 @@ using UnityEngine;
 
 public static class JUtils
 {
+    #region Audio Utilities
+
+    // Minimum dB value to avoid -∞ when normalized is 0
+    private const float MinDb = -80.0f;
+
+    /// <summary>
+    /// Converts a dB value to a normalized 0-1 range.
+    /// </summary>
+    /// <param name="db">The dB value to convert.</param>
+    /// <returns>A float value in the range 0-1 representing the normalized volume.</returns>
+    public static float DbToNormalized(float db)
+    {
+        // Clamp dB to avoid values lower than the minimum (silence)
+        db = Mathf.Clamp(db, MinDb, 0);
+        return Mathf.Pow(10, db / 20.0f);
+    }
+
+    /// <summary>
+    /// Converts a normalized 0-1 value to a dB value.
+    /// </summary>
+    /// <param name="normalized">The normalized value to convert, in the range 0-1.</param>
+    /// <returns>A float representing the value in dB.</returns>
+    public static float NormalizedToDb(float normalized)
+    {
+        // Clamp normalized value to avoid -∞ at 0
+        normalized = Mathf.Clamp(normalized, Mathf.Epsilon, 1.0f);
+        return 20.0f * Mathf.Log10(normalized);
+    }
+
+    #endregion
+
     private const string COLORED_TEXT_FORMAT = "<color={0}>{1}</color>";
 
     public static void Print<T>(this T[] array)
