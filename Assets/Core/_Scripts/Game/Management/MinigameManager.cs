@@ -1,5 +1,6 @@
 using LuckiusDev.Utils;
 using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace RapidPrototyping.TicTacMix
@@ -56,6 +57,9 @@ namespace RapidPrototyping.TicTacMix
         {
             // Change the active player turn in GameDataHandler.
             GameDataHandler.ChangeTurn();
+
+            // Set the time scale back to 1
+            Time.timeScale = 1f;
 
             // Load the main gameplay scene based on the configured scene reference.
             SceneManager.LoadScene(GameDataHandler.MainGameplaySceneReference);

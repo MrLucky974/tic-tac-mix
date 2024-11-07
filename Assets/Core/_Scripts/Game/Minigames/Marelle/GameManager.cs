@@ -117,8 +117,12 @@ namespace RapidPrototyping.TicTacMix.Marelle
             // Change the active player turn in GameDataHandler.
             GameDataHandler.ChangeTurn();
 
+            // Set the time scale back to 1
+            Time.timeScale = 1f;
+
             // Load the main gameplay scene based on the configured scene reference.
             SceneManager.LoadScene(GameDataHandler.MainGameplaySceneReference);
+
         }
 
         /// <summary>
