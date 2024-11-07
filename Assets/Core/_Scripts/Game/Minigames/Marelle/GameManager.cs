@@ -122,7 +122,6 @@ namespace RapidPrototyping.TicTacMix.Marelle
 
             // Load the main gameplay scene based on the configured scene reference.
             SceneManager.LoadScene(GameDataHandler.MainGameplaySceneReference);
-
         }
 
         /// <summary>

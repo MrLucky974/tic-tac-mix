@@ -2929,7 +2929,7 @@ MonoBehaviour:
   _keyToJump: 273
   _spawner: {fileID: 0}
   _gameManager: {fileID: 2134994328}
-  _isPlayerO: 0
+  _isPlayerO: 1
 --- !u!54 &1278997343
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4845,8 +4845,8 @@ MonoBehaviour:
   _victoryPanel: {fileID: 1625649839}
   _text: {fileID: 1268293621}
   _color:
-  - {r: 0.9490197, g: 0.27450982, b: 0.45882356, a: 1}
   - {r: 0.227451, g: 0.78823537, b: 0.9568628, a: 1}
+  - {r: 0.9490197, g: 0.27450982, b: 0.45882356, a: 1}
   _endTime: 60
   _chronoText: {fileID: 536358687}
 --- !u!114 &2134994329
