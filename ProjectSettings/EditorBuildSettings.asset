@@ -24,6 +24,12 @@ EditorBuildSettings:
     path: Assets/Core/Scenes/TargetsScene.unity
     guid: 287b240a02a1aa24393782aeaa9387b2
   - enabled: 1
+    path: Assets/Core/Scenes/AvionEnPapierScene.unity
+    guid: e7b00be3e3c91a94db1048fc928cd4ed
+  - enabled: 1
+    path: Assets/Core/Scenes/MarelleScene.unity
+    guid: 1e0b4e924984a9d4c9bedd8dc5345d91
+  - enabled: 1
     path: Assets/Core/Scenes/BootstrapScene.unity
     guid: aec32a3cc36f3a2459f7f8c317831dc8
   m_configObjects: {}

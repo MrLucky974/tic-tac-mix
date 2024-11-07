@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca4aa8548d199e458735180db07ce9d, type: 3}
+  m_Name: Paper Planes
+  m_EditorClassIdentifier: 
+  m_identifier: c524be27-9e47-4697-af9e-62a3e0b9332a
+  Name: Paper Planes
+  Scenes:
+  - m_sceneAsset: {fileID: 102900000, guid: e7b00be3e3c91a94db1048fc928cd4ed, type: 3}
+    m_sceneName: AvionEnPapierScene
