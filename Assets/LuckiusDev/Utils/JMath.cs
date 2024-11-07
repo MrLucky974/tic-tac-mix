@@ -22,7 +22,7 @@ namespace LuckiusDev.Utils
             return n;
         }
 
-        public static int GetAngleFromVector(Vector3 dir) 
+        public static int GetAngleFromVector(Vector3 dir)
         {
             dir = dir.normalized;
             float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -34,7 +34,7 @@ namespace LuckiusDev.Utils
 
         public static void ApproximativeRectangle(float area, out int w, out int h)
         {
-            h = (int) Mathf.Round(Mathf.Sqrt(area));
+            h = (int)Mathf.Round(Mathf.Sqrt(area));
             w = Mathf.CeilToInt(area / h);
         }
 
@@ -49,7 +49,7 @@ namespace LuckiusDev.Utils
             var sideCount = Mathf.CeilToInt(Mathf.Sqrt(elementCount));
             return (sideCount, sideCount * elementSize);
         }
-    
+
         /// <summary>
         /// Converts 2D coordinates to a 1D index in a grid of a given size.
         /// </summary>
@@ -60,7 +60,7 @@ namespace LuckiusDev.Utils
         {
             return position.x + size * position.z;
         }
-    
+
         /// <summary>
         /// Converts a 1D index to 2D coordinates in a grid of a given size.
         /// </summary>
@@ -147,6 +147,20 @@ namespace LuckiusDev.Utils
 
             // Normalize the vector to ensure it has a magnitude of 1
             return direction.normalized;
+        }
+
+        /// <summary>
+        /// Remaps a value from one range to another.
+        /// </summary>
+        /// <param name="value">The value to remap.</param>
+        /// <param name="fromMin">The minimum of the original range.</param>
+        /// <param name="fromMax">The maximum of the original range.</param>
+        /// <param name="toMin">The minimum of the target range.</param>
+        /// <param name="toMax">The maximum of the target range.</param>
+        /// <returns>The remapped value in the target range.</returns>
+        public static float Remap(float value, float fromMin, float fromMax, float toMin, float toMax)
+        {
+            return toMin + (value - fromMin) * (toMax - toMin) / (fromMax - fromMin);
         }
 
         #region Numeric Approximation

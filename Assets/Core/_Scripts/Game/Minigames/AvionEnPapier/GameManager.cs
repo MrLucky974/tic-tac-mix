@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace RapidPrototyping.TicTacMix
+namespace RapidPrototyping.TicTacMix.AvionEnPapier
 {
     public class GameManager : MonoBehaviour
     {

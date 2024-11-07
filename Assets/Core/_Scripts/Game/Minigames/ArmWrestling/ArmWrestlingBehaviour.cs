@@ -1,12 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Windows;
 
 namespace RapidPrototyping.TicTacMix.ArmWresling
 {
-    public class ArmWrestlingbehavior : MonoBehaviour
+    public class ArmWrestlingBehavior : MonoBehaviour
     {
         [SerializeField] ArmWreslingUIManager m_uiManager;
         [SerializeField] ArmWreslingGameManager m_gameManager;
@@ -30,8 +28,19 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
         {
             InitDictionary();
 
+            // Initialize the starting keys for each player
             m_p1Inputs = Inputs.UP;
             m_p2Inputs = Inputs.RIGHT;
+
+            // Update the UI
+            if (m_playerIndex == 0)
+            {
+                m_uiManager.ShowRightIcon(m_p1Inputs, this);
+            }
+            else if (m_playerIndex == 1)
+            {
+                m_uiManager.ShowRightIcon(m_p2Inputs, this);
+            }
         }
 
         void Update()
@@ -47,7 +56,7 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
                     Debug.Log(m_beforChangeP1);
                     ChangingInput(m_beforChangeP1, m_p1Inputs);
                 }
-                
+
             }
             else
             {
@@ -135,7 +144,6 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
                     Debug.Log("right input for player 2");
                     m_gameManager.DecreaseScore();
                 }
-
             }
         }
     }
