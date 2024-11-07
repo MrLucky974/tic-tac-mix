@@ -1,13 +1,17 @@
 using LuckiusDev.Utils;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace RapidPrototyping.TicTacMix.Voleur
 {
     public class GameManager : MonoBehaviour
     {
+        public const int TIE_INDEX = -1;
+        public const int PLAYER_ONE_INDEX = 0;
+        public const int PLAYER_TWO_INDEX = 1;
+
         [Header("End1_HasbeenWatched")]
         private bool playerOIsAlive = true;
         private bool playerXIsAlive = true;
@@ -33,8 +37,16 @@ namespace RapidPrototyping.TicTacMix.Voleur
         private TMP_Text _countdownText;
         public bool _canMove = false;
 
+        private CountdownTimer m_timer;
+
         private void Start()
         {
+            m_timer = new CountdownTimer(3f);
+            m_timer.OnTimerStop += () =>
+            {
+                LoadGameplaySceneForNextTurn();
+            };
+
             _playerController = FindObjectsOfType<PlayerController>();
 
             if (!_canMove)
@@ -45,30 +57,29 @@ namespace RapidPrototyping.TicTacMix.Voleur
 
         private void Update()
         {
-         
+            m_timer.Tick(Time.unscaledDeltaTime);
+
             if (_canMove)
             {
-                
-            _time += Time.deltaTime;
-            _chrono = (int)_time;
-            _chronoText.text = _chrono.ToString();
+                _time += Time.deltaTime;
+                _chrono = (int)_time;
+                _chronoText.text = _chrono.ToString();
 
-            if (_time >= _endTime)
-            {
-                _victoryPanel.SetActive(true);
-                Score();
-
-                if (_time <= 0)
+                if (_time >= _endTime)
                 {
-                    _time = 0;
+                    _victoryPanel.SetActive(true);
+                    Score();
+
+                    if (_time <= 0)
+                    {
+                        _time = 0;
+                    }
                 }
-            }
             }
         }
 
         IEnumerator Countdown()
         {
-
             _countdownText.gameObject.SetActive(true);
 
             _countdownText.text = "3";
@@ -85,7 +96,6 @@ namespace RapidPrototyping.TicTacMix.Voleur
             _canMove = true;
         }
 
-
         public void PlayerFinished(bool isPlayerO)
         {
             if (isPlayerO)
@@ -100,45 +110,47 @@ namespace RapidPrototyping.TicTacMix.Voleur
             }
 
             DetermineWinner();
-
         }
-
 
         private void DetermineWinner()
         {
-
+            Time.timeScale = 0f;
             _victoryPanel.SetActive(true);
 
+            int winIndex = TIE_INDEX;
             if (!playerOIsAlive && playerXIsAlive)
             {
                 _text.GetComponent<TMP_Text>().color = _color[0];
                 _text.text = "Victory: Player X";
+                winIndex = PLAYER_ONE_INDEX;
             }
-
             else if (!playerXIsAlive && playerOIsAlive)
             {
                 _text.GetComponent<TMP_Text>().color = _color[1];
                 _text.text = "Victory: Player O";
+                winIndex = PLAYER_TWO_INDEX;
             }
-
             else if (!playerOIsAlive && !playerXIsAlive)
             {
                 _text.text = "Victory: Tie";
             }
 
             ShowScoreText();
-            Time.timeScale = 0f;
+            MarkWinningSymbol(winIndex);
+            m_timer.Start();
         }
 
         void Score()
         {
+            int winIndex = TIE_INDEX;
             if (_playerController[0]._obtainedCake > _playerController[1]._obtainedCake)
             {
                 if (_playerController[0]._isPlayerO)
                 {
                     _text.GetComponent<TMP_Text>().color = _color[1];
-                    _text.text = "Victory: Player O";                   
-                }             
+                    _text.text = "Victory: Player O";
+                    winIndex = PLAYER_TWO_INDEX;
+                }
             }
             else if (_playerController[0]._obtainedCake < _playerController[1]._obtainedCake)
             {
@@ -146,22 +158,63 @@ namespace RapidPrototyping.TicTacMix.Voleur
                 {
                     _text.GetComponent<TMP_Text>().color = _color[0];
                     _text.text = "Victory: Player X";
+                    winIndex = PLAYER_ONE_INDEX;
                 }
             }
-
             else if (_playerController[0]._obtainedCake == _playerController[1]._obtainedCake)
             {
                 _text.text = "Victory: Tie";
             }
 
             ShowScoreText();
-            Time.timeScale = 0f;
+            MarkWinningSymbol(winIndex);
+            m_timer.Start();
         }
 
         void ShowScoreText()
         {
             _scoreText[0].text = _playerController[0]._obtainedCake.ToString();
             _scoreText[1].text = _playerController[1]._obtainedCake.ToString();
+        }
+
+        /// <summary>
+        /// Advances the game by changing the player's turn and loading the main gameplay scene.
+        /// </summary>
+        public static void LoadGameplaySceneForNextTurn()
+        {
+            // Change the active player turn in GameDataHandler.
+            GameDataHandler.ChangeTurn();
+
+            // Set the time scale back to 1
+            Time.timeScale = 1f;
+
+            // Load the main gameplay scene based on the configured scene reference.
+            SceneManager.LoadScene(GameDataHandler.MainGameplaySceneReference);
+        }
+
+        /// <summary>
+        /// Marks the winning symbol on the grid at the specified position when a game ends.
+        /// </summary>
+        /// <param name="winIndex">
+        /// The index indicating the winning player:
+        /// - 0 for player using "Cross"
+        /// - 1 for player using "Circle"
+        /// - -1 if there is no winner (in which case, no symbol is placed).
+        /// </param>
+        public static void MarkWinningSymbol(int winIndex)
+        {
+            // Retrieve the current grid position from GameDataHandler.
+            var gridPosition = GameDataHandler.DataHolder.GridPosition;
+
+            // Check if there is a winning player.
+            if (winIndex != TIE_INDEX)
+            {
+                // Determine the symbol to place based on the winning player's index.
+                var symbol = winIndex == PLAYER_ONE_INDEX ? GridManager.Symbol.Cross : GridManager.Symbol.Circle;
+
+                // Place the winning symbol on the grid at the designated position.
+                GridManager.PlaceSymbol(symbol, gridPosition.x, gridPosition.y);
+            }
         }
     }
 }

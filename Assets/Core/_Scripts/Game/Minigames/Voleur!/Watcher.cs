@@ -1,6 +1,3 @@
-using RapidPrototyping.TicTacMix.Voleur;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RapidPrototyping.TicTacMix.Voleur
@@ -49,8 +46,7 @@ namespace RapidPrototyping.TicTacMix.Voleur
 
             if (_isWatching)
             {
-                Watch();                
-
+                Watch();
             }
         }
 
@@ -58,6 +54,7 @@ namespace RapidPrototyping.TicTacMix.Voleur
         {
             _isWatching = true;
         }
+
         public void Watch()
         {
             foreach (PlayerController playerController in _playerController)
@@ -66,7 +63,7 @@ namespace RapidPrototyping.TicTacMix.Voleur
                 {
                     //END
                     _gameManager.PlayerFinished(playerController._isPlayerO);
-
+                    _isWatching = false;
                     print("end" + playerController.name);
                 }
             }
@@ -79,7 +76,7 @@ namespace RapidPrototyping.TicTacMix.Voleur
             _watchTime += Time.deltaTime;
 
 
-            if ( _watchTime >= _targetWatchTime)
+            if (_watchTime >= _targetWatchTime)
             {
                 _targetWatchTime = Random.Range(2, 6);
                 _animator.SetBool("isWatching", false);
