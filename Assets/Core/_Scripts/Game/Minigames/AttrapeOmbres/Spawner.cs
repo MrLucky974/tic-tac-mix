@@ -133,15 +133,18 @@ namespace RapidPrototyping.TicTacMix
         {
             randomspike.GetComponentInChildren<BoxCollider>().enabled = false;
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 4; i++)
             {
             yield return new WaitForSeconds(0.2f);
-            randomspike.GetComponentInChildren<MeshRenderer>().material.color = Color.white;
+                randomspike.GetComponentInChildren<SpriteRenderer>().material.color = Color.black;
+            //randomspike.GetComponentInChildren<MeshRenderer>().material.color = Color.white;
             yield return new WaitForSeconds(0.2f);
-            randomspike.GetComponentInChildren<MeshRenderer>().material.color = Color.black;
+                randomspike.GetComponentInChildren<SpriteRenderer>().material.color = Color.red;
+                //randomspike.GetComponentInChildren<MeshRenderer>().material.color = Color.black;
 
             }
-            randomspike.GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+            //randomspike.GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+            randomspike.GetComponentInChildren<SpriteRenderer>().material.color = Color.white;
             randomspike.GetComponentInChildren<BoxCollider>().enabled = true;
             Destroy(randomspike, 2);
         }

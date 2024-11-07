@@ -243,6 +243,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: RocketShip_7
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 457
+        width: 486
+        height: 466
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02ca38b34486fda4e8586ca2951371a9
+      internalID: 1620349451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -261,6 +282,7 @@ TextureImporter:
       RocketShip_4: -1144482072
       RocketShip_5: -1698905272
       RocketShip_6: 171242264
+      RocketShip_7: 1620349451
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

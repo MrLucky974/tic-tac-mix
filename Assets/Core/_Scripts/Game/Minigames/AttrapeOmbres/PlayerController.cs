@@ -13,6 +13,7 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
         private float _vertical;
         private Rigidbody _rb;
         [SerializeField] private float _speed;
+        [SerializeField] private float _rotSpeed = 10f;
         private int _limit = 8;
 
         [Header("Score")]
@@ -47,7 +48,7 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
             if (moveDirection.magnitude > 0.1f) // Vérifier si on se déplace 
             {
                 Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f); // Ajuste la vitesse de rotation
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _rotSpeed); // Ajuste la vitesse de rotation
             }
         }
 
