@@ -25,25 +25,57 @@ namespace RapidPrototyping.TicTacMix.Trains
 
         [SerializeField] private Color[] _colors;
 
+        [Header("Countdown")]
+        [SerializeField] private TMP_Text _countdownText;
+        public bool _canSpawn;
+
         private void Start()
         {
             _player = FindObjectsOfType<PlayerController>();
+            _canSpawn = false;
+            StartCoroutine(Countdown());
         }
 
         private void Update()
         {
-            _time += Time.deltaTime;
-            _chrono = (int)_time;
-            _chronoText.text = _chrono.ToString();
-
-            if (_time >= _endTime)
+            if (_canSpawn)
             {
-                Score();
+                _time += Time.deltaTime;
+                _chrono = (int)_time;
+                _chronoText.text = _chrono.ToString();
 
-                if (_time <= 0)
+                if (_time >= _endTime)
                 {
-                    _time = 0;
+                    Score();
+
+                    if (_time <= 0)
+                    {
+                        _time = 0;
+                    }
                 }
+            }
+        }
+
+        IEnumerator Countdown()
+        {
+
+            _countdownText.gameObject.SetActive(true);
+
+            _countdownText.text = "3";
+            yield return new WaitForSeconds(1f);
+            _countdownText.text = "2";
+            yield return new WaitForSeconds(1f);
+            _countdownText.text = "1";
+            yield return new WaitForSeconds(1f);
+            _countdownText.text = "GO!";
+            yield return new WaitForSeconds(0.5f);
+
+            _countdownText.gameObject.SetActive(false);
+
+            _canSpawn = true;
+            for (int i = 0; i < _player.Length; i++)
+            {
+                _player[i]._speed = 5;
             }
         }
 
@@ -93,6 +125,13 @@ namespace RapidPrototyping.TicTacMix.Trains
             Time.timeScale = 0f;
         }
 
+        public void Tie()
+        {
+            _victoryPanel.SetActive(true);
+            _text.text = "Victory: Tie";
+            ShowScoreText();
+            Time.timeScale = 0f;
+        }
         public void PlayerDead(bool isPlayerO)
         {
             _victoryPanel.SetActive(true);

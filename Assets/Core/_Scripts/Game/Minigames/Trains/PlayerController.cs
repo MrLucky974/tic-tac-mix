@@ -12,7 +12,7 @@ namespace RapidPrototyping.TicTacMix.Trains
         public bool _isPlayerO;
 
         [Header("Move")]
-        [SerializeField] private float _speed = 5f;
+        public float _speed = 5f;
         [SerializeField] private float _rotSpeed = 180f;
 
         [SerializeField] private string _horizontal;
@@ -41,7 +41,7 @@ namespace RapidPrototyping.TicTacMix.Trains
         private void Start()
         {
             _gameManager = FindObjectOfType<GameManager>();
-            Grow();
+           // Grow();
         }
         private void Update()
         {
@@ -90,9 +90,10 @@ namespace RapidPrototyping.TicTacMix.Trains
 
             if (collision.gameObject.GetComponent<PlayerController>() != null)
             {
+                print("destroyBOTH");
                 DestroyAll();
                 collision.gameObject.GetComponent<PlayerController>().DestroyAll();
-                _gameManager.PlayerDead(_isPlayerO);
+                _gameManager.Tie() ;
             }
         }
         private void OnTriggerEnter(Collider other)
@@ -100,7 +101,7 @@ namespace RapidPrototyping.TicTacMix.Trains
             if (other.gameObject.CompareTag(_collide))
             {
                 _gameManager.PlayerDead(_isPlayerO);
-                print("destroy");
+                print("destroyONE");
                 DestroyAll();
             }
         }

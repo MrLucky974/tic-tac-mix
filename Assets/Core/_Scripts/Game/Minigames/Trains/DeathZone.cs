@@ -13,6 +13,7 @@ namespace RapidPrototyping.TicTacMix
             {
                 collision.gameObject.GetComponent<PlayerController>()._gameManager.PlayerDead(collision.gameObject.GetComponent<PlayerController>()._isPlayerO);
                 collision.gameObject.GetComponent<PlayerController>().DestroyAll();
+                print("destroyDEATHZONE");
             }
 
         }
