@@ -54,14 +54,14 @@ namespace RapidPrototyping.TicTacMix.SplatAttack
 
                 m_velocity = Vector2.Lerp(m_velocity,
                     targetVelocity,
-                    1f - Mathf.Exp(-RESPONSE * Time.deltaTime)
+                    1f - Mathf.Exp(-RESPONSE * Time.unscaledDeltaTime)
                 );
             }
             else
             {
                 m_velocity = Vector2.Lerp(m_velocity,
                     Vector2.zero,
-                    1f - Mathf.Exp(-RESPONSE * Time.deltaTime)
+                    1f - Mathf.Exp(-RESPONSE * Time.unscaledDeltaTime)
                 );
             }
 
@@ -80,8 +80,8 @@ namespace RapidPrototyping.TicTacMix.SplatAttack
             transform.Translate(m_velocity, Space.Self);
 
             var force = -m_spring * m_springDisplacement - m_damp * m_springVelocity;
-            m_springVelocity += force * Time.deltaTime;
-            m_springDisplacement += m_springVelocity * Time.deltaTime;
+            m_springVelocity += force * Time.unscaledDeltaTime;
+            m_springDisplacement += m_springVelocity * Time.unscaledDeltaTime;
             m_renderer.transform.localScale = m_defaultScale + new Vector3(-m_springDisplacement, m_springDisplacement) * m_scaleFactor;
         }
 
