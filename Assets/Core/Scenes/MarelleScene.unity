@@ -2157,6 +2157,9 @@ MonoBehaviour:
   - {r: 0.25490198, g: 0.6, b: 0.94117653, a: 1}
   _endTime: 30
   _chronoText: {fileID: 1371023840}
+  _audioClip:
+  - {fileID: 8300000, guid: bc158168aa8d90549ac253f410968023, type: 3}
+  - {fileID: 8300000, guid: 3a28513b142552445a8d6d0851db62bf, type: 3}
 --- !u!1 &883264370
 GameObject:
   m_ObjectHideFlags: 0
