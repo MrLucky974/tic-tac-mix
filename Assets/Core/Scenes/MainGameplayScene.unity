@@ -853,7 +853,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press "ZQSD" to move
+  m_text: 'Press "ZQSD" to move
+
+    and "F" to select'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 395c5197cfa285c4c8f692b38327c9c0, type: 2}
   m_sharedMaterial: {fileID: -259145782516613734, guid: 395c5197cfa285c4c8f692b38327c9c0,
