@@ -39,6 +39,9 @@ namespace RapidPrototyping.TicTacMix.Voleur
 
         private CountdownTimer m_timer;
 
+        [Header("Audio")]
+        [SerializeField] private AudioClip[] _audioClip;
+
         private void Start()
         {
             m_timer = new CountdownTimer(3f);
@@ -69,6 +72,7 @@ namespace RapidPrototyping.TicTacMix.Voleur
                 {
                     _victoryPanel.SetActive(true);
                     Score();
+                    _canMove = false;
 
                     if (_time <= 0)
                     {
@@ -83,13 +87,18 @@ namespace RapidPrototyping.TicTacMix.Voleur
             _countdownText.gameObject.SetActive(true);
 
             _countdownText.text = "3";
+            SoundManager.Play(_audioClip[0]);
             yield return new WaitForSeconds(1f);
             _countdownText.text = "2";
+            SoundManager.Play(_audioClip[0]);
             yield return new WaitForSeconds(1f);
             _countdownText.text = "1";
+            SoundManager.Play(_audioClip[0]);
             yield return new WaitForSeconds(1f);
             _countdownText.text = "GO!";
+            SoundManager.Play(_audioClip[1]);
             yield return new WaitForSeconds(0.5f);
+
 
             _countdownText.gameObject.SetActive(false);
 
@@ -110,6 +119,7 @@ namespace RapidPrototyping.TicTacMix.Voleur
             }
 
             DetermineWinner();
+
         }
 
         private void DetermineWinner()
@@ -123,16 +133,19 @@ namespace RapidPrototyping.TicTacMix.Voleur
                 _text.GetComponent<TMP_Text>().color = _color[0];
                 _text.text = "Victory: Player X";
                 winIndex = PLAYER_ONE_INDEX;
+                SoundManager.Play(_audioClip[2]);
             }
             else if (!playerXIsAlive && playerOIsAlive)
             {
                 _text.GetComponent<TMP_Text>().color = _color[1];
                 _text.text = "Victory: Player O";
                 winIndex = PLAYER_TWO_INDEX;
+                SoundManager.Play(_audioClip[2]);
             }
             else if (!playerOIsAlive && !playerXIsAlive)
             {
                 _text.text = "Victory: Tie";
+                SoundManager.Play(_audioClip[3]);
             }
 
             ShowScoreText();
@@ -150,6 +163,8 @@ namespace RapidPrototyping.TicTacMix.Voleur
                     _text.GetComponent<TMP_Text>().color = _color[1];
                     _text.text = "Victory: Player O";
                     winIndex = PLAYER_TWO_INDEX;
+
+                    SoundManager.Play(_audioClip[2]);
                 }
             }
             else if (_playerController[0]._obtainedCake < _playerController[1]._obtainedCake)
@@ -159,11 +174,15 @@ namespace RapidPrototyping.TicTacMix.Voleur
                     _text.GetComponent<TMP_Text>().color = _color[0];
                     _text.text = "Victory: Player X";
                     winIndex = PLAYER_ONE_INDEX;
+
+                    SoundManager.Play(_audioClip[2]);
                 }
             }
             else if (_playerController[0]._obtainedCake == _playerController[1]._obtainedCake)
             {
                 _text.text = "Victory: Tie";
+
+                SoundManager.Play(_audioClip[3]);
             }
 
             ShowScoreText();
