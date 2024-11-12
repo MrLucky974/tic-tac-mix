@@ -1085,6 +1085,7 @@ MonoBehaviour:
   _posy: {fileID: 817895111}
   _spikes: {fileID: 7432881955116685311, guid: 193971fefdf98ba4dbe89d6d8ba68c11, type: 3}
   _countdownText: {fileID: 2122657301}
+  _canMove: 0
   _audioClip:
   - {fileID: 8300000, guid: 955d7617af56c7f41b2bbff69ed9cd5a, type: 3}
   - {fileID: 8300000, guid: 37d1917e0db9dae419643190c45aed77, type: 3}
@@ -1126,6 +1127,9 @@ MonoBehaviour:
   _colors:
   - {r: 0.23137257, g: 0.7843138, b: 0.9568628, a: 1}
   - {r: 0.909804, g: 0.26666668, b: 0.4431373, a: 1}
+  _audioClip:
+  - {fileID: 8300000, guid: bc158168aa8d90549ac253f410968023, type: 3}
+  - {fileID: 8300000, guid: 3a28513b142552445a8d6d0851db62bf, type: 3}
 --- !u!114 &817895113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2760,7 +2764,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 223}
+  m_AnchoredPosition: {x: 80, y: 205}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2032864453
@@ -2786,7 +2790,7 @@ MonoBehaviour:
   m_text: 'Collect more stars than your opponent.
 
     But be careful of appearing
-    meteorits and OVNI!'
+    meteors and OVNI!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 395c5197cfa285c4c8f692b38327c9c0, type: 2}
   m_sharedMaterial: {fileID: -259145782516613734, guid: 395c5197cfa285c4c8f692b38327c9c0,
@@ -2850,7 +2854,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -204.94086, y: 0, z: -129.6991, w: 0}
+  m_margin: {x: -315.8567, y: 0, z: -129.6991, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

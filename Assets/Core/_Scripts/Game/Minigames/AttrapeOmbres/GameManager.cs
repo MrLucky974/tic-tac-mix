@@ -29,8 +29,15 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
 
         private CountdownTimer m_timer;
 
+        Spawner _spawner;
+
+        [Header("Audio")]
+        [SerializeField] private AudioClip[] _audioClip;
+
         private void Start()
         {
+            _spawner = GetComponent<Spawner>();
+
             m_timer = new CountdownTimer(3f);
             m_timer.OnTimerStop += () =>
             {
@@ -44,6 +51,9 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
         {
             m_timer.Tick(Time.unscaledDeltaTime);
 
+            if(_spawner._canMove )
+            {
+
             _time += Time.deltaTime;
             _chrono = (int)_time;
             _chronoText.text = _chrono.ToString();
@@ -51,11 +61,12 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
             if (_time >= _endTime)
             {
                 Score();
-
+                _spawner._canMove = false;
                 if (_time <= 0)
                 {
                     _time = 0;
                 }
+            }
             }
         }
 
@@ -73,12 +84,16 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
                     _text.GetComponent<TMP_Text>().color = _colors[1];
                     _text.text = "Victory: Player O";
                     winIndex = PLAYER_TWO_INDEX;
+
+                    SoundManager.Play(_audioClip[0]);
                 }
                 else
                 {
                     _text.GetComponent<TMP_Text>().color = _colors[0];
                     _text.text = "Victory: Player X";
                     winIndex = PLAYER_ONE_INDEX;
+
+                    SoundManager.Play(_audioClip[0]);
                 }
             }
             else if (_player[0]._score < _player[1]._score)
@@ -89,6 +104,8 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
                     _text.GetComponent<TMP_Text>().color = _colors[0];
                     _text.text = "Victory: Player X";
                     winIndex = PLAYER_ONE_INDEX;
+
+                    SoundManager.Play(_audioClip[0]);
                 }
                 else
                 {
@@ -96,11 +113,15 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
                     _text.text = "Victory: Player O";
                     winIndex = PLAYER_TWO_INDEX;
 
+                    SoundManager.Play(_audioClip[0]);
+
                 }
             }
             else if (_player[0]._score == _player[1]._score)
             {
                 _text.text = "Victory: Tie";
+
+                SoundManager.Play(_audioClip[1]);
             }
 
             ShowScoreText();
@@ -119,12 +140,16 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
                 _text.GetComponent<TMP_Text>().color = _colors[0];
                 _text.text = "Victory: Player X";
                 winIndex = PLAYER_ONE_INDEX;
+
+                SoundManager.Play(_audioClip[0]);
             }
             else
             {
                 _text.GetComponent<TMP_Text>().color = _colors[1];
                 _text.text = "Victory: Player O";
                 winIndex = PLAYER_TWO_INDEX;
+
+                SoundManager.Play(_audioClip[0]);
             }
 
             ShowScoreText();

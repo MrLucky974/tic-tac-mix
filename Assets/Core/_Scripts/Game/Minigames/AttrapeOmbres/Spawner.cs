@@ -23,7 +23,7 @@ namespace RapidPrototyping.TicTacMix
 
         [Header("Countdown")]
         [SerializeField] private TMP_Text _countdownText;
-        private bool _canMove = false;
+        public bool _canMove = false;
 
         [Header("Audio")]
         [SerializeField] private AudioClip[] _audioClip;
