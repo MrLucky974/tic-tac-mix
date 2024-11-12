@@ -36,6 +36,8 @@ namespace RapidPrototyping.TicTacMix.Marelle
         [SerializeField] private TMP_Text _countdownText;
         public bool _canMove = false;
 
+        [Header("Audio")]
+        [SerializeField] private AudioClip[] _audioClip;
 
         private void Start()
         {
@@ -136,7 +138,9 @@ namespace RapidPrototyping.TicTacMix.Marelle
                         _currentIndex[1] = 0;
                         ResetSequence(_instanciatedArrow, _inputSequenceArrow);
 
-                        print("resetNewSequence");
+                            SoundManager.Play(_audioClip[3]);
+
+                            print("resetNewSequence");
                         _sequenceNumber[1] = 2;
                          RandomArrowsSequence(_allDirectionsArrows, _sequenceNumber[1], _inputSequenceArrow, _placement[1], _instanciatedArrow);  
 
@@ -149,17 +153,21 @@ namespace RapidPrototyping.TicTacMix.Marelle
 
         IEnumerator Countdown()
         {
-
             _countdownText.gameObject.SetActive(true);
 
             _countdownText.text = "3";
+            SoundManager.Play(_audioClip[0]);
             yield return new WaitForSeconds(1f);
             _countdownText.text = "2";
+            SoundManager.Play(_audioClip[0]);
             yield return new WaitForSeconds(1f);
             _countdownText.text = "1";
+            SoundManager.Play(_audioClip[0]);
             yield return new WaitForSeconds(1f);
             _countdownText.text = "GO!";
+            SoundManager.Play(_audioClip[1]);
             yield return new WaitForSeconds(0.5f);
+
 
             _countdownText.gameObject.SetActive(false);
 
@@ -320,6 +328,7 @@ namespace RapidPrototyping.TicTacMix.Marelle
 
         void Jump(GameObject character)
         {
+            SoundManager.Play(_audioClip[2]);
 
             Vector3 Jump = character.transform.right * _distance + Vector3.up * _jumpForce;
 
