@@ -716,7 +716,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50}
+  m_AnchoredPosition: {x: 0, y: -80}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &343977948
@@ -767,8 +767,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 180
+  m_fontSizeBase: 180
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -964,7 +964,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Haut \nGauche \nBas \nDroite"
+  m_text: 'Up Arrow
+
+    Left Arrow
+
+    Down Arrow
+
+    Right Arrow'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 395c5197cfa285c4c8f692b38327c9c0, type: 2}
   m_sharedMaterial: {fileID: -259145782516613734, guid: 395c5197cfa285c4c8f692b38327c9c0,
@@ -1079,6 +1085,10 @@ MonoBehaviour:
   _posy: {fileID: 817895111}
   _spikes: {fileID: 7432881955116685311, guid: 193971fefdf98ba4dbe89d6d8ba68c11, type: 3}
   _countdownText: {fileID: 2122657301}
+  _audioClip:
+  - {fileID: 8300000, guid: 955d7617af56c7f41b2bbff69ed9cd5a, type: 3}
+  - {fileID: 8300000, guid: 37d1917e0db9dae419643190c45aed77, type: 3}
+  - {fileID: 8300000, guid: eb67d10fe04136a46b7b5bb7764e0408, type: 3}
 --- !u!4 &817895111
 Transform:
   m_ObjectHideFlags: 0
@@ -1328,8 +1338,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 120
+  m_fontSizeBase: 120
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1394,7 +1404,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -100, y: -100}
+  m_AnchoredPosition: {x: -100, y: -20}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1088895507
@@ -1515,7 +1525,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 200, y: -100}
+  m_AnchoredPosition: {x: 200, y: -20}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1151630051
@@ -1566,8 +1576,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 120
+  m_fontSizeBase: 120
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1785,6 +1795,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Star
       objectReference: {fileID: 0}
+    - target: {fileID: 8928377273598981572, guid: f34cbb3fee58a2248bf75e0a70742b7a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1949,6 +1964,9 @@ MonoBehaviour:
   _nameInput:
   - Horizontal2
   - Vertical2
+  _audioClip:
+  - {fileID: 8300000, guid: 2b6ec496740df04479cfda15b08c1d11, type: 3}
+  - {fileID: 8300000, guid: c8946cb56afed014db0331f620585c11, type: 3}
 --- !u!54 &1501772489
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2765,8 +2783,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "R\xE9cup\xE8re le plus d'\xE9toile que ton adversaire.\nMais fait attention,
-    aux m\xE9t\xE9orites et aux OVNI qui apparaissent!"
+  m_text: 'Collect more stars than your opponent.
+
+    But be careful of appearing
+    meteorits and OVNI!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 395c5197cfa285c4c8f692b38327c9c0, type: 2}
   m_sharedMaterial: {fileID: -259145782516613734, guid: 395c5197cfa285c4c8f692b38327c9c0,
@@ -3023,6 +3043,9 @@ MonoBehaviour:
   _nameInput:
   - Horizontal
   - Vertical
+  _audioClip:
+  - {fileID: 8300000, guid: 2b6ec496740df04479cfda15b08c1d11, type: 3}
+  - {fileID: 8300000, guid: c8946cb56afed014db0331f620585c11, type: 3}
 --- !u!54 &2138358643
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3204,7 +3227,7 @@ PrefabInstance:
     - target: {fileID: 7432881955116685311, guid: 193971fefdf98ba4dbe89d6d8ba68c11,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

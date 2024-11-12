@@ -25,6 +25,10 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
         [Header("GameManager")]
         private GameManager _gameManager;
 
+        [Header("Audio")]
+        [SerializeField] private AudioClip[] _audioClip;
+
+
         private void Start()
         {
             _gameManager = FindObjectOfType<GameManager>();
@@ -68,8 +72,11 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
             if (other.CompareTag("Finish"))
             {
                 _gameManager.PlayerDead(_isPlayerO);
+                SoundManager.Play(_audioClip[1]);
                 return;
             }
+
+            SoundManager.Play(_audioClip[0]);
 
             _score++;
             _rb.drag ++;

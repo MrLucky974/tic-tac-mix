@@ -25,6 +25,10 @@ namespace RapidPrototyping.TicTacMix
         [SerializeField] private TMP_Text _countdownText;
         private bool _canMove = false;
 
+        [Header("Audio")]
+        [SerializeField] private AudioClip[] _audioClip;
+
+
 
         private void Start()
         {
@@ -46,17 +50,21 @@ namespace RapidPrototyping.TicTacMix
 
         IEnumerator Countdown()
         {
-
             _countdownText.gameObject.SetActive(true);
 
             _countdownText.text = "3";
+            SoundManager.Play(_audioClip[0]);
             yield return new WaitForSeconds(1f);
             _countdownText.text = "2";
+            SoundManager.Play(_audioClip[0]);
             yield return new WaitForSeconds(1f);
             _countdownText.text = "1";
+            SoundManager.Play(_audioClip[0]);
             yield return new WaitForSeconds(1f);
             _countdownText.text = "GO!";
+            SoundManager.Play(_audioClip[1]);
             yield return new WaitForSeconds(0.5f);
+
 
             _countdownText.gameObject.SetActive(false);
 
@@ -137,9 +145,11 @@ namespace RapidPrototyping.TicTacMix
             {
             yield return new WaitForSeconds(0.2f);
                 randomspike.GetComponentInChildren<SpriteRenderer>().material.color = Color.black;
-            //randomspike.GetComponentInChildren<MeshRenderer>().material.color = Color.white;
-            yield return new WaitForSeconds(0.2f);
+                SoundManager.Play(_audioClip[2]);
+                //randomspike.GetComponentInChildren<MeshRenderer>().material.color = Color.white;
+                yield return new WaitForSeconds(0.2f);
                 randomspike.GetComponentInChildren<SpriteRenderer>().material.color = Color.red;
+                SoundManager.Play(_audioClip[2]);
                 //randomspike.GetComponentInChildren<MeshRenderer>().material.color = Color.black;
 
             }
