@@ -14,6 +14,8 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
 
         [SerializeField] private KeyCode _keyToJump;
 
+        [SerializeField] private GameObject _blow;
+
         [Header("Spawner")]
         [SerializeField] private Spawner _spawner;
 
@@ -22,6 +24,8 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
         [SerializeField] private GameManager _gameManager;
         [SerializeField] private bool _isPlayerO;
 
+        [Header("Audio")]
+        [SerializeField] private AudioClip[] _audioClip;
 
         private void Start()
         {
@@ -52,6 +56,10 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
         void Fly()
         {
             _rb.velocity = Vector3.up * _jumpForce;
+            SoundManager.Play(_audioClip[0]);
+            SoundManager.Play(_audioClip[1]);
+            _blow.GetComponent<Animator>().SetTrigger("Blow");
+
         }
 
         void Move()
