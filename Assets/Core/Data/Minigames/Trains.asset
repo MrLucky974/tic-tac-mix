@@ -16,4 +16,4 @@ MonoBehaviour:
   Name: Trains
   Scenes:
   - m_sceneAsset: {fileID: 102900000, guid: 6e4a2a7f38feed34586daead0e508fb4, type: 3}
-    m_sceneName: Trains
+    m_sceneName: TrainsScene
