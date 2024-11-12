@@ -19,6 +19,10 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
         [SerializeField] private ArmWrestlingBehavior m_playerOne;
         [SerializeField] private ArmWrestlingBehavior m_playerTwo;
 
+        [Space]
+
+        [SerializeField] private Transform m_armPivot;
+
         private int m_score;
         private CountdownTimer m_timer;
 
@@ -34,6 +38,10 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
         private void Update()
         {
             m_timer.Tick(Time.unscaledDeltaTime);
+
+            var currentRotation = m_armPivot.localEulerAngles;
+            currentRotation.x = Mathf.LerpAngle(-90f, 90f, JMath.Remap(m_score, MIN_SCORE, MAX_SCORE, 0f, 1f));
+            m_armPivot.localRotation = Quaternion.Euler(currentRotation);
         }
 
         public void StopGame()
