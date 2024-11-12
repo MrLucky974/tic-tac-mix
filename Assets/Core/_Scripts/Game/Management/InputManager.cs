@@ -7,8 +7,9 @@ namespace RapidPrototyping.TicTacMix
     {
         [SerializeField] private GameInputActions m_inputActions;
 
-        private void Start()
+        protected override void Awake()
         {
+            base.Awake();
             m_inputActions = new GameInputActions();
             m_inputActions.Enable();
         }

@@ -5,7 +5,7 @@ namespace LuckiusDev.Utils
     /// <summary>
     /// Utility functions for mathematical operations commonly used in game development.
     /// </summary>
-    public struct JMath
+    public static class JMath
     {
         public static Vector3 GetVectorFromAngle(float angle)
         {
@@ -72,6 +72,26 @@ namespace LuckiusDev.Utils
             var x = i / size;
             var z = i % size;
             return (x, z);
+        }
+
+        /// <summary>
+        /// Converts the rectangle of a RectTransform from Canvas space to World space.
+        /// Returns the rectangle in world space coordinates.
+        /// </summary>
+        /// <param name="rectTransform">The RectTransform to convert.</param>
+        /// <returns>A Rect representing the world-space bounds of the RectTransform.</returns>
+        public static Rect GetWorldSpaceRect(this RectTransform rectTransform)
+        {
+            // Get the four world corners of the RectTransform
+            Vector3[] worldCorners = new Vector3[4];
+            rectTransform.GetWorldCorners(worldCorners);
+
+            // Calculate the width and height of the Rect in world space
+            float width = Vector3.Distance(worldCorners[0], worldCorners[3]);
+            float height = Vector3.Distance(worldCorners[0], worldCorners[1]);
+
+            // Create and return a Rect based on the bottom-left corner in world space and calculated width and height
+            return new Rect(worldCorners[0], new Vector2(width, height));
         }
 
         /// <summary>

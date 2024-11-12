@@ -134,4 +134,46 @@ public static class JUtils
     {
         return string.Format(COLORED_TEXT_FORMAT, "#" + ColorUtility.ToHtmlStringRGBA(color), message);
     }
+
+    /// <summary>
+    /// Clamps a Transform's position to stay within a given Rect in world space.
+    /// </summary>
+    /// <param name="transform">The Transform to clamp.</param>
+    /// <param name="clampRect">The Rect representing the world-space area to clamp the Transform within.</param>
+    public static void ClampPositionToRect(this Transform transform, Rect clampRect)
+    {
+        Vector3 position = transform.position;
+
+        // Clamp the x position to stay within the left and right edges of the rectangle
+        position.x = Mathf.Clamp(position.x, clampRect.xMin, clampRect.xMax);
+
+        // Clamp the y position to stay within the bottom and top edges of the rectangle
+        position.y = Mathf.Clamp(position.y, clampRect.yMin, clampRect.yMax);
+
+        // Update the transform's position with the clamped values
+        transform.position = position;
+    }
+
+    /// <summary>
+    /// Calculates the intersection of two Rects.
+    /// </summary>
+    /// <param name="a">The first Rect.</param>
+    /// <param name="b">The second Rect.</param>
+    /// <returns>The intersecting Rect between a and b, or an empty Rect if they do not intersect.</returns>
+    public static Rect RectIntersection(Rect a, Rect b)
+    {
+        float xMin = Mathf.Max(a.xMin, b.xMin);
+        float xMax = Mathf.Min(a.xMax, b.xMax);
+        float yMin = Mathf.Max(a.yMin, b.yMin);
+        float yMax = Mathf.Min(a.yMax, b.yMax);
+
+        // Check if there is an intersection
+        if (xMin < xMax && yMin < yMax)
+        {
+            return new Rect(xMin, yMin, xMax - xMin, yMax - yMin);
+        }
+
+        // No intersection
+        return Rect.zero;
+    }
 }

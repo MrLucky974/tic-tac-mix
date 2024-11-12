@@ -19,7 +19,7 @@ TagManager:
   - Ignore All
   - Player 1 Only
   - Player 2 Only
-  - 
+  - Coverage
   - 
   - 
   - 
@@ -42,6 +42,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1778043925
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Objects
+    uniqueID: 4247316075
+    locked: 0
+  - name: Characters
+    uniqueID: 2931734829
     locked: 0
