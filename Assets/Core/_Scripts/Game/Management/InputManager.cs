@@ -15,7 +15,10 @@ namespace RapidPrototyping.TicTacMix
 
         private void OnDestroy()
         {
-            m_inputActions.Dispose();
+            if (m_inputActions != null)
+            {
+                m_inputActions.Dispose();
+            }
         }
 
         public static GameInputActions InputActions => Instance.m_inputActions;

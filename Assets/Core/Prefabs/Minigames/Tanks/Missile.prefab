@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 12
-  m_maximumBounces: 2
+  m_maximumBounces: 3
   m_wallMask:
     serializedVersion: 2
     m_Bits: 8

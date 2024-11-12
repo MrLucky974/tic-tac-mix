@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca4aa8548d199e458735180db07ce9d, type: 3}
+  m_Name: Trains
+  m_EditorClassIdentifier: 
+  m_identifier: ef752366-b3f4-448c-a835-7e03221c478f
+  Name: Trains
+  Scenes:
+  - m_sceneAsset: {fileID: 102900000, guid: 6e4a2a7f38feed34586daead0e508fb4, type: 3}
+    m_sceneName: TrainsScene

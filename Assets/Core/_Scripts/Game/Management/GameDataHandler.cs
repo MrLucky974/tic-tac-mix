@@ -187,7 +187,7 @@ namespace RapidPrototyping.TicTacMix
             m_weightedMinigames = new List<WeightData>();
             foreach (var minigame in m_minigames)
             {
-                m_weightedMinigames.Add(new WeightData(minigame));
+                m_weightedMinigames.Add(new WeightData(minigame, 100f, 0f, 10f));
             }
         }
 
@@ -212,6 +212,10 @@ namespace RapidPrototyping.TicTacMix
         public static void ResetGame()
         {
             DataHolder.Reset();
+            foreach (var game in Instance.m_weightedMinigames)
+            {
+                game.Reset();
+            }
             Instance.m_currentTurn = Turn.PLAYER_1;
             GridManager.Clear();
         }
