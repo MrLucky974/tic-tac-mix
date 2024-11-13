@@ -94,6 +94,12 @@ public static class JRandom
         return array[index];
     }
 
+    public static T PickRandomUnity<T>(this List<T> list)
+    {
+        int index = Random.Range(0, list.Count);
+        return list[index];
+    }
+
     public static T PickRandom<T>(this T[] array, System.Random random)
     {
         int index = random.Next(array.Length);
