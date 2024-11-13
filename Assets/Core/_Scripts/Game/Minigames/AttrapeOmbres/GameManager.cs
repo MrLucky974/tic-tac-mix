@@ -36,7 +36,7 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
 
         private void Start()
         {
-            _spawner = GetComponent<Spawner>();
+            _spawner = FindObjectOfType<Spawner>();
 
             m_timer = new CountdownTimer(3f);
             m_timer.OnTimerStop += () =>
