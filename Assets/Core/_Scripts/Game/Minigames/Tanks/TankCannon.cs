@@ -14,16 +14,16 @@ namespace RapidPrototyping.TicTacMix.Tanks
         [SerializeField] private Transform m_cannon;
         [SerializeField] private Transform m_muzzle;
         [SerializeField] private Missile m_missilePrefab;
+        [SerializeField] private float m_delay = 0.2f;
 
-        [Space]
+        [Header("Effects")]
 
         [SerializeField] private CFXR_Effect m_shootEffect;
         [SerializeField] private LineRenderer m_lineRenderer;
         [SerializeField] private LayerMask m_wallMask;
 
-        [Space]
-
-        [SerializeField] private float m_delay = 0.2f;
+        [Header("Audio")]
+        [SerializeField] private AudioClip m_shootSound;
 
         public Transform Cannon => m_cannon;
 
@@ -79,6 +79,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
         {
             var instance = Instantiate(m_missilePrefab, m_muzzle.position, m_muzzle.rotation);
             Instantiate(m_shootEffect, m_muzzle.position, m_muzzle.rotation);
+            SoundManager.Play(m_shootSound);
         }
     }
 }

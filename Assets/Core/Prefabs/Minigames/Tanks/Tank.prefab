@@ -418,13 +418,14 @@ MonoBehaviour:
   m_muzzle: {fileID: 1591455296048823704}
   m_missilePrefab: {fileID: -7015585288242485364, guid: 2e1cd7317da74e443bfdf32a1a989ce4,
     type: 3}
+  m_delay: 0.8
   m_shootEffect: {fileID: 114873338690784808, guid: 87ee7299dd44ed747af24dbb91bcd33b,
     type: 3}
   m_lineRenderer: {fileID: 9139705205979726662}
   m_wallMask:
     serializedVersion: 2
     m_Bits: 9
-  m_delay: 0.8
+  m_shootSound: {fileID: 8300000, guid: 279745c69b39dca4eab4da37d693e263, type: 3}
 --- !u!114 &9106524037788392335
 MonoBehaviour:
   m_ObjectHideFlags: 0

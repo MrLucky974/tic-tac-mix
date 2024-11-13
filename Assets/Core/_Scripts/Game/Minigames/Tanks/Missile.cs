@@ -9,9 +9,12 @@ namespace RapidPrototyping.TicTacMix.Tanks
         [SerializeField] private int m_maximumBounces = 2;
         [SerializeField] private LayerMask m_wallMask;
 
-        [Space]
-
+        [Header("Effects")]
         [SerializeField] private CFXR_Effect m_bounceEffect;
+
+        [Header("Audio")]
+        [SerializeField] private AudioClip m_explosionSound;
+        [SerializeField] private AudioClip m_bounceSound;
 
         private Vector3 m_velocity;
         private int m_bounceIndex = 0;
@@ -26,6 +29,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
             // Limit how many times a missile can bounce off a wall
             if (m_bounceIndex >= m_maximumBounces)
             {
+                SoundManager.Play(m_explosionSound);
                 Destroy(gameObject);
                 return;
             }
@@ -41,6 +45,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
 
                 Instantiate(m_bounceEffect, transform.position, Quaternion.identity);
                 m_bounceIndex += 1;
+                SoundManager.Play(m_bounceSound);
             }
 
             // Update the position of the projectile
@@ -56,6 +61,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
                     health.Kill();
                 }
 
+                SoundManager.Play(m_explosionSound);
                 Destroy(gameObject);
             }
         }

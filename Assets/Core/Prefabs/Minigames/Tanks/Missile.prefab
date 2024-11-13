@@ -199,6 +199,8 @@ MonoBehaviour:
     m_Bits: 8
   m_bounceEffect: {fileID: 2708598583397607899, guid: 6398d43fe79ea0140913dc5530c646af,
     type: 3}
+  m_explosionSound: {fileID: 8300000, guid: 6a5275b776ac13249b3ecaa02601d777, type: 3}
+  m_bounceSound: {fileID: 8300000, guid: 364308885611c79409ed762e152f1726, type: 3}
 --- !u!135 &9083109170403497763
 SphereCollider:
   m_ObjectHideFlags: 0

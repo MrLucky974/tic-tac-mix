@@ -7,14 +7,12 @@ namespace RapidPrototyping.TicTacMix.Tanks
     {
         [SerializeField] private int m_playerIndex;
 
-        [Space]
-
+        [Header("References")]
         [SerializeField] private TankCharacter m_character;
         [SerializeField] private TankCannon m_cannon;
         [SerializeField] private Health m_health;
 
-        [Space]
-
+        [Header("Effects")]
         [SerializeField] private CFXR_Effect m_explosionEffect;
 
         private void Start()
