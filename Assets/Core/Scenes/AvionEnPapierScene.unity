@@ -2120,7 +2120,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a5e8c8f4a90fc3646a4f4afa7d9ada4f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: aade9813d29c63f4ca42ba8edfd02b69, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -4440,7 +4440,7 @@ MonoBehaviour:
   _color:
   - {r: 0.227451, g: 0.78823537, b: 0.9568628, a: 1}
   - {r: 0.9490197, g: 0.27450982, b: 0.45882356, a: 1}
-  _endTime: 60
+  _endTime: 30
   _chronoText: {fileID: 536358687}
   _audioClip:
   - {fileID: 8300000, guid: 955d7617af56c7f41b2bbff69ed9cd5a, type: 3}
@@ -5616,9 +5616,8 @@ GameObject:
   - component: {fileID: 2134994327}
   - component: {fileID: 2134994326}
   - component: {fileID: 2134994329}
-  - component: {fileID: 2134994330}
   m_Layer: 0
-  m_Name: MANAGERS
+  m_Name: SPAWNER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5666,7 +5665,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 64f47f918834dca48a6a1b3e11ce8ade, type: 3}
   - {fileID: 21300000, guid: 731307ba0f9632e47af475300b2cfe79, type: 3}
   _time: 0
-  _timeMoreHands: 15
+  _timeMoreHands: 5
 --- !u!4 &2134994327
 Transform:
   m_ObjectHideFlags: 0
@@ -5731,19 +5730,6 @@ MonoBehaviour:
   - {fileID: 1014316839}
   - {fileID: 972840074}
   - {fileID: 567731865}
---- !u!114 &2134994330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2134994325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64978aaf6f04b8c4da4e1efea0d2ae86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_sfxSource: {fileID: 831124602}
 --- !u!1 &1635539870470338487
 GameObject:
   m_ObjectHideFlags: 0
