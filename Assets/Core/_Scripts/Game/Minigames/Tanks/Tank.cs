@@ -37,6 +37,9 @@ namespace RapidPrototyping.TicTacMix.Tanks
 
         private void Update()
         {
+            if (GameManager.GameRunning is false)
+                return;
+
             var deltaTime = Time.deltaTime;
 
             if (m_playerIndex == 0)
