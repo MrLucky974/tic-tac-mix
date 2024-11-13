@@ -26,7 +26,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
 
             if (m_playerTwo)
             {
-                var input = InputManager.InputActions.P1Gameplay;
+                var input = InputManager.InputActions.P2Gameplay;
                 var movement = input.Movement.ReadValue<Vector2>().y;
                 if (input.Movement.WasPressedThisFrame() && movement > 0f)
                 {
