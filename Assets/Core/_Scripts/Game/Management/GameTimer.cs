@@ -9,6 +9,7 @@ namespace RapidPrototyping.TicTacMix
     public class GameTimer : MonoBehaviour
     {
         [SerializeField] private float m_totalDuration;
+        [SerializeField] private bool m_autoStart = true;
 
         public UnityEvent OnTimerComplete;
 
@@ -21,6 +22,8 @@ namespace RapidPrototyping.TicTacMix
         private void Start()
         {
             m_remainingTime = m_totalDuration;
+            if (m_autoStart is false)
+                m_isStopped = true;
         }
 
         private void Update()

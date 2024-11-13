@@ -1,13 +1,14 @@
 using TMPro;
 using UnityEngine;
 
-namespace RapidPrototyping.TicTacMix.MysteryDoors
+namespace RapidPrototyping.TicTacMix.SplatAttack
 {
     public class GameOverScreen : MonoBehaviour
     {
         [SerializeField] private CanvasGroup m_canvasGroup;
 
-        [SerializeField] private TextMeshProUGUI m_header;
+        [Space]
+
         [SerializeField] private TextMeshProUGUI m_winnerLabel;
 
         private void Start()
@@ -17,6 +18,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
             m_canvasGroup.GetComponent<RectTransform>().localScale = Vector3.zero;
 
             GameManager.Instance.OnGameEnded += HandleEndGame;
+
         }
 
         private void HandleEndGame(GameData data)
@@ -24,16 +26,6 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
             m_canvasGroup.alpha = 1f;
             m_canvasGroup.interactable = true;
             m_canvasGroup.GetComponent<RectTransform>().localScale = Vector3.one;
-
-            switch (data.Result)
-            {
-                case MatchResult.EXIT_DOOR_OPENED:
-                    m_header.SetText("Game Over");
-                    break;
-                case MatchResult.TIMES_UP:
-                    m_header.SetText("Times up!");
-                    break;
-            }
 
             if (data.PlayerIndex != GameManager.TIE_INDEX)
             {

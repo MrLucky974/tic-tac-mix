@@ -17,11 +17,6 @@ namespace RapidPrototyping.TicTacMix.Targets
         [SerializeField] private Transform m_spawnParent;
         [SerializeField] private Transform[] m_spawnPoints;
 
-        private void Start()
-        {
-            SpawnTarget();
-        }
-
         public void SpawnTarget()
         {
             if (!GameManager.GameRunning)

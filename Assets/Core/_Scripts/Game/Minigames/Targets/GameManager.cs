@@ -1,4 +1,6 @@
+using LuckiusDev.Utils;
 using System;
+using UnityEngine;
 
 namespace RapidPrototyping.TicTacMix.Targets
 {
@@ -10,18 +12,44 @@ namespace RapidPrototyping.TicTacMix.Targets
     public class GameManager : MinigameManager<GameData>
     {
         private int m_p1Score, m_p2Score;
-
         public event Action OnScoreChanged;
 
-        private void Start()
+        [SerializeField] private Spawner m_spawner;
+
+        private CountdownTimer m_timer;
+
+        public override void Initialize()
         {
+            base.Initialize();
             OnScoreChanged?.Invoke();
-            OnGameEnded += HandleGameEnd;
+
+            m_timer = new CountdownTimer(3f);
+            m_timer.OnTimerStop += () =>
+            {
+                if (m_timer.IsFinished is false)
+                    return;
+
+                GameManager.LoadGameplaySceneForNextTurn();
+            };
         }
 
-        private void HandleGameEnd(GameData data)
+        private void Update()
         {
+            var unscaledDeltaTime = Time.unscaledDeltaTime;
+            m_timer.Tick(unscaledDeltaTime);
+        }
+
+        public override void OnGameStart()
+        {
+            base.OnGameStart();
+            m_spawner.SpawnTarget();
+        }
+
+        protected override void HandleGameEnd(GameData data)
+        {
+            base.HandleGameEnd(data);
             MarkWinningSymbol(data.PlayerIndex);
+            m_timer.Start();
         }
 
         public static void StopGame()

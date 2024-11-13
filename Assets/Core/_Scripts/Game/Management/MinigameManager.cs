@@ -1,5 +1,6 @@
 using LuckiusDev.Utils;
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,10 +12,56 @@ namespace RapidPrototyping.TicTacMix
         public const int PLAYER_ONE_INDEX = 0;
         public const int PLAYER_TWO_INDEX = 1;
 
+        [Header("References")]
+        [SerializeField] protected GameIntroduction m_gameIntroduction;
+        [SerializeField] protected GameTimer m_gameTimer;
+
+        [Header("Audio")]
+        [SerializeField] protected AudioClip m_countdownSound;
+        [SerializeField] protected AudioClip m_startSound;
+
         protected bool m_gameRunning = true;
         public static bool GameRunning => Instance.m_gameRunning;
 
         public event Action<TData> OnGameEnded;
+
+        public void Start()
+        {
+            StartCoroutine(nameof(StartCountdown));
+            OnGameEnded += HandleGameEnd;
+            Initialize();
+        }
+
+        public virtual void Initialize() { }
+
+        public virtual void OnGameStart() { }
+
+        protected virtual void HandleGameEnd(TData data)
+        {
+            m_gameTimer.Stop();
+        }
+
+        protected IEnumerator StartCountdown()
+        {
+            m_gameRunning = false;
+            Time.timeScale = 0f;
+
+            const int time = 3;
+            for (int i = time - 1; i >= 0; i--)
+            {
+                m_gameIntroduction.UpdateCountdown(i + 1);
+                SoundManager.Play(m_countdownSound);
+                yield return new WaitForSecondsRealtime(1f);
+            }
+
+            Time.timeScale = 1f;
+            m_gameRunning = true;
+
+            m_gameTimer.Resume();
+            m_gameIntroduction.ShowUserInterface();
+            SoundManager.Play(m_startSound);
+            OnGameStart();
+        }
 
         public static void EndGame(TData data)
         {

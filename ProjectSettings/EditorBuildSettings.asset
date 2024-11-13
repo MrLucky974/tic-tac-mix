@@ -42,6 +42,9 @@ EditorBuildSettings:
     path: Assets/Core/Scenes/SplatAttackScene.unity
     guid: 053ddd3997d56fa45be17dd5413d6d94
   - enabled: 1
+    path: Assets/Core/Scenes/ArmWreslingScene.unity
+    guid: 0a0c770d59094e14089f849ea8ed65cb
+  - enabled: 1
     path: Assets/Core/Scenes/BootstrapScene.unity
     guid: aec32a3cc36f3a2459f7f8c317831dc8
   m_configObjects: {}

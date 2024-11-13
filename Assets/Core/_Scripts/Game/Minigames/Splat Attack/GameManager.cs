@@ -17,8 +17,6 @@ namespace RapidPrototyping.TicTacMix.SplatAttack
 
     public class GameManager : MinigameManager<GameData>
     {
-        [SerializeField] private GameTimer m_gameTimer;
-
         [SerializeField] private Color m_playerOneColor;
         [SerializeField] private Color m_playerTwoColor;
 
@@ -51,8 +49,9 @@ namespace RapidPrototyping.TicTacMix.SplatAttack
 
         private CountdownTimer m_timer;
 
-        private void Start()
+        public override void Initialize()
         {
+            base.Initialize();
             m_worldRect = JMath.GetWorldSpaceRect(m_outline);
             InitializeCoverageCalculation();
 

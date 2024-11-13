@@ -1,3 +1,4 @@
+using LuckiusDev.Utils;
 using UnityEngine;
 
 namespace RapidPrototyping.TicTacMix.Tanks
@@ -16,17 +17,33 @@ namespace RapidPrototyping.TicTacMix.Tanks
 
     public class GameManager : MinigameManager<GameData>
     {
-        [SerializeField] private GameTimer m_gameTimer;
+        private CountdownTimer m_timer;
 
-        public void Start()
+        public override void Initialize()
         {
-            OnGameEnded += HandleGameEnd;
+            base.Initialize();
+            m_timer = new CountdownTimer(3f);
+            m_timer.OnTimerStop += () =>
+            {
+                if (m_timer.IsFinished is false)
+                    return;
+
+                LoadGameplaySceneForNextTurn();
+            };
         }
 
-        private void HandleGameEnd(GameData data)
+        private void Update()
         {
-            m_gameTimer.Stop();
+            var unscaledDeltaTime = Time.unscaledDeltaTime;
+            m_timer.Tick(unscaledDeltaTime);
+        }
+
+        protected override void HandleGameEnd(GameData data)
+        {
+            base.HandleGameEnd(data);
+
             MarkWinningSymbol(data.PlayerIndex);
+            m_timer.Start();
         }
 
         public static void ConcludeGameOnTimeout()

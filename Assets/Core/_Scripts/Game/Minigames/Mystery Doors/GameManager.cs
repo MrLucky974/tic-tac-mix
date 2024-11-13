@@ -1,3 +1,4 @@
+using LuckiusDev.Utils;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,7 +18,6 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
 
     public class GameManager : MinigameManager<GameData>
     {
-        [SerializeField] private GameTimer m_gameTimer;
         [SerializeField] private CameraController m_camera;
 
         [Space]
@@ -39,21 +39,39 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
         private Player m_playerOne;
         private Player m_playerTwo;
 
-        private void Start()
+        private CountdownTimer m_timer;
+
+        public override void Initialize()
         {
+            base.Initialize();
+
             // Generate the tower
             GenerateTower();
 
             // Spawn the players in the top floor
             SetupPlayers();
 
-            OnGameEnded += HandleGameEnd;
+            m_timer = new CountdownTimer(1f);
+            m_timer.OnTimerStop += () =>
+            {
+                if (m_timer.IsFinished is false)
+                    return;
+
+                LoadGameplaySceneForNextTurn();
+            };
         }
 
-        private void HandleGameEnd(GameData data)
+        private void Update()
         {
-            m_gameTimer.Stop();
+            var unscaledDeltaTime = Time.unscaledDeltaTime;
+            m_timer.Tick(unscaledDeltaTime);
+        }
+
+        protected override void HandleGameEnd(GameData data)
+        {
+            base.HandleGameEnd(data);
             MarkWinningSymbol(data.PlayerIndex);
+            m_timer.Start();
         }
 
         public static void ConcludeGameOnTimeout()
