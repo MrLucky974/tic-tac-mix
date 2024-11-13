@@ -44,6 +44,9 @@ namespace RapidPrototyping.TicTacMix.SplatAttack
 
         private void Update()
         {
+            if (GameManager.GameRunning is false)
+                return;
+
             UpdateInput();
 
             // Update sauce bottle velocity

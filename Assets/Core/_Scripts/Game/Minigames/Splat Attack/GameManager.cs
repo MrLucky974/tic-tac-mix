@@ -114,7 +114,7 @@ namespace RapidPrototyping.TicTacMix.SplatAttack
         private void InitializeCoverageCalculation()
         {
             //// Create a render texture to capture the splats
-            m_coverageRenderTexture = new RenderTexture(320, 240, 0);
+            m_coverageRenderTexture = new RenderTexture(160, 120, 0);
             m_coverageRenderTexture.antiAliasing = 1;
 
             // Create a texture2D to read pixels into
@@ -145,7 +145,7 @@ namespace RapidPrototyping.TicTacMix.SplatAttack
             // Render the splats to the render texture
             m_coverageCamera.Render();
 
-            //// Read the pixels from the render texture
+            // Read the pixels from the render texture
             RenderTexture.active = m_coverageRenderTexture;
             m_coverageTexture.ReadPixels(new Rect(0, 0, m_coverageRenderTexture.width, m_coverageRenderTexture.height), 0, 0);
             m_coverageTexture.Apply();
@@ -158,34 +158,69 @@ namespace RapidPrototyping.TicTacMix.SplatAttack
             int playerTwoPixels = 0;
             int totalPixels = m_pixels.Length;
 
-            // Count pixels for each player based on their colors
-            Color playerOneColor = m_playerOneColor;
-            Color playerTwoColor = m_playerTwoColor;
+            // Cache color values for faster comparison
+            Vector3 playerOneRGB = new Vector3(m_playerOneColor.r, m_playerOneColor.g, m_playerOneColor.b);
+            Vector3 playerTwoRGB = new Vector3(m_playerTwoColor.r, m_playerTwoColor.g, m_playerTwoColor.b);
 
-            foreach (Color pixel in m_pixels)
+            // Squared thresholds for faster comparison (avoiding square root)
+            float thresholdSqrOne = 0.1f * 0.1f;  // Adjust this value as needed
+            float thresholdSqrTwo = 0.3f * 0.3f;  // Slightly more lenient for player two if needed
+
+            for (int i = 0; i < m_pixels.Length; i++)
             {
+                Color pixel = m_pixels[i];
                 if (pixel.a < 0.1f) continue; // Skip transparent pixels
 
-                // TODO : ColorCloseTo work weird on P2 color
-                // Compare the pixel color to each player's color
-                // Using approximate comparison due to potential slight variations in rendered colors
-                if (ColorCloseTo(pixel, playerOneColor))
+                Vector3 pixelRGB = new Vector3(pixel.r, pixel.g, pixel.b);
+
+                // Calculate squared distances
+                float distSqrOne = SquaredColorDistance(pixelRGB, playerOneRGB);
+                float distSqrTwo = SquaredColorDistance(pixelRGB, playerTwoRGB);
+
+                // Classify pixel based on closest color within threshold
+                if (distSqrOne < thresholdSqrOne)
+                {
                     playerOnePixels++;
-                else if (ColorCloseTo(pixel, playerTwoColor, 0.5f))
+                }
+                else if (distSqrTwo < thresholdSqrTwo)
+                {
                     playerTwoPixels++;
+                }
             }
 
             // Calculate coverage percentages
-            m_playerOneCoverage = (float)playerOnePixels / totalPixels;
-            m_playerTwoCoverage = (float)playerTwoPixels / totalPixels;
+            float activePixels = playerOnePixels + playerTwoPixels;
+            if (activePixels > 0)
+            {
+                m_playerOneCoverage = (float)playerOnePixels / totalPixels;
+                m_playerTwoCoverage = (float)playerTwoPixels / totalPixels;
+            }
+            else
+            {
+                m_playerOneCoverage = 0f;
+                m_playerTwoCoverage = 0f;
+            }
         }
 
+        #region Color Matching Methods
+
+        private float SquaredColorDistance(Vector3 a, Vector3 b)
+        {
+            float dr = a.x - b.x;
+            float dg = a.y - b.y;
+            float db = a.z - b.z;
+            return dr * dr + dg * dg + db * db;
+        }
+
+        // Optional: Keep a simplified version of ColorCloseTo for other use cases
         private bool ColorCloseTo(Color a, Color b, float threshold = 0.1f)
         {
-            return Mathf.Abs(a.r - b.r) < threshold &&
-                   Mathf.Abs(a.g - b.g) < threshold &&
-                   Mathf.Abs(a.b - b.b) < threshold;
+            Vector3 colorA = new Vector3(a.r, a.g, a.b);
+            Vector3 colorB = new Vector3(b.r, b.g, b.b);
+            return SquaredColorDistance(colorA, colorB) < threshold * threshold;
         }
+
+        #endregion
 
         public static void AddSplat(Splat splat, PlayerIdentifier identifier)
         {
