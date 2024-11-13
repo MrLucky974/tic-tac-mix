@@ -1874,8 +1874,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_gameIntroduction: {fileID: 181519402}
   m_gameTimer: {fileID: 1044945927}
-  m_countdownSound: {fileID: 0}
-  m_startSound: {fileID: 0}
+  m_countdownSound: {fileID: 8300000, guid: 955d7617af56c7f41b2bbff69ed9cd5a, type: 3}
+  m_startSound: {fileID: 8300000, guid: 37d1917e0db9dae419643190c45aed77, type: 3}
   m_playerOneColor: {r: 1, g: 0.36320752, b: 0.36320752, a: 1}
   m_playerTwoColor: {r: 1, g: 0.83364403, b: 0.3254717, a: 1}
   m_splatContainer: {fileID: 1086669259}

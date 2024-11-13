@@ -1978,8 +1978,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_gameIntroduction: {fileID: 2160995}
   m_gameTimer: {fileID: 1344943546}
-  m_countdownSound: {fileID: 0}
-  m_startSound: {fileID: 0}
+  m_countdownSound: {fileID: 8300000, guid: 955d7617af56c7f41b2bbff69ed9cd5a, type: 3}
+  m_startSound: {fileID: 8300000, guid: 37d1917e0db9dae419643190c45aed77, type: 3}
   m_camera: {fileID: 1214855563}
   m_floorHeight: 3
   m_floorCount: 6

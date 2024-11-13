@@ -2066,7 +2066,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 442.105, y: -81.245}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 884.21, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &417697741
 MonoBehaviour:
@@ -3201,7 +3201,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 442.105, y: -215.3}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 500.94, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &786514529
 MonoBehaviour:
@@ -6648,7 +6648,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -8910,8 +8910,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_gameIntroduction: {fileID: 1172924976}
   m_gameTimer: {fileID: 2099698540}
-  m_countdownSound: {fileID: 8300000, guid: c67084d5732fa344cb2df0a4de5ef62a, type: 3}
-  m_startSound: {fileID: 8300000, guid: e73c45114a7c87449ad2a88ef64ebc0b, type: 3}
+  m_countdownSound: {fileID: 8300000, guid: 955d7617af56c7f41b2bbff69ed9cd5a, type: 3}
+  m_startSound: {fileID: 8300000, guid: 37d1917e0db9dae419643190c45aed77, type: 3}
 --- !u!4 &2099698539
 Transform:
   m_ObjectHideFlags: 0
