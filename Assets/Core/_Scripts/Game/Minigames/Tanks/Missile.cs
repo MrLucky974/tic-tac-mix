@@ -5,6 +5,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
 {
     public class Missile : MonoBehaviour
     {
+        [Header("Settings")]
         [SerializeField] private float m_speed = 10f;
         [SerializeField] private int m_maximumBounces = 2;
         [SerializeField] private LayerMask m_wallMask;

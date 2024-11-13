@@ -11,6 +11,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
 
     public class TankCannon : MonoBehaviour
     {
+        [Header("Settings")]
         [SerializeField] private Transform m_cannon;
         [SerializeField] private Transform m_muzzle;
         [SerializeField] private Missile m_missilePrefab;

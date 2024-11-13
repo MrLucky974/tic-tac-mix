@@ -5,6 +5,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
 {
     public class Tank : MonoBehaviour
     {
+        [Header("Settings")]
         [SerializeField] private int m_playerIndex;
 
         [Header("References")]
