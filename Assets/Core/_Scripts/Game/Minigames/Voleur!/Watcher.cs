@@ -23,6 +23,10 @@ namespace RapidPrototyping.TicTacMix.Voleur
         private GameManager _gameManager;
 
 
+        [Header("Audio")]
+        [SerializeField] private AudioClip[] _audioClip;
+
+
 
         private void Start()
         {
@@ -50,6 +54,17 @@ namespace RapidPrototyping.TicTacMix.Voleur
             }
         }
 
+
+        public void SoundWatch()
+        {
+            SoundManager.Play(_audioClip[0]);
+
+        }
+        public void SoundPrevent()
+        {
+            SoundManager.Play(_audioClip[1]);
+
+        }
         public void IsWatching()
         {
             _isWatching = true;
@@ -57,6 +72,7 @@ namespace RapidPrototyping.TicTacMix.Voleur
 
         public void Watch()
         {
+
             foreach (PlayerController playerController in _playerController)
             {
                 if (playerController._isTakingCake)

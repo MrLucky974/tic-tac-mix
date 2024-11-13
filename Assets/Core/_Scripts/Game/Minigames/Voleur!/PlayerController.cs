@@ -21,6 +21,10 @@ namespace RapidPrototyping.TicTacMix.Voleur
         [Header("Animation")]
         private Animator _animator;
 
+
+        [Header("Audio")]
+        [SerializeField] private AudioClip[] _audioClip;
+
         private void Start()
         {
             _animator = GetComponent<Animator>();
@@ -46,6 +50,8 @@ namespace RapidPrototyping.TicTacMix.Voleur
                 _obtainedCake++;
 
                 Score();
+
+                SoundManager.Play(_audioClip[0]);
             }
         }
         void Score()

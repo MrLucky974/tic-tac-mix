@@ -36,6 +36,9 @@ namespace RapidPrototyping.TicTacMix.Trains
 
         private CountdownTimer m_timer;
 
+        [Header("Audio")]
+        [SerializeField] private AudioClip[] _audioClip;
+
         private void Start()
         {
             _player = FindObjectsOfType<PlayerController>();
@@ -62,6 +65,7 @@ namespace RapidPrototyping.TicTacMix.Trains
                 if (_time >= _endTime)
                 {
                     Score();
+                    _canSpawn=false;
 
                     if (_time <= 0)
                     {
@@ -71,22 +75,27 @@ namespace RapidPrototyping.TicTacMix.Trains
             }
         }
 
-        private IEnumerator Countdown()
+        IEnumerator Countdown()
         {
             _countdownText.gameObject.SetActive(true);
 
             _countdownText.text = "3";
+            SoundManager.Play(_audioClip[0]);
             yield return new WaitForSeconds(1f);
             _countdownText.text = "2";
+            SoundManager.Play(_audioClip[0]);
             yield return new WaitForSeconds(1f);
             _countdownText.text = "1";
+            SoundManager.Play(_audioClip[0]);
             yield return new WaitForSeconds(1f);
             _countdownText.text = "GO!";
+            SoundManager.Play(_audioClip[1]);
             yield return new WaitForSeconds(0.5f);
 
-            _countdownText.gameObject.SetActive(false);
 
+            _countdownText.gameObject.SetActive(false);
             _canSpawn = true;
+
             for (int i = 0; i < _player.Length; i++)
             {
                 _player[i]._speed = 5;
@@ -106,12 +115,16 @@ namespace RapidPrototyping.TicTacMix.Trains
                     _text.GetComponent<TMP_Text>().color = _colors[1];
                     _text.text = "Victory: Player O";
                     MarkWinningSymbol(PLAYER_TWO_INDEX);
+
+                    SoundManager.Play(_audioClip[2]);
                 }
                 else
                 {
                     _text.GetComponent<TMP_Text>().color = _colors[0];
                     _text.text = "Victory: Player X";
                     MarkWinningSymbol(PLAYER_ONE_INDEX);
+
+                    SoundManager.Play(_audioClip[2]);
                 }
             }
             else if (_player[0]._score < _player[1]._score)
@@ -123,6 +136,8 @@ namespace RapidPrototyping.TicTacMix.Trains
                     _text.text = "Victory: Player X";
                     MarkWinningSymbol(PLAYER_ONE_INDEX);
 
+                    SoundManager.Play(_audioClip[2]);
+
                 }
                 else
                 {
@@ -130,12 +145,16 @@ namespace RapidPrototyping.TicTacMix.Trains
                     _text.text = "Victory: Player O";
                     MarkWinningSymbol(PLAYER_TWO_INDEX);
 
+                    SoundManager.Play(_audioClip[2]);
+
                 }
             }
             else if (_player[0]._score == _player[1]._score)
             {
                 _text.text = "Victory: Tie";
                 MarkWinningSymbol(TIE_INDEX);
+
+                SoundManager.Play(_audioClip[3]);
             }
 
             ShowScoreText();
@@ -151,6 +170,8 @@ namespace RapidPrototyping.TicTacMix.Trains
             ShowScoreText();
             Time.timeScale = 0f;
             m_timer.Start();
+
+            SoundManager.Play(_audioClip[3]);
         }
 
         public void PlayerDead(bool isPlayerO)
@@ -162,12 +183,16 @@ namespace RapidPrototyping.TicTacMix.Trains
                 _text.GetComponent<TMP_Text>().color = _colors[0];
                 _text.text = "Victory: Player X";
                 MarkWinningSymbol(PLAYER_ONE_INDEX);
+
+                SoundManager.Play(_audioClip[2]);
             }
             else
             {
                 _text.GetComponent<TMP_Text>().color = _colors[1];
                 _text.text = "Victory: Player O";
                 MarkWinningSymbol(PLAYER_TWO_INDEX);
+
+                SoundManager.Play(_audioClip[2]);
             }
 
             ShowScoreText();

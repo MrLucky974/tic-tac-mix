@@ -31,6 +31,10 @@ namespace RapidPrototyping.TicTacMix.Marelle
 
         private CountdownTimer m_timer;
 
+
+        [Header("Audio")]
+        [SerializeField] private AudioClip[] _audioClip;
+
         private void Start()
         {
             m_timer = new CountdownTimer(3f);
@@ -93,16 +97,22 @@ namespace RapidPrototyping.TicTacMix.Marelle
                 _text.GetComponent<TMP_Text>().color = _color[0];
                 _text.text = "Victory: Player O";
                 winIndex = PLAYER_TWO_INDEX;
+
+                SoundManager.Play(_audioClip[0]);
             }
             else if (_isFinishedX)
             {
                 _text.GetComponent<TMP_Text>().color = _color[1];
                 _text.text = "Victory: Player X";
                 winIndex = PLAYER_ONE_INDEX;
+
+                SoundManager.Play(_audioClip[0]);
             }
             else
             {
                 _text.text = "Victory: Tie";
+
+                SoundManager.Play(_audioClip[1]);
             }
 
             MarkWinningSymbol(winIndex);

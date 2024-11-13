@@ -36,6 +36,9 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
 
         private CountdownTimer m_timer;
 
+        [Header("Audio")]
+        [SerializeField] private AudioClip[] _audioClip;
+
         private void Start()
         {
             m_timer = new CountdownTimer(3f);
@@ -62,6 +65,7 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
                 {
                     _victoryPanel.SetActive(true);
                     DetermineWinner();
+                    _canMove = false;
 
                     if (_time <= 0)
                     {
@@ -78,13 +82,18 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
             _countdownText.gameObject.SetActive(true);
 
             _countdownText.text = "3";
+            SoundManager.Play(_audioClip[0]);
             yield return new WaitForSeconds(1f);
             _countdownText.text = "2";
+            SoundManager.Play(_audioClip[0]);
             yield return new WaitForSeconds(1f);
             _countdownText.text = "1";
+            SoundManager.Play(_audioClip[0]);
             yield return new WaitForSeconds(1f);
             _countdownText.text = "GO!";
+            SoundManager.Play(_audioClip[1]);
             yield return new WaitForSeconds(0.5f);
+
 
             _countdownText.gameObject.SetActive(false);
 
@@ -105,7 +114,7 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
                     playerXIsAlive = false;
                     Debug.Log("Player X is dead");
                 }
-
+                SoundManager.Play(_audioClip[2]);
                 DetermineWinner();
             }
 
@@ -113,6 +122,7 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
 
         private void DetermineWinner()
         {
+            Debug.Log("determining winner");
             Time.timeScale = 0f;
             _victoryPanel.SetActive(true);
 
@@ -122,16 +132,21 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
                 _text.GetComponent<TMP_Text>().color = _color[0];
                 _text.text = "Victory: Player X";
                 winIndex = PLAYER_ONE_INDEX;
+                SoundManager.Play(_audioClip[3]);
+
             }
             else if (!playerXIsAlive && playerOIsAlive)
             {
                 _text.GetComponent<TMP_Text>().color = _color[1];
                 _text.text = "Victory: Player O";
                 winIndex = PLAYER_TWO_INDEX;
+               SoundManager.Play(_audioClip[3]);
+
             }
             else if (playerOIsAlive && playerXIsAlive)
             {
                 _text.text = "Victory: Tie";
+                SoundManager.Play(_audioClip[4]);
             }
 
             _isFinished = true;

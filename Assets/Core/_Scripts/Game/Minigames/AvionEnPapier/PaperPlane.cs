@@ -14,6 +14,11 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
 
         [SerializeField] private KeyCode _keyToJump;
 
+        [SerializeField] private GameObject _blow;
+
+        [Space]
+        [SerializeField] private GameObject _fx;
+
         [Header("Spawner")]
         [SerializeField] private Spawner _spawner;
 
@@ -21,6 +26,9 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
         [Header("GameManager")]
         [SerializeField] private GameManager _gameManager;
         [SerializeField] private bool _isPlayerO;
+
+        [Header("Audio")]
+        [SerializeField] private AudioClip[] _audioClip;
 
 
         private void Start()
@@ -52,6 +60,9 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
         void Fly()
         {
             _rb.velocity = Vector3.up * _jumpForce;
+            SoundManager.Play(_audioClip[0]);
+            _blow.GetComponent<Animator>().SetTrigger("Blow");
+
         }
 
         void Move()
@@ -65,14 +76,12 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
             if(collision.gameObject.CompareTag("Right"))
             {
                 Flip();
-
                 StartCoroutine(waitSpawnL());
 
             }
             if (collision.gameObject.CompareTag("Left"))
             {
                 Flip();
-
                 StartCoroutine(waitSpawnR());
 
             }
@@ -84,12 +93,20 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
             }
         }
 
+        IEnumerator GetFx()
+        {
+            _fx.SetActive(true);
+            yield return new WaitForSeconds(1);
+            _fx.SetActive(false);
+        }
         void Flip()
         {
             Vector3 flip = new Vector3(0, 180, 0);
 
             transform.Rotate(flip);
             _rb.velocity = Vector3.up * 3;
+
+            StartCoroutine(GetFx());
         }
 
         IEnumerator waitSpawnL()

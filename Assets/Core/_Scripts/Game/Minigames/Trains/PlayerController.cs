@@ -38,6 +38,10 @@ namespace RapidPrototyping.TicTacMix.Trains
         [Header("GameManager")]
         public GameManager _gameManager;
 
+        [Header("Audio")]
+        [SerializeField] private AudioClip[] _audioClip;
+
+
         private void Start()
         {
             _gameManager = FindObjectOfType<GameManager>();
@@ -83,6 +87,7 @@ namespace RapidPrototyping.TicTacMix.Trains
                 Grow();
                 _score++;
                 _scoreText.text = _score.ToString();
+                SoundManager.Play(_audioClip[0]);
 
                 Destroy(collision.gameObject);
 
@@ -110,6 +115,8 @@ namespace RapidPrototyping.TicTacMix.Trains
         {
             Destroy(gameObject);
             Destroy(_parent.gameObject);
+
+            SoundManager.Play(_audioClip[1]);
         }
     }
 }

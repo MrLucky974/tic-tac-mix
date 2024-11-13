@@ -67,7 +67,7 @@ namespace RapidPrototyping.TicTacMix.Main
                 case GameDataHandler.Turn.PLAYER_1:
                     // Update information labels text
                     m_playerLabel.SetText("Time for X to play!");
-                    m_tutorialLabel.SetText("Press \"ZQSD\" to move");
+                    m_tutorialLabel.SetText("Press \"ZQSD\" to move" + "\n and \"F\" to select");
 
                     // Update information labels color
                     m_playerLabel.color = m_crossColor;
@@ -79,7 +79,7 @@ namespace RapidPrototyping.TicTacMix.Main
                 case GameDataHandler.Turn.PLAYER_2:
                     // Update information labels text
                     m_playerLabel.SetText("Time for O to play!");
-                    m_tutorialLabel.SetText("Press \"↑←↓→\" to move");
+                    m_tutorialLabel.SetText("Press \"↑←↓→\" to move" + "\n and \"0\" to select");
 
                     // Update information labels color
                     m_playerLabel.color = m_circleColor;
