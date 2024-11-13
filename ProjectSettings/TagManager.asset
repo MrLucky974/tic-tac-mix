@@ -8,6 +8,7 @@ TagManager:
   - Victory
   - Right
   - Left
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -53,4 +54,7 @@ TagManager:
     locked: 0
   - name: Characters
     uniqueID: 2931734829
+    locked: 0
+  - name: Overlay
+    uniqueID: 788578701
     locked: 0
