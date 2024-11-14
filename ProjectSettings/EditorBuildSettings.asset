@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Core/Scenes/TrainsScene.unity
+    guid: 6e4a2a7f38feed34586daead0e508fb4
+  - enabled: 1
     path: Assets/Core/Scenes/MainMenuScene.unity
     guid: 2b8d2602cb2ee254b9dcc2fb09764cad
   - enabled: 1
@@ -35,9 +38,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Core/Scenes/ShadowCatcherScene.unity
     guid: 50611c7497f1452409bcfc59007fcbbc
-  - enabled: 1
-    path: Assets/Core/Scenes/TrainsScene.unity
-    guid: 6e4a2a7f38feed34586daead0e508fb4
   - enabled: 1
     path: Assets/Core/Scenes/SplatAttackScene.unity
     guid: 053ddd3997d56fa45be17dd5413d6d94

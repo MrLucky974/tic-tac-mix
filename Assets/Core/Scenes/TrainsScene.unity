@@ -1466,7 +1466,7 @@ MonoBehaviour:
   _bodyPrefab: {fileID: 4084942764596536851, guid: 2fcc895e8fd45804f9dcd9da396622fa,
     type: 3}
   _bodypos: {fileID: 1809782565}
-  _gap: 190
+  _gap: 20
   _score: 0
   _scoreText: {fileID: 890154310}
   _collide: Left
@@ -2603,7 +2603,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &789047666
 BoxCollider:
   m_ObjectHideFlags: 0
