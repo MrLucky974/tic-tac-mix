@@ -16,6 +16,11 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
         [SerializeField] private CanvasGroup m_p1InputPromptCanvasGroup;
         [SerializeField] private CanvasGroup m_p2InputPromptCanvasGroup;
 
+        [Header("Audio")]
+        [SerializeField] private AudioClip[] m_openSounds;
+        [SerializeField] private AudioClip m_correctSound;
+        [SerializeField] private AudioClip m_wrongSound;
+
         protected Player m_playerOne, m_playerTwo;
         private bool m_isTrapped;
 
@@ -44,19 +49,6 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
                 var movement = input.Movement.ReadValue<Vector2>().y;
                 if (input.Movement.WasPressedThisFrame() && movement > 0f)
                 {
-                    //if (m_isTrapped)
-                    //{
-                    //    var topStage = GameManager.TopFloor;
-                    //    m_playerOne.SetNewStage(topStage);
-                    //}
-                    //else
-                    //{
-                    //    if (m_playerOne.currentStage is Floor floor)
-                    //    {
-                    //        var nextStage = floor.previousStage;
-                    //        m_playerOne.SetNewStage(nextStage);
-                    //    }
-                    //}
                     StartCoroutine(OpenDoor(m_playerOne));
                 }
             }
@@ -67,19 +59,6 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
                 var movement = input.Movement.ReadValue<Vector2>().y;
                 if (input.Movement.WasPressedThisFrame() && movement > 0f)
                 {
-                    //if (m_isTrapped)
-                    //{
-                    //    var topStage = GameManager.TopFloor;
-                    //    m_playerTwo.SetNewStage(topStage);
-                    //}
-                    //else
-                    //{
-                    //    if (m_playerTwo.currentStage is Floor floor)
-                    //    {
-                    //        var nextStage = floor.previousStage;
-                    //        m_playerTwo.SetNewStage(nextStage);
-                    //    }
-                    //}
                     StartCoroutine(OpenDoor(m_playerTwo));
                 }
             }
@@ -90,12 +69,19 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
             m_spriteRenderer.sprite = m_openedSprite;
             player.SetAnimationState(Player.AnimationState.OPEN_DOOR);
 
+            if (m_openSounds != null && m_openSounds.Length > 0)
+            {
+                var sound = m_openSounds.PickRandomUnity();
+                SoundManager.Play(sound);
+            }
+
             yield return new WaitForSecondsRealtime(0.1f);
 
             if (m_isTrapped)
             {
                 var topStage = GameManager.TopFloor;
                 player.SetNewStage(topStage);
+                SoundManager.Play(m_wrongSound);
             }
             else
             {
@@ -103,6 +89,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
                 {
                     var nextStage = floor.previousStage;
                     player.SetNewStage(nextStage);
+                    SoundManager.Play(m_correctSound);
                 }
             }
 

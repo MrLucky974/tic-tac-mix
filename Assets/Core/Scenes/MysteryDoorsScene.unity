@@ -1661,7 +1661,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 00e9b7f6ff848e541b13613d4c17683d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -3184,6 +3184,10 @@ MonoBehaviour:
   m_openedSprite: {fileID: 21300000, guid: 5cda019ca2f8b454fb3902ed64d83cee, type: 3}
   m_p1InputPromptCanvasGroup: {fileID: 1233662827}
   m_p2InputPromptCanvasGroup: {fileID: 849906432}
+  m_openSounds: []
+  m_closeSounds: []
+  m_correctSound: {fileID: 0}
+  m_wrongSound: {fileID: 0}
 --- !u!61 &8161168688785448932
 BoxCollider2D:
   m_ObjectHideFlags: 0
