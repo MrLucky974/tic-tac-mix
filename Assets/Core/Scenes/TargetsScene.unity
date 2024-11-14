@@ -558,6 +558,10 @@ MonoBehaviour:
     type: 3}
   m_cursor: {fileID: 643675669}
   m_canvas: {fileID: 1990365891}
+  m_shootSounds:
+  - {fileID: 8300000, guid: 84f013983be1af6408340a3b14c550d4, type: 3}
+  - {fileID: 8300000, guid: 4edab137439c25947924f8ad22cc0974, type: 3}
+  - {fileID: 8300000, guid: 884dede81c0a64247849bf4b27981320, type: 3}
   m_debugSphere: {fileID: 0}
 --- !u!1 &182825205
 GameObject:
@@ -1158,6 +1162,10 @@ MonoBehaviour:
     type: 3}
   m_cursor: {fileID: 678948587}
   m_canvas: {fileID: 1990365891}
+  m_shootSounds:
+  - {fileID: 8300000, guid: 84f013983be1af6408340a3b14c550d4, type: 3}
+  - {fileID: 8300000, guid: 4edab137439c25947924f8ad22cc0974, type: 3}
+  - {fileID: 8300000, guid: 884dede81c0a64247849bf4b27981320, type: 3}
   m_debugSphere: {fileID: 0}
 --- !u!1 &497573351
 GameObject:
@@ -2281,8 +2289,9 @@ AudioSource:
   m_GameObject: {fileID: 961739749}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6f245c16430f1e24abc0adfe1eae1429, type: 3}
+  OutputAudioMixerGroup: {fileID: 4224280187613206053, guid: 9eea2664e4f1db04ab43371c862f01c6,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 5259837844d01c74196e61c2b2eb55fb, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
