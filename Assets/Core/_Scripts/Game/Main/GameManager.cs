@@ -30,35 +30,30 @@ namespace RapidPrototyping.TicTacMix.Main
                 case GameResult.PlayerOne:
                     Debug.Log("Player One wins!");
                     GameDataHandler.AddP1Score();
-                    GameDataHandler.ResetGame();
-                    if (m_mainMenuScene != null &&
-                        string.IsNullOrEmpty(m_mainMenuScene) is false)
-                    {
-                        SceneManager.LoadScene(m_mainMenuScene);
-                    }
+                    ReturnToMainMenu();
                     break;
                 case GameResult.PlayerTwo:
                     Debug.Log("Player Two wins!");
                     GameDataHandler.AddP2Score();
-                    GameDataHandler.ResetGame();
-                    if (m_mainMenuScene != null &&
-                        string.IsNullOrEmpty(m_mainMenuScene) is false)
-                    {
-                        SceneManager.LoadScene(m_mainMenuScene);
-                    }
+                    ReturnToMainMenu();
                     break;
                 case GameResult.Tie:
                     Debug.Log("It's a tie!");
-                    GameDataHandler.ResetGame();
-                    if (m_mainMenuScene != null &&
-                        string.IsNullOrEmpty(m_mainMenuScene) is false)
-                    {
-                        SceneManager.LoadScene(m_mainMenuScene);
-                    }
+                    ReturnToMainMenu();
                     break;
                 case GameResult.None:
                     Debug.Log("Game is ongoing.");
                     break;
+            }
+        }
+
+        public void ReturnToMainMenu()
+        {
+            GameDataHandler.ResetGame();
+            if (m_mainMenuScene != null &&
+                string.IsNullOrEmpty(m_mainMenuScene) is false)
+            {
+                SceneManager.LoadScene(m_mainMenuScene);
             }
         }
 
