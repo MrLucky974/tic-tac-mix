@@ -1,5 +1,6 @@
 using LuckiusDev.Utils;
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,6 +17,11 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
 
         public event Action<int> OnGameEnded;
 
+        [SerializeField] private GameIntroduction m_gameIntroduction;
+        [SerializeField] private GameTimer m_gameTimer;
+
+        [Space]
+
         [SerializeField] private ArmWrestlingBehavior m_playerOne;
         [SerializeField] private ArmWrestlingBehavior m_playerTwo;
 
@@ -23,8 +29,35 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
 
         [SerializeField] private Transform m_armPivot;
 
+        [Header("Audio")]
+        [SerializeField] protected AudioClip m_countdownSound;
+        [SerializeField] protected AudioClip m_startSound;
+
         private int m_score;
         private CountdownTimer m_timer;
+
+        protected IEnumerator StartCountdown()
+        {
+            m_playerOne.enabled = false;
+            m_playerTwo.enabled = false;
+            Time.timeScale = 0f;
+
+            const int time = 3;
+            for (int i = time - 1; i >= 0; i--)
+            {
+                m_gameIntroduction.UpdateCountdown(i + 1);
+                SoundManager.Play(m_countdownSound);
+                yield return new WaitForSecondsRealtime(1f);
+            }
+
+            Time.timeScale = 1f;
+            m_playerOne.enabled = true;
+            m_playerTwo.enabled = true;
+
+            m_gameTimer.Resume();
+            m_gameIntroduction.ShowUserInterface();
+            SoundManager.Play(m_startSound);
+        }
 
         private void Start()
         {
@@ -33,6 +66,7 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
             {
                 LoadGameplaySceneForNextTurn();
             };
+            StartCoroutine(nameof(StartCountdown));
         }
 
         private void Update()
