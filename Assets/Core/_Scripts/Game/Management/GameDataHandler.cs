@@ -130,6 +130,7 @@ namespace RapidPrototyping.TicTacMix
             //{
             //    game.Reset();
             //}
+            Instance.InitializeMinigames();
             Instance.m_currentTurn = Turn.PLAYER_1;
             GridManager.Clear();
         }
