@@ -7,10 +7,10 @@ namespace RapidPrototyping.TicTacMix.SplatAttack
         private const float SPEED = 10f;
         private const float RESPONSE = 25f;
 
+        [Header("Settings")]
         [SerializeField] private PlayerIdentifier m_identifier;
 
-        [Space]
-
+        [Header("References")]
         [SerializeField] private Splat m_splatPrefab;
         [SerializeField] private SpriteRenderer m_renderer;
         [SerializeField] private Transform m_spawnPoint;
@@ -19,6 +19,9 @@ namespace RapidPrototyping.TicTacMix.SplatAttack
         [SerializeField] private float m_spring = 300f;
         [SerializeField] private float m_damp = 25f;
         [SerializeField] private float m_scaleFactor = 2f;
+
+        [Header("Audio")]
+        [SerializeField] private AudioClip[] m_splatSounds;
 
         private GameInputActions m_inputActions;
 
@@ -44,10 +47,7 @@ namespace RapidPrototyping.TicTacMix.SplatAttack
 
         private void Update()
         {
-            if (GameManager.GameRunning is false)
-                return;
-
-            UpdateInput();
+            UpdateDampedOscillator();
 
             // Update sauce bottle velocity
             if (m_requestedMovement.magnitude > 0f)
@@ -68,6 +68,14 @@ namespace RapidPrototyping.TicTacMix.SplatAttack
                 );
             }
 
+            // Move the bottle by velocity
+            transform.Translate(m_velocity, Space.Self);
+
+            if (GameManager.GameRunning is false)
+                return;
+
+            UpdateInput();
+
             // If primary action is pressed, spawn a new splat prefab
             if (m_primaryRequested)
             {
@@ -76,12 +84,18 @@ namespace RapidPrototyping.TicTacMix.SplatAttack
                 instance.transform.parent = GameManager.SplatContainer;
                 m_springVelocity = 30f;
 
+                if (m_splatSounds != null && m_splatSounds.Length > 0)
+                {
+                    var sound = m_splatSounds.PickRandomUnity();
+                    SoundManager.Play(sound);
+                }
+
                 m_primaryRequested = false;
             }
+        }
 
-            // Move the bottle by velocity
-            transform.Translate(m_velocity, Space.Self);
-
+        private void UpdateDampedOscillator()
+        {
             var force = -m_spring * m_springDisplacement - m_damp * m_springVelocity;
             m_springVelocity += force * Time.unscaledDeltaTime;
             m_springDisplacement += m_springVelocity * Time.unscaledDeltaTime;

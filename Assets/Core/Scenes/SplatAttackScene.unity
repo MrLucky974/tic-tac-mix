@@ -1615,6 +1615,31 @@ PrefabInstance:
       propertyPath: m_identifier
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7039438723299976907, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_splatSounds.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7039438723299976907, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_splatSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: ad18305f9ed0b134b9ca2bc16a29d42e, type: 3}
+    - target: {fileID: 7039438723299976907, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_splatSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9616ddf9ec2648c4ba082590cca3cf47, type: 3}
+    - target: {fileID: 7039438723299976907, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_splatSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0939098e1d421d84d880f3a9f8005bb1, type: 3}
+    - target: {fileID: 7039438723299976907, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_splatSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1826b3624dc56784982bf90d5cee0254, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3259,6 +3284,31 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7039438723299976907, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_splatSounds.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7039438723299976907, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_splatSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: ad18305f9ed0b134b9ca2bc16a29d42e, type: 3}
+    - target: {fileID: 7039438723299976907, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_splatSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9616ddf9ec2648c4ba082590cca3cf47, type: 3}
+    - target: {fileID: 7039438723299976907, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_splatSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 0939098e1d421d84d880f3a9f8005bb1, type: 3}
+    - target: {fileID: 7039438723299976907, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_splatSounds.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1826b3624dc56784982bf90d5cee0254, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
