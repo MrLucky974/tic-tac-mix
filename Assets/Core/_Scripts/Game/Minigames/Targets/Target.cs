@@ -8,14 +8,21 @@ namespace RapidPrototyping.TicTacMix.Targets
     [RequireComponent(typeof(Collider))]
     public class Target : MonoBehaviour
     {
+        [Header("Settings")]
         [SerializeField] private float m_lifetime = 3f;
         [SerializeField] private int m_score = 1;
+
+        [Header("References")]
         [SerializeField] private Destructible m_destructible;
+        [SerializeField] private ScoreIndicator m_scoreIndicatorPrefab;
 
-        [Space]
-
+        [Header("Effects")]
         [SerializeField] private CFXR_Effect m_disableEffect;
         [SerializeField] private CFXR_Effect m_impactEffect;
+
+        [Header("Audio")]
+        [SerializeField] private AudioClip[] m_breakSounds;
+        [SerializeField] private AudioClip m_outcomeSound;
 
         public event Action OnTargetDestroyed;
 
@@ -101,6 +108,19 @@ namespace RapidPrototyping.TicTacMix.Targets
                 {
                     m_destructible.Destroy();
                 }
+
+                string prefix = m_score > 0 ? "+" : "";
+                Color color = projectile.PlayerIndex == 0 ? Color.blue : Color.red;
+                var scoreIndicator = m_scoreIndicatorPrefab.Create(transform.position,
+                    $"{prefix + m_score}", color);
+
+                if (m_breakSounds != null && m_breakSounds.Length > 0)
+                {
+                    var sound = m_breakSounds.PickRandomUnity();
+                    SoundManager.Play(sound);
+                }
+
+                SoundManager.Play(m_outcomeSound);
 
                 OnTargetDestroyed?.Invoke();
                 m_enabled = false;

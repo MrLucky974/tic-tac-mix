@@ -5,6 +5,7 @@ namespace RapidPrototyping.TicTacMix.Targets
 {
     public class Weapon : MonoBehaviour
     {
+        [Header("Settings")]
         [SerializeField] private int m_playerIndex;
 
         [Space]
@@ -12,13 +13,15 @@ namespace RapidPrototyping.TicTacMix.Targets
         [SerializeField] private float m_speed = 10f;
         [SerializeField] private float m_response = 25f;
 
-        [Space]
-
+        [Header("References")]
         [SerializeField] private LayerMask m_projectileMask;
         [SerializeField] private Transform m_muzzle;
         [SerializeField] private Projectile m_projectilePrefab;
         [SerializeField] private Image m_cursor;
         [SerializeField] private Canvas m_canvas;
+
+        [Header("Audio")]
+        [SerializeField] private AudioClip[] m_shootSounds;
 
 #if UNITY_EDITOR
         [Space]
@@ -27,6 +30,8 @@ namespace RapidPrototyping.TicTacMix.Targets
 
         private Camera m_camera;
         private Vector3 m_velocity;
+
+        private bool m_shootRequested = false;
 
         private void Start()
         {
@@ -42,6 +47,9 @@ namespace RapidPrototyping.TicTacMix.Targets
 
         private void Update()
         {
+            if (GameManager.GameRunning is false)
+                return;
+
             var deltaTime = Time.deltaTime;
 
             if (m_playerIndex == GameManager.PLAYER_ONE_INDEX)
@@ -61,21 +69,7 @@ namespace RapidPrototyping.TicTacMix.Targets
 
                 if (input.Primary.WasPressedThisFrame())
                 {
-                    var projectile = Instantiate(m_projectilePrefab, m_muzzle.position, Quaternion.identity);
-                    projectile.Initialize(m_playerIndex);
-
-                    Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(m_canvas.worldCamera, m_cursor.rectTransform.position);
-                    Ray ray = m_camera.ScreenPointToRay(screenPoint);
-
-                    if (Physics.Raycast(ray, out var hit, 10f, m_projectileMask))
-                    {
-                        var direction = (hit.point - m_muzzle.position).normalized;
-                        projectile.Fire(direction);
-                    }
-                    else
-                    {
-                        projectile.Fire(ray.direction);
-                    }
+                    m_shootRequested |= true;
                 }
             }
             else if (m_playerIndex == GameManager.PLAYER_TWO_INDEX)
@@ -95,22 +89,35 @@ namespace RapidPrototyping.TicTacMix.Targets
 
                 if (input.Primary.WasPressedThisFrame())
                 {
-                    var projectile = Instantiate(m_projectilePrefab, m_muzzle.position, Quaternion.identity);
-                    projectile.Initialize(m_playerIndex);
-
-                    Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(m_canvas.worldCamera, m_cursor.rectTransform.position);
-                    Ray ray = m_camera.ScreenPointToRay(screenPoint);
-
-                    if (Physics.Raycast(ray, out var hit, 10f, m_projectileMask))
-                    {
-                        var direction = (hit.point - m_muzzle.position).normalized;
-                        projectile.Fire(direction);
-                    }
-                    else
-                    {
-                        projectile.Fire(ray.direction);
-                    }
+                    m_shootRequested |= true;
                 }
+            }
+
+            if (m_shootRequested)
+            {
+                var projectile = Instantiate(m_projectilePrefab, m_muzzle.position, Quaternion.identity);
+                projectile.Initialize(m_playerIndex);
+
+                if (m_shootSounds != null && m_shootSounds.Length > 0)
+                {
+                    var sound = m_shootSounds.PickRandomUnity();
+                    SoundManager.Play(sound);
+                }
+
+                Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(m_canvas.worldCamera, m_cursor.rectTransform.position);
+                Ray ray = m_camera.ScreenPointToRay(screenPoint);
+
+                if (Physics.Raycast(ray, out var hit, 10f, m_projectileMask))
+                {
+                    var direction = (hit.point - m_muzzle.position).normalized;
+                    projectile.Fire(direction);
+                }
+                else
+                {
+                    projectile.Fire(ray.direction);
+                }
+
+                m_shootRequested = false;
             }
 
             UpdateWeapon();
