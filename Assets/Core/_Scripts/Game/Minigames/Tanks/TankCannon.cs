@@ -16,6 +16,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
         [SerializeField] private Transform m_muzzle;
         [SerializeField] private Missile m_missilePrefab;
         [SerializeField] private float m_delay = 0.2f;
+        [SerializeField] private float m_turnSpeed = 0.4f;
 
         [Header("Effects")]
 
@@ -39,7 +40,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
 
         public void UpdateInput(CannonInput input)
         {
-            var rotation = Quaternion.AngleAxis(input.Turn * 0.2f, Vector3.up);
+            var rotation = Quaternion.AngleAxis(input.Turn * m_turnSpeed, Vector3.up);
             m_requestedRotation *= rotation;
 
             m_requestedShoot = m_requestedShoot || input.Shoot;

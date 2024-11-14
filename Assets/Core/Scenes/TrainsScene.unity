@@ -1467,7 +1467,7 @@ MonoBehaviour:
   _bodyPrefab: {fileID: 4084942764596536851, guid: 2fcc895e8fd45804f9dcd9da396622fa,
     type: 3}
   _bodypos: {fileID: 1809782565}
-  _gap: 190
+  _gap: 20
   _score: 0
   _scoreText: {fileID: 890154310}
   _collide: Left
@@ -2673,7 +2673,7 @@ MonoBehaviour:
   _bodyPrefab: {fileID: 4084942764596536851, guid: 19c9541a8ce889c4d9476b041c297bf1,
     type: 3}
   _bodypos: {fileID: 629666461}
-  _gap: 190
+  _gap: 20
   _score: 0
   _scoreText: {fileID: 684522182}
   _collide: Right

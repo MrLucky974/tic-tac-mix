@@ -13,6 +13,10 @@ namespace RapidPrototyping.TicTacMix.Tanks
         [SerializeField] private Rigidbody m_rigidbody;
         [SerializeField] private Transform m_body;
 
+        [Space]
+
+        [SerializeField] private float m_speed = 10f;
+
         private Quaternion m_requestedRotation;
         private Vector3 m_requestedMovement;
 
@@ -38,7 +42,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
 
         public void UpdateVelocity(float deltaTime)
         {
-            m_rigidbody.AddForce(m_requestedMovement * 10f * deltaTime, ForceMode.VelocityChange);
+            m_rigidbody.AddForce(m_requestedMovement * m_speed * deltaTime, ForceMode.VelocityChange);
         }
 
         public void UpdateRotation(float deltaTime)
