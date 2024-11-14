@@ -5674,6 +5674,12 @@ MonoBehaviour:
   m_mainMenuScene:
     m_sceneAsset: {fileID: 102900000, guid: 2b8d2602cb2ee254b9dcc2fb09764cad, type: 3}
     m_sceneName: MainMenuScene
+  m_gameCanvas: {fileID: 1026076961}
+  m_canvas: {fileID: 434434154}
+  m_crossWinAnimationPrefab: {fileID: 4524481932326982554, guid: 24856769230961243af8286fa35e702c,
+    type: 3}
+  m_circleWinAnimationPrefab: {fileID: 5228527801935656744, guid: f1df6a20f0114e746b0e69d338ca9a98,
+    type: 3}
 --- !u!1 &2039539968
 GameObject:
   m_ObjectHideFlags: 0

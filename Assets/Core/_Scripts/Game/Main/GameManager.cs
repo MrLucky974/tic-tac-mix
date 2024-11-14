@@ -1,4 +1,5 @@
 using LuckiusDev.Utils;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,13 @@ namespace RapidPrototyping.TicTacMix.Main
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private SceneReference m_mainMenuScene;
+
+        [Space]
+
+        [SerializeField] private GameCanvas m_gameCanvas;
+        [SerializeField] private Canvas m_canvas;
+        [SerializeField] private GameObject m_crossWinAnimationPrefab;
+        [SerializeField] private GameObject m_circleWinAnimationPrefab;
 
         public enum GameResult
         {
@@ -30,12 +38,12 @@ namespace RapidPrototyping.TicTacMix.Main
                 case GameResult.PlayerOne:
                     Debug.Log("Player One wins!");
                     GameDataHandler.AddP1Score();
-                    ReturnToMainMenu();
+                    StartCoroutine(WinSequenceAnimation(m_crossWinAnimationPrefab));
                     break;
                 case GameResult.PlayerTwo:
                     Debug.Log("Player Two wins!");
                     GameDataHandler.AddP2Score();
-                    ReturnToMainMenu();
+                    StartCoroutine(WinSequenceAnimation(m_circleWinAnimationPrefab));
                     break;
                 case GameResult.Tie:
                     Debug.Log("It's a tie!");
@@ -45,6 +53,25 @@ namespace RapidPrototyping.TicTacMix.Main
                     Debug.Log("Game is ongoing.");
                     break;
             }
+        }
+
+        private IEnumerator WinSequenceAnimation(GameObject prefab)
+        {
+            Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            m_gameCanvas.enabled = false;
+
+            var instance = Instantiate(prefab, m_canvas.transform);
+
+            yield return new WaitForSecondsRealtime(1f);
+
+            m_gameCanvas.enabled = true;
+            Time.timeScale = 1f;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            ReturnToMainMenu();
         }
 
         public void ReturnToMainMenu()
