@@ -1,13 +1,16 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 
 namespace RapidPrototyping.TicTacMix.Trains
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IPlayerControls
     {
+        [Header("Input")]
+        [SerializeField] private PlayerInput m_playerInput;
+
         [Header("Player")]
         public bool _isPlayerO;
 
@@ -41,20 +44,37 @@ namespace RapidPrototyping.TicTacMix.Trains
         [Header("Audio")]
         [SerializeField] private AudioClip[] _audioClip;
 
+        #region Input Variables
+
+        private Vector2 m_movementInput;
+
+        #endregion
 
         private void Start()
         {
+            m_playerInput.SwitchCurrentControlScheme(m_playerInput.defaultControlScheme);
+            InputUser.PerformPairingWithDevice(Keyboard.current, m_playerInput.user, InputUserPairingOptions.None);
+            InputUser.PerformPairingWithDevice(Mouse.current, m_playerInput.user, InputUserPairingOptions.None);
+            if (_isPlayerO)
+            {
+                if (Gamepad.all.Count >= 1)
+                {
+                    var gamepad = Gamepad.all[0];
+                    InputUser.PerformPairingWithDevice(gamepad, m_playerInput.user, InputUserPairingOptions.None);
+                }
+            }
+
             _gameManager = FindObjectOfType<GameManager>();
            // Grow();
         }
         private void Update()
         {
             //Move
-            transform.position += transform.forward * _speed * Time.deltaTime;
+            transform.position += _speed * Time.deltaTime * transform.forward;
 
             //Rotate
-            float rotDirection = Input.GetAxis(_horizontal);
-            transform.Rotate(Vector3.up * rotDirection * _rotSpeed * Time.deltaTime);
+            float rotDirection = m_movementInput.x;
+            transform.Rotate(_rotSpeed * rotDirection * Time.deltaTime * Vector3.up);
 
             //StorePosBody
             _pos.Insert(0, transform.position);
@@ -64,10 +84,10 @@ namespace RapidPrototyping.TicTacMix.Trains
             {
                 Vector3 point = _pos[Mathf.Min(index * _gap, _pos.Count - 1)];
                 Vector3 moveDir = point - body.transform.position;
-                body.transform.position += moveDir * _bodySpeed * Time.deltaTime;
+                body.transform.position += _bodySpeed * Time.deltaTime * moveDir;
                 body.transform.LookAt(point);
                 index++;
-                body.gameObject.SetActive(true);
+                body.SetActive(true);
             }
 
         }
@@ -77,7 +97,6 @@ namespace RapidPrototyping.TicTacMix.Trains
             GameObject body = Instantiate(_bodyPrefab, _bodypos.position, Quaternion.identity, _parent);
             _bodyParts.Add(body);
             body.gameObject.SetActive(false);
-
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -101,6 +120,7 @@ namespace RapidPrototyping.TicTacMix.Trains
                 _gameManager.Tie() ;
             }
         }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag(_collide))
@@ -117,6 +137,16 @@ namespace RapidPrototyping.TicTacMix.Trains
             Destroy(_parent.gameObject);
 
             SoundManager.Play(_audioClip[1]);
+        }
+
+        public void OnMovement(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
+        {
+            m_movementInput = ctx.ReadValue<Vector2>();
+        }
+
+        public void OnPrimary(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
+        {
+            // noop
         }
     }
 }
