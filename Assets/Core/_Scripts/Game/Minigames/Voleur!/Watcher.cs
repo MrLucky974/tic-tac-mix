@@ -6,6 +6,8 @@ namespace RapidPrototyping.TicTacMix.Voleur
     {
         [Header("Player")]
         [SerializeField] private PlayerController[] _playerController;
+        [SerializeField] private int m_minimumDelay = 3;
+        [SerializeField] private int m_maximumDelay = 8;
 
         [Header("StartWatchDelay")]
         private float _time;
@@ -22,11 +24,8 @@ namespace RapidPrototyping.TicTacMix.Voleur
         [Header("GameManager")]
         private GameManager _gameManager;
 
-
         [Header("Audio")]
         [SerializeField] private AudioClip[] _audioClip;
-
-
 
         private void Start()
         {
@@ -43,7 +42,7 @@ namespace RapidPrototyping.TicTacMix.Voleur
             if (_time >= _targetTime)
             {
                 _animator.SetBool("isWatching", true);
-                _targetTime = Random.Range(3, 7);
+                _targetTime = Random.Range(m_minimumDelay, m_maximumDelay);
                 _time = 0;
             }
 
@@ -54,17 +53,18 @@ namespace RapidPrototyping.TicTacMix.Voleur
             }
         }
 
-
         public void SoundWatch()
         {
             SoundManager.Play(_audioClip[0]);
 
         }
+        
         public void SoundPrevent()
         {
             SoundManager.Play(_audioClip[1]);
 
         }
+        
         public void IsWatching()
         {
             _isWatching = true;
@@ -72,7 +72,6 @@ namespace RapidPrototyping.TicTacMix.Voleur
 
         public void Watch()
         {
-
             foreach (PlayerController playerController in _playerController)
             {
                 if (playerController._isTakingCake)
@@ -91,10 +90,9 @@ namespace RapidPrototyping.TicTacMix.Voleur
         {
             _watchTime += Time.deltaTime;
 
-
             if (_watchTime >= _targetWatchTime)
             {
-                _targetWatchTime = Random.Range(2, 6);
+                _targetWatchTime = Random.Range(m_minimumDelay, m_maximumDelay);
                 _animator.SetBool("isWatching", false);
                 _isWatching = false;
                 _watchTime = 0;
