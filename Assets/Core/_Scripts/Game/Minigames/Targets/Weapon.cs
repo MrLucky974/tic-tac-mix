@@ -1,12 +1,15 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 using UnityEngine.UI;
 
 namespace RapidPrototyping.TicTacMix.Targets
 {
-    public class Weapon : MonoBehaviour
+    public class Weapon : MonoBehaviour, IPlayerControls
     {
         [Header("Settings")]
         [SerializeField] private int m_playerIndex;
+        [SerializeField] private PlayerInput m_playerInput;
 
         [Space]
 
@@ -31,13 +34,30 @@ namespace RapidPrototyping.TicTacMix.Targets
         private Camera m_camera;
         private Vector3 m_velocity;
 
-        private bool m_shootRequested = false;
+        #region Input Variables
+
+        private Vector2 m_movementInput;
+        private bool m_primaryPressedThisFrame;
+
+        #endregion
 
         private void Start()
         {
             m_camera = Camera.main;
             UpdateWeapon();
             GameManager.Instance.OnGameEnded += HandleGameEnded;
+
+            m_playerInput.SwitchCurrentControlScheme(m_playerInput.defaultControlScheme);
+            InputUser.PerformPairingWithDevice(Keyboard.current, m_playerInput.user, InputUserPairingOptions.None);
+            InputUser.PerformPairingWithDevice(Mouse.current, m_playerInput.user, InputUserPairingOptions.None);
+            if (m_playerIndex > 0)
+            {
+                if (Gamepad.all.Count >= m_playerIndex)
+                {
+                    var gamepad = Gamepad.all[m_playerIndex - 1];
+                    InputUser.PerformPairingWithDevice(gamepad, m_playerInput.user, InputUserPairingOptions.None);
+                }
+            }
         }
 
         private void HandleGameEnded(GameData data)
@@ -52,48 +72,19 @@ namespace RapidPrototyping.TicTacMix.Targets
 
             var deltaTime = Time.deltaTime;
 
-            if (m_playerIndex == GameManager.PLAYER_ONE_INDEX)
-            {
-                var input = InputManager.InputActions.P1Gameplay;
-                var movement = input.Movement.ReadValue<Vector2>();
+            var movement = m_movementInput;
 
-                var targetVelocity = new Vector3(movement.x, movement.y, 0f)
-                    * m_speed * deltaTime;
+            var targetVelocity = new Vector3(movement.x, movement.y, 0f)
+                * m_speed * deltaTime;
 
-                m_velocity = Vector3.Lerp
-                (
-                    m_velocity,
-                    targetVelocity,
-                    1f - Mathf.Exp(-m_response * deltaTime)
-                );
+            m_velocity = Vector3.Lerp
+            (
+                m_velocity,
+                targetVelocity,
+                1f - Mathf.Exp(-m_response * deltaTime)
+            );
 
-                if (input.Primary.WasPressedThisFrame())
-                {
-                    m_shootRequested |= true;
-                }
-            }
-            else if (m_playerIndex == GameManager.PLAYER_TWO_INDEX)
-            {
-                var input = InputManager.InputActions.P2Gameplay;
-                var movement = input.Movement.ReadValue<Vector2>();
-
-                var targetVelocity = new Vector3(movement.x, movement.y, 0f)
-                    * m_speed * deltaTime;
-
-                m_velocity = Vector3.Lerp
-                (
-                    m_velocity,
-                    targetVelocity,
-                    1f - Mathf.Exp(-m_response * deltaTime)
-                );
-
-                if (input.Primary.WasPressedThisFrame())
-                {
-                    m_shootRequested |= true;
-                }
-            }
-
-            if (m_shootRequested)
+            if (m_primaryPressedThisFrame)
             {
                 var projectile = Instantiate(m_projectilePrefab, m_muzzle.position, Quaternion.identity);
                 projectile.Initialize(m_playerIndex);
@@ -116,12 +107,15 @@ namespace RapidPrototyping.TicTacMix.Targets
                 {
                     projectile.Fire(ray.direction);
                 }
-
-                m_shootRequested = false;
             }
 
             UpdateWeapon();
             m_cursor.rectTransform.position += m_velocity;
+        }
+
+        private void LateUpdate()
+        {
+            m_primaryPressedThisFrame = false;
         }
 
         private void UpdateWeapon()
@@ -143,6 +137,16 @@ namespace RapidPrototyping.TicTacMix.Targets
             Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(m_canvas.worldCamera, m_cursor.rectTransform.position);
             Ray ray = m_camera.ScreenPointToRay(screenPoint);
             return ray.origin + ray.direction * 10f;
+        }
+
+        public void OnMovement(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
+        {
+            m_movementInput = ctx.ReadValue<Vector2>();
+        }
+
+        public void OnPrimary(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
+        {
+            m_primaryPressedThisFrame |= ctx.action.WasPressedThisFrame();
         }
     }
 }
