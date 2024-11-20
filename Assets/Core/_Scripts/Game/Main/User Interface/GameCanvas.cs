@@ -2,34 +2,31 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 using UnityEngine.UI;
 
 namespace RapidPrototyping.TicTacMix.Main
 {
-    public class GameCanvas : MonoBehaviour
+    public class GameCanvas : MonoBehaviour, IPlayerControls
     {
+        [Header("Input")]
+        [SerializeField] private PlayerInput m_playerInput;
+
         [Header("Main")]
         [SerializeField] private Vector2 m_worldCellSize;
 
         [SerializeField] private Color m_crossColor;
         [SerializeField] private Color m_circleColor;
 
-        #region Cursor Variables
-
         [Header("Cursor")]
         [SerializeField] private float m_animationDuration = 0.4f;
         [SerializeField] private Image m_cursor;
-
-        [Space]
-
-        #endregion
 
         [Header("Text")]
 
         [SerializeField] private TextMeshProUGUI m_playerLabel;
         [SerializeField] private TextMeshProUGUI m_tutorialLabel;
-
-        #region Grid Variables
 
         [Header("Grid")]
         [SerializeField] private List<Image> m_cellImages = new List<Image>();
@@ -38,11 +35,17 @@ namespace RapidPrototyping.TicTacMix.Main
         [SerializeField] private Sprite m_crossSprite;
         [SerializeField] private Sprite m_circleSprite;
 
-        #endregion
-
         private Vector2Int m_gridPosition = Vector2Int.zero;
         private Coroutine m_movementCoroutine;
         private bool m_canSelectMinigame = true;
+
+        #region Input Variables
+
+        private Vector2 m_movementInput;
+        private bool m_movementPressedThisFrame;
+        private bool m_primaryPressedThisFrame;
+
+        #endregion
 
         private IEnumerator Start()
         {
@@ -75,6 +78,8 @@ namespace RapidPrototyping.TicTacMix.Main
 
                     // Update cursor color
                     m_cursor.color = m_crossColor;
+
+                    m_playerInput.SwitchCurrentControlScheme("Player 1");
                     break;
                 case GameDataHandler.Turn.PLAYER_2:
                     // Update information labels text
@@ -87,8 +92,18 @@ namespace RapidPrototyping.TicTacMix.Main
 
                     // Update cursor color
                     m_cursor.color = m_circleColor;
+
+                    m_playerInput.SwitchCurrentControlScheme("Player 2");
+                    if (Gamepad.all.Count >= 1)
+                    {
+                        var gamepad = Gamepad.all[0];
+                        InputUser.PerformPairingWithDevice(gamepad, m_playerInput.user, InputUserPairingOptions.None);
+                    }
                     break;
             }
+
+            InputUser.PerformPairingWithDevice(Keyboard.current, m_playerInput.user, InputUserPairingOptions.None);
+            InputUser.PerformPairingWithDevice(Mouse.current, m_playerInput.user, InputUserPairingOptions.None);
         }
 
         private void UpdateGrid(GridManager.Symbol[] grid)
@@ -128,68 +143,38 @@ namespace RapidPrototyping.TicTacMix.Main
 
         private void MoveCursor()
         {
-            if (GameDataHandler.CurrentTurn == GameDataHandler.Turn.PLAYER_1)
+            if (m_movementPressedThisFrame)
             {
-                var input = InputManager.InputActions.P1Gameplay;
-                var movementInput = input.Movement;
-                if (movementInput.WasPressedThisFrame())
+                var movement = m_movementInput;
+                if (movement.x != 0f)
                 {
-                    var movement = movementInput.ReadValue<Vector2>();
-                    if (movement.x != 0f)
-                    {
-                        m_gridPosition.x += Mathf.CeilToInt(movement.x);
-                    }
-                    else if (movement.y != 0f)
-                    {
-                        m_gridPosition.y -= Mathf.CeilToInt(movement.y);
-                    }
-                    m_gridPosition.x = Mathf.Clamp(m_gridPosition.x, 0, 2);
-                    m_gridPosition.y = Mathf.Clamp(m_gridPosition.y, 0, 2);
-                    GameDataHandler.DataHolder.GridPosition = m_gridPosition;
-                    AnimateCursor();
+                    m_gridPosition.x += Mathf.CeilToInt(movement.x);
                 }
-
-                if (input.Primary.WasPressedThisFrame() && m_canSelectMinigame)
+                else if (movement.y != 0f)
                 {
-                    bool cellEmpty = GridManager.IsCellEmpty(m_gridPosition.x,
-                        m_gridPosition.y);
-                    if (cellEmpty)
-                    {
-                        GameDataHandler.SelectRandomMinigame();
-                    }
+                    m_gridPosition.y -= Mathf.CeilToInt(movement.y);
+                }
+                m_gridPosition.x = Mathf.Clamp(m_gridPosition.x, 0, 2);
+                m_gridPosition.y = Mathf.Clamp(m_gridPosition.y, 0, 2);
+                GameDataHandler.DataHolder.GridPosition = m_gridPosition;
+                AnimateCursor();
+            }
+
+            if (m_primaryPressedThisFrame && m_canSelectMinigame)
+            {
+                bool cellEmpty = GridManager.IsCellEmpty(m_gridPosition.x,
+                    m_gridPosition.y);
+                if (cellEmpty)
+                {
+                    GameDataHandler.SelectRandomMinigame();
                 }
             }
-            else
-            {
-                var input = InputManager.InputActions.P2Gameplay;
-                var movementInput = input.Movement;
-                if (movementInput.WasPressedThisFrame())
-                {
-                    var movement = movementInput.ReadValue<Vector2>();
-                    if (movement.x != 0f)
-                    {
-                        m_gridPosition.x += Mathf.CeilToInt(movement.x);
-                    }
-                    else if (movement.y != 0f)
-                    {
-                        m_gridPosition.y -= Mathf.CeilToInt(movement.y);
-                    }
-                    m_gridPosition.x = Mathf.Clamp(m_gridPosition.x, 0, 2);
-                    m_gridPosition.y = Mathf.Clamp(m_gridPosition.y, 0, 2);
-                    GameDataHandler.DataHolder.GridPosition = m_gridPosition;
-                    AnimateCursor();
-                }
+        }
 
-                if (input.Primary.WasPressedThisFrame() && m_canSelectMinigame)
-                {
-                    bool cellEmpty = GridManager.IsCellEmpty(m_gridPosition.x,
-                        m_gridPosition.y);
-                    if (cellEmpty)
-                    {
-                        GameDataHandler.SelectRandomMinigame();
-                    }
-                }
-            }
+        private void LateUpdate()
+        {
+            m_movementPressedThisFrame = false;
+            m_primaryPressedThisFrame = false;
         }
 
         private IEnumerator UpdateCursorPosition()
@@ -226,6 +211,17 @@ namespace RapidPrototyping.TicTacMix.Main
             }
 
             m_movementCoroutine = StartCoroutine(nameof(UpdateCursorPosition));
+        }
+
+        public void OnMovement(InputAction.CallbackContext ctx)
+        {
+            m_movementInput = ctx.ReadValue<Vector2>();
+            m_movementPressedThisFrame |= ctx.action.WasPressedThisFrame();
+        }
+
+        public void OnPrimary(InputAction.CallbackContext ctx)
+        {
+            m_primaryPressedThisFrame |= ctx.action.WasPressedThisFrame();
         }
     }
 }
