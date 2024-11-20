@@ -1,10 +1,15 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 
 namespace RapidPrototyping.TicTacMix.AttrapeOmbres
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IPlayerControls
     {
+        [Header("Input")]
+        [SerializeField] private PlayerInput m_playerInput;
+
         [Header("Player")]
         public bool _isPlayerO;
 
@@ -28,18 +33,35 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
         [Header("Audio")]
         [SerializeField] private AudioClip[] _audioClip;
 
+        #region Input Variables
+
+        private Vector2 m_movementInput;
+
+        #endregion
 
         private void Start()
         {
+            m_playerInput.SwitchCurrentControlScheme(m_playerInput.defaultControlScheme);
+            InputUser.PerformPairingWithDevice(Keyboard.current, m_playerInput.user, InputUserPairingOptions.None);
+            InputUser.PerformPairingWithDevice(Mouse.current, m_playerInput.user, InputUserPairingOptions.None);
+            if (_isPlayerO)
+            {
+                if (Gamepad.all.Count >= 1)
+                {
+                    var gamepad = Gamepad.all[0];
+                    InputUser.PerformPairingWithDevice(gamepad, m_playerInput.user, InputUserPairingOptions.None);
+                }
+            }
+
             _gameManager = FindObjectOfType<GameManager>();
             _rb = GetComponent<Rigidbody>();
         }
+        
         private void Update()
         {
-
             //Movements
-            _horizontal = Input.GetAxis(_nameInput[0]);
-            _vertical = Input.GetAxis(_nameInput[1]);
+            _horizontal = m_movementInput.x;
+            _vertical = m_movementInput.y;
         
             //Limits de la map
             float limitsx = Mathf.Clamp(transform.position.x, -_limit, _limit);
@@ -48,7 +70,7 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
             transform.position = new Vector3(limitsx, transform.position.y, limitsz);
 
              // Rotation vers la direction du mouvement
-            Vector3 moveDirection = new Vector3(_horizontal, 0, _vertical);
+            Vector3 moveDirection = new(_horizontal, 0, _vertical);
             if (moveDirection.magnitude > 0.1f) // Vérifier si on se déplace 
             {
                 Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
@@ -58,10 +80,9 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
 
         private void FixedUpdate()
         {
-            // _rb.velocity = new Vector3(_horizontal, transform.position.y, _vertical) * _speed;
-
             // Appliquer le mouvement dans la direction actuelle
-            Vector3 moveDirection = transform.forward * _speed * new Vector3(_horizontal, 0, _vertical).magnitude;
+            Vector3 direction = new(m_movementInput.x, 0, m_movementInput.y);
+            Vector3 moveDirection = _speed * direction.magnitude * transform.forward;
             _rb.velocity = new Vector3(moveDirection.x, _rb.velocity.y, moveDirection.z);
         }
 
@@ -82,10 +103,17 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
             _rb.drag ++;
             _rb.mass++;
 
-
             _scoreText.text = _score.ToString();
+        }
 
-            
+        public void OnMovement(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
+        {
+            m_movementInput = ctx.ReadValue<Vector2>();
+        }
+
+        public void OnPrimary(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
+        {
+            // noop
         }
     }
 }
