@@ -1,12 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 
 namespace RapidPrototyping.TicTacMix.AvionEnPapier
 {
-    public class PaperPlane : MonoBehaviour
+    public class PaperPlane : MonoBehaviour, IPlayerControls
     {
+        [Header("Input")]
+        [SerializeField] private PlayerInput m_playerInput;
+
         [Header("Move")]
         private Rigidbody _rb;
         [SerializeField] private float _jumpForce;
@@ -22,7 +25,6 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
         [Header("Spawner")]
         [SerializeField] private Spawner _spawner;
 
-
         [Header("GameManager")]
         [SerializeField] private GameManager _gameManager;
         [SerializeField] private bool _isPlayerO;
@@ -30,9 +32,26 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
         [Header("Audio")]
         [SerializeField] private AudioClip[] _audioClip;
 
+        #region Input Variables
+
+        private bool m_primaryPressedThisFrame;
+
+        #endregion
 
         private void Start()
         {
+            m_playerInput.SwitchCurrentControlScheme(m_playerInput.defaultControlScheme);
+            InputUser.PerformPairingWithDevice(Keyboard.current, m_playerInput.user, InputUserPairingOptions.None);
+            InputUser.PerformPairingWithDevice(Mouse.current, m_playerInput.user, InputUserPairingOptions.None);
+            if (_isPlayerO)
+            {
+                if (Gamepad.all.Count >= 1)
+                {
+                    var gamepad = Gamepad.all[0];
+                    InputUser.PerformPairingWithDevice(gamepad, m_playerInput.user, InputUserPairingOptions.None);
+                }
+            }
+
             _gameManager = FindObjectOfType<GameManager>();
             _spawner = FindObjectOfType<Spawner>();
             _rb = GetComponent<Rigidbody>();
@@ -40,7 +59,6 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
 
         private void Update()
         {     
-
             if(_gameManager._canMove) 
             {
                 _rb.isKinematic = false;
@@ -51,41 +69,41 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
                 _rb.isKinematic = true;
             }
 
-            if (Input.GetKeyDown(_keyToJump))
+            if (m_primaryPressedThisFrame)
             {
                 Fly();
             }
-
         }
-        void Fly()
+
+        private void LateUpdate()
+        {
+            m_primaryPressedThisFrame = false;
+        }
+
+        private void Fly()
         {
             _rb.velocity = Vector3.up * _jumpForce;
             SoundManager.Play(_audioClip[0]);
             _blow.GetComponent<Animator>().SetTrigger("Blow");
-
         }
 
-        void Move()
+        private void Move()
         {
             transform.Translate(Vector3.right * _moveSpeed * Time.deltaTime);
         }
 
         private void OnCollisionEnter(Collision collision)
         {
-
             if(collision.gameObject.CompareTag("Right"))
             {
                 Flip();
                 StartCoroutine(waitSpawnL());
-
             }
             if (collision.gameObject.CompareTag("Left"))
             {
                 Flip();
                 StartCoroutine(waitSpawnR());
-
             }
- //FIN//
             if(collision.gameObject.CompareTag("Finish"))
             {
                 print("end");
@@ -93,13 +111,14 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
             }
         }
 
-        IEnumerator GetFx()
+        private IEnumerator GetFx()
         {
             _fx.SetActive(true);
             yield return new WaitForSeconds(1);
             _fx.SetActive(false);
         }
-        void Flip()
+
+        private void Flip()
         {
             Vector3 flip = new Vector3(0, 180, 0);
 
@@ -109,19 +128,26 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
             StartCoroutine(GetFx());
         }
 
-        IEnumerator waitSpawnL()
+        private IEnumerator waitSpawnL()
         {
             yield return new WaitForSeconds(0.4f);
             _spawner.SpawnL() ;
-
         }
-        IEnumerator waitSpawnR()
+
+        private IEnumerator waitSpawnR()
         {
             yield return new WaitForSeconds(0.4f);
             _spawner.SpawnR();
-
         }
 
-      
+        public void OnMovement(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
+        {
+            // noop
+        }
+
+        public void OnPrimary(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
+        {
+            m_primaryPressedThisFrame |= ctx.action.WasPressedThisFrame();
+        }
     }
 }
