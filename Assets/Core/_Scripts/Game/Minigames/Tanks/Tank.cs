@@ -5,7 +5,7 @@ using UnityEngine.InputSystem.Users;
 
 namespace RapidPrototyping.TicTacMix.Tanks
 {
-    public class Tank : MonoBehaviour
+    public class Tank : MonoBehaviour, IPlayerControls
     {
         [Header("Settings")]
         [SerializeField] private int m_playerIndex;

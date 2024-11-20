@@ -1,9 +1,13 @@
 using LuckiusDev.Utils;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 
 namespace RapidPrototyping.TicTacMix.MysteryDoors
 {
-    public class Player : MonoBehaviour
+    public class Player : MonoBehaviour, IPlayerControls
     {
         public enum AnimationState
         {
@@ -14,6 +18,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
 
         [Header("Settings")]
         [SerializeField] private int m_playerIndex;
+        [SerializeField] private PlayerInput m_playerInput;
 
         [Space]
 
@@ -34,11 +39,19 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
         [SerializeField] private Sprite m_doorSprite;
 
         [HideInInspector] public Stage currentStage;
+        [HideInInspector] public List<Door> hoveredDoors = new();
         private float m_offset;
 
         private AnimationState m_currentAnimationState = AnimationState.IDLE;
         private int m_animationSpriteIndex = 0;
         private float m_currentFrameDuration = 0f;
+
+        #region Input Variables
+
+        private Vector2 m_movementInput;
+        private bool m_movementActionsPressedThisFrame;
+
+        #endregion
 
         public void Initialize(int playerIndex, Stage stage)
         {
@@ -47,6 +60,18 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
             currentStage = stage;
             m_playerIndex = playerIndex;
             m_offset = playerIndex == 0 ? 0f : 1f;
+
+            m_playerInput.SwitchCurrentControlScheme($"Player {m_playerIndex + 1}");
+            InputUser.PerformPairingWithDevice(Keyboard.current, m_playerInput.user, InputUserPairingOptions.None);
+            InputUser.PerformPairingWithDevice(Mouse.current, m_playerInput.user, InputUserPairingOptions.None);
+            if (m_playerIndex > 0)
+            {
+                if (Gamepad.all.Count >= m_playerIndex)
+                {
+                    var gamepad = Gamepad.all[m_playerIndex - 1];
+                    InputUser.PerformPairingWithDevice(gamepad, m_playerInput.user, InputUserPairingOptions.None);
+                }
+            }
 
             transform.position = currentStage.GetPosition(m_offset);
             m_spriteRenderer.color = playerIndex == 0 ? m_blueColor : m_redColor;
@@ -119,48 +144,50 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
 
             float normalizedSpeed = m_speed / currentStage.GetDistance();
 
-            if (m_playerIndex == 0)
+            var movement = m_movementInput.x;
+            m_offset = Mathf.Clamp01(m_offset + normalizedSpeed * movement * deltaTime);
+            if (movement != 0f)
             {
-                var input = InputManager.InputActions.P1Gameplay;
-                var movement = input.Movement.ReadValue<Vector2>().x;
+                m_spriteRenderer.flipX = movement < 0f;
 
-                m_offset = Mathf.Clamp01(m_offset + normalizedSpeed * movement * deltaTime);
-                if (movement != 0f)
+                if (m_currentAnimationState != AnimationState.OPEN_DOOR)
                 {
-                    m_spriteRenderer.flipX = movement < 0f;
-                    if (m_currentAnimationState != AnimationState.OPEN_DOOR)
-                    {
-                        SetAnimationState(AnimationState.WALK);
-                    }
-                }
-                else
-                {
-                    if (m_currentAnimationState != AnimationState.OPEN_DOOR)
-                    {
-                        SetAnimationState(AnimationState.IDLE);
-                    }
+                    SetAnimationState(AnimationState.WALK);
                 }
             }
-            else if (m_playerIndex == 1)
+            else
             {
-                var input = InputManager.InputActions.P2Gameplay;
-                var movement = input.Movement.ReadValue<Vector2>().x;
-                m_offset = Mathf.Clamp01(m_offset + normalizedSpeed * movement * deltaTime);
-                if (movement != 0f)
+                if (m_currentAnimationState != AnimationState.OPEN_DOOR)
                 {
-                    m_spriteRenderer.flipX = movement < 0f;
-
-                    if (m_currentAnimationState != AnimationState.OPEN_DOOR)
-                    {
-                        SetAnimationState(AnimationState.WALK);
-                    }
+                    SetAnimationState(AnimationState.IDLE);
                 }
-                else
+            }
+
+            // Check if the up action was just pressed this frame
+            if (m_movementActionsPressedThisFrame && m_movementInput.y > 0f)
+            {
+                // Check if the player is in front of any door
+                if (hoveredDoors.Count > 0)
                 {
-                    if (m_currentAnimationState != AnimationState.OPEN_DOOR)
+                    // Sort the doors to get the closest one to the player
+                    var doors = new List<Door>(hoveredDoors);
+                    doors.Sort((a, b) =>
                     {
-                        SetAnimationState(AnimationState.IDLE);
-                    }
+                        var aDistance = Vector2.Distance(a.transform.position, transform.position);
+                        var bDistance = Vector2.Distance(b.transform.position, transform.position);
+
+                        if (aDistance < bDistance)
+                            return -1;
+
+                        if (aDistance > bDistance)
+                            return 1;
+
+                        return 0;
+                    });
+                    
+                    // Open the closest door
+                    var door = doors.First();
+                    door.OpenDoor(this);
                 }
             }
 
@@ -168,6 +195,30 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
             transform.position = targetPosition;
         }
 
+        private void LateUpdate()
+        {
+            m_movementActionsPressedThisFrame = false;
+        }
+
+        #region Player Controls Event Listeners
+
+        public void OnMovement(InputAction.CallbackContext ctx)
+        {
+            m_movementInput = ctx.ReadValue<Vector2>();
+            m_movementActionsPressedThisFrame = ctx.action.WasPressedThisFrame();
+        }
+
+        public void OnPrimary(InputAction.CallbackContext ctx)
+        {
+            // noop
+        }
+
+        #endregion
+
+        #region Getters
+
         public int PlayerIndex => m_playerIndex;
+
+        #endregion
     }
 }

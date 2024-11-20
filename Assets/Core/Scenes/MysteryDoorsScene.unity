@@ -3542,8 +3542,9 @@ MonoBehaviour:
   m_spriteRenderer: {fileID: 2972809585604598416}
   m_closedSprite: {fileID: 21300000, guid: 51c813bb5e4a83c4a860c7f088f7aba9, type: 3}
   m_openedSprite: {fileID: 21300000, guid: 5cda019ca2f8b454fb3902ed64d83cee, type: 3}
-  m_p1InputPromptCanvasGroup: {fileID: 41193118}
-  m_p2InputPromptCanvasGroup: {fileID: 1804267213}
+  m_inputPrompts:
+  - {fileID: 41193118}
+  - {fileID: 1804267213}
   m_openSounds:
   - {fileID: 8300000, guid: d01c51e100fd5fa4a9733dc9c972c24b, type: 3}
   - {fileID: 8300000, guid: 48c543cf8d091ae448ce0fde395bb184, type: 3}
