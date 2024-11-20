@@ -1080,8 +1080,6 @@ GameObject:
   m_Component:
   - component: {fileID: 624200156}
   - component: {fileID: 624200158}
-  - component: {fileID: 624200160}
-  - component: {fileID: 624200159}
   - component: {fileID: 624200161}
   m_Layer: 0
   m_Name: '[GAME MANAGER]'
@@ -1102,7 +1100,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2093692128}
+  - {fileID: 1215024135}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &624200158
@@ -1119,41 +1119,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_gameIntroduction: {fileID: 880028285}
   m_gameTimer: {fileID: 624200161}
-  m_playerOne: {fileID: 624200160}
-  m_playerTwo: {fileID: 624200159}
+  m_playerOne: {fileID: 2093692129}
+  m_playerTwo: {fileID: 1215024134}
   m_armPivot: {fileID: 1703502850}
   m_countdownSound: {fileID: 8300000, guid: 955d7617af56c7f41b2bbff69ed9cd5a, type: 3}
   m_startSound: {fileID: 8300000, guid: 37d1917e0db9dae419643190c45aed77, type: 3}
---- !u!114 &624200159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 624200154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94f0a805a7839674eacf4ca66c7420eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_uiManager: {fileID: 880028283}
-  m_gameManager: {fileID: 624200158}
-  m_playerIndex: 1
---- !u!114 &624200160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 624200154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94f0a805a7839674eacf4ca66c7420eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_uiManager: {fileID: 880028283}
-  m_gameManager: {fileID: 624200158}
-  m_playerIndex: 0
 --- !u!114 &624200161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1831,20 +1801,19 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  m_textP1: {fileID: 1679524105}
-  m_iconP1: {fileID: 184674748}
-  m_p1Icons:
-    UpIcon: {fileID: 1085001111, guid: 9c31901ed3509284bba5121f0233346e, type: 3}
+  m_icons:
+  - UpIcon: {fileID: 1085001111, guid: 9c31901ed3509284bba5121f0233346e, type: 3}
     LeftIcon: {fileID: -1675137307, guid: 9c31901ed3509284bba5121f0233346e, type: 3}
     DownIcon: {fileID: -664506440, guid: 9c31901ed3509284bba5121f0233346e, type: 3}
     RightIcon: {fileID: 2036114888, guid: 9c31901ed3509284bba5121f0233346e, type: 3}
-  m_textP2: {fileID: 1938489342}
-  m_iconP2: {fileID: 1717474811}
-  m_p2Icons:
-    UpIcon: {fileID: -1495246583, guid: 9c31901ed3509284bba5121f0233346e, type: 3}
+  - UpIcon: {fileID: -1495246583, guid: 9c31901ed3509284bba5121f0233346e, type: 3}
     LeftIcon: {fileID: -1909819762, guid: 9c31901ed3509284bba5121f0233346e, type: 3}
     DownIcon: {fileID: -754904576, guid: 9c31901ed3509284bba5121f0233346e, type: 3}
     RightIcon: {fileID: -161419583, guid: 9c31901ed3509284bba5121f0233346e, type: 3}
+  m_textP1: {fileID: 1679524105}
+  m_iconP1: {fileID: 184674748}
+  m_textP2: {fileID: 1938489342}
+  m_iconP2: {fileID: 1717474811}
   m_gameOverCanvas: {fileID: 925295886}
   m_winLabel: {fileID: 254022070}
   m_playerOneColor: {r: 0.42352945, g: 0.58431375, b: 0.6901961, a: 1}
@@ -2404,6 +2373,136 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1215024133
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1215024135}
+  - component: {fileID: 1215024136}
+  - component: {fileID: 1215024134}
+  m_Layer: 0
+  m_Name: Player 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1215024134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215024133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94f0a805a7839674eacf4ca66c7420eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerInput: {fileID: 1215024136}
+  m_playerIndex: 1
+  m_uiManager: {fileID: 880028283}
+  m_gameManager: {fileID: 624200158}
+--- !u!4 &1215024135
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215024133}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 624200156}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1215024136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215024133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 646e2a29696ff0b4993c7c864f22bac2,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b36b22ae-7992-4d29-950d-2d010b06e0a6
+    m_ActionName: P1Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cda3f381-d597-460c-9478-f0e1c662c5de
+    m_ActionName: P1Gameplay/Primary[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 593a94a6-f992-4edf-b02a-adb84c1ff520
+    m_ActionName: P2Gameplay/Movement[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bf5ecb18-983e-4d7e-a766-ab26c9e5de61
+    m_ActionName: P2Gameplay/Primary[/Keyboard/numpad0]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1215024134}
+        m_TargetAssemblyTypeName: RapidPrototyping.TicTacMix.ArmWresling.ArmWrestlingBehavior,
+          Assembly-CSharp
+        m_MethodName: OnMovement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ab9cacfa-635a-45c6-b9f9-0c68bd87e199
+    m_ActionName: Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/dpad,/XInputControllerWindows/leftStick]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1215024134}
+        m_TargetAssemblyTypeName: RapidPrototyping.TicTacMix.ArmWresling.ArmWrestlingBehavior,
+          Assembly-CSharp
+        m_MethodName: OnPrimary
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5694404d-bf09-4a96-9c2b-a1bf01eb7ab2
+    m_ActionName: Gameplay/Primary[/Keyboard/f,/Keyboard/numpad0,/XInputControllerWindows/buttonSouth]
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: Player 2
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1320250160
 GameObject:
   m_ObjectHideFlags: 0
@@ -4165,6 +4264,136 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051923217}
   m_CullTransparentMesh: 1
+--- !u!1 &2093692127
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2093692128}
+  - component: {fileID: 2093692130}
+  - component: {fileID: 2093692129}
+  m_Layer: 0
+  m_Name: Player 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2093692128
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093692127}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 624200156}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2093692129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093692127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94f0a805a7839674eacf4ca66c7420eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerInput: {fileID: 2093692130}
+  m_playerIndex: 0
+  m_uiManager: {fileID: 880028283}
+  m_gameManager: {fileID: 624200158}
+--- !u!114 &2093692130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093692127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 646e2a29696ff0b4993c7c864f22bac2,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b36b22ae-7992-4d29-950d-2d010b06e0a6
+    m_ActionName: P1Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cda3f381-d597-460c-9478-f0e1c662c5de
+    m_ActionName: P1Gameplay/Primary[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 593a94a6-f992-4edf-b02a-adb84c1ff520
+    m_ActionName: P2Gameplay/Movement[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bf5ecb18-983e-4d7e-a766-ab26c9e5de61
+    m_ActionName: P2Gameplay/Primary[/Keyboard/numpad0]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2093692129}
+        m_TargetAssemblyTypeName: RapidPrototyping.TicTacMix.ArmWresling.ArmWrestlingBehavior,
+          Assembly-CSharp
+        m_MethodName: OnMovement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ab9cacfa-635a-45c6-b9f9-0c68bd87e199
+    m_ActionName: Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/dpad,/XInputControllerWindows/leftStick]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2093692129}
+        m_TargetAssemblyTypeName: RapidPrototyping.TicTacMix.ArmWresling.ArmWrestlingBehavior,
+          Assembly-CSharp
+        m_MethodName: OnPrimary
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5694404d-bf09-4a96-9c2b-a1bf01eb7ab2
+    m_ActionName: Gameplay/Primary[/Keyboard/f,/Keyboard/numpad0,/XInputControllerWindows/buttonSouth]
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: Player 1
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &2111093000
 GameObject:
   m_ObjectHideFlags: 0

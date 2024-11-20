@@ -29,15 +29,15 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
 
         [Header("Icons")]
 
+        [SerializeField] private PlayerIcons[] m_icons;
+
         [SerializeField] private TextMeshProUGUI m_textP1;
         [SerializeField] private Image m_iconP1;
-        [SerializeField] private PlayerIcons m_p1Icons;
 
         [Space]
 
         [SerializeField] private TextMeshProUGUI m_textP2;
         [SerializeField] private Image m_iconP2;
-        [SerializeField] private PlayerIcons m_p2Icons;
 
         [Header("Game Over Screen")]
         [SerializeField] private CanvasGroup m_gameOverCanvas;
@@ -45,13 +45,15 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
         [SerializeField] private Color m_playerOneColor;
         [SerializeField] private Color m_playerTwoColor;
 
-        private Dictionary<ArmWrestlingBehavior.Inputs, string> m_listIconsP1 = new Dictionary<ArmWrestlingBehavior.Inputs, string>();
-        private Dictionary<ArmWrestlingBehavior.Inputs, string> m_listIconsP2 = new Dictionary<ArmWrestlingBehavior.Inputs, string>();
+        private Dictionary<ArmWrestlingBehavior.Inputs, string>[] m_inputTexts;
+        //private Dictionary<ArmWrestlingBehavior.Inputs, string> m_listIconsP1 = new Dictionary<ArmWrestlingBehavior.Inputs, string>();
+        //private Dictionary<ArmWrestlingBehavior.Inputs, string> m_listIconsP2 = new Dictionary<ArmWrestlingBehavior.Inputs, string>();
 
         private void Awake()
         {
-            InitDictionaryP1();
-            InitDictionaryP2();
+            //InitDictionaryP1();
+            //InitDictionaryP2();
+            InitializeDictionary();
         }
 
         private void Start()
@@ -101,59 +103,65 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
             m_gameOverCanvas.GetComponent<RectTransform>().localScale = Vector3.one;
         }
 
-        private void InitDictionaryP1()
-        {
-            m_listIconsP1.Add(ArmWrestlingBehavior.Inputs.UP, "Z");
-            m_listIconsP1.Add(ArmWrestlingBehavior.Inputs.DOWN, "S");
-            m_listIconsP1.Add(ArmWrestlingBehavior.Inputs.LEFT, "Q");
-            m_listIconsP1.Add(ArmWrestlingBehavior.Inputs.RIGHT, "D");
-        }
+        //private void InitDictionaryP1()
+        //{
+        //    m_listIconsP1.Add(ArmWrestlingBehavior.Inputs.UP, "Z");
+        //    m_listIconsP1.Add(ArmWrestlingBehavior.Inputs.DOWN, "S");
+        //    m_listIconsP1.Add(ArmWrestlingBehavior.Inputs.LEFT, "Q");
+        //    m_listIconsP1.Add(ArmWrestlingBehavior.Inputs.RIGHT, "D");
+        //}
 
-        private void InitDictionaryP2()
+        //private void InitDictionaryP2()
+        //{
+        //    m_listIconsP2.Add(ArmWrestlingBehavior.Inputs.UP, "UP");
+        //    m_listIconsP2.Add(ArmWrestlingBehavior.Inputs.DOWN, "DOWN");
+        //    m_listIconsP2.Add(ArmWrestlingBehavior.Inputs.LEFT, "LEFT");
+        //    m_listIconsP2.Add(ArmWrestlingBehavior.Inputs.RIGHT, "RIGHT");
+        //}
+
+        private void InitializeDictionary()
         {
-            m_listIconsP2.Add(ArmWrestlingBehavior.Inputs.UP, "UP");
-            m_listIconsP2.Add(ArmWrestlingBehavior.Inputs.DOWN, "DOWN");
-            m_listIconsP2.Add(ArmWrestlingBehavior.Inputs.LEFT, "LEFT");
-            m_listIconsP2.Add(ArmWrestlingBehavior.Inputs.RIGHT, "RIGHT");
+            m_inputTexts = new Dictionary<ArmWrestlingBehavior.Inputs, string>[2];
+
+            m_inputTexts[0] = new Dictionary<ArmWrestlingBehavior.Inputs, string>();
+            m_inputTexts[0].Add(ArmWrestlingBehavior.Inputs.UP, "Z");
+            m_inputTexts[0].Add(ArmWrestlingBehavior.Inputs.DOWN, "S");
+            m_inputTexts[0].Add(ArmWrestlingBehavior.Inputs.LEFT, "Q");
+            m_inputTexts[0].Add(ArmWrestlingBehavior.Inputs.RIGHT, "D");
+
+            m_inputTexts[1] = new Dictionary<ArmWrestlingBehavior.Inputs, string>();
+            m_inputTexts[1].Add(ArmWrestlingBehavior.Inputs.UP, "UP");
+            m_inputTexts[1].Add(ArmWrestlingBehavior.Inputs.DOWN, "DOWN");
+            m_inputTexts[1].Add(ArmWrestlingBehavior.Inputs.LEFT, "LEFT");
+            m_inputTexts[1].Add(ArmWrestlingBehavior.Inputs.RIGHT, "RIGHT");
         }
 
         public void ShowRightIcon(ArmWrestlingBehavior.Inputs currentInput, ArmWrestlingBehavior behavior)
         {
-            if (behavior.GetPlayerIndex() == true)
+            (TextMeshProUGUI label, Image icon)[] values =
             {
-                m_textP1.text = m_listIconsP1[currentInput];
+                (m_textP1, m_iconP1),
+                (m_textP2, m_iconP2),
+            };
+
+            int index = behavior.GetPlayerIndex();
+            if (index >= 0 && index < values.Length)
+            {
+                var (label, icon) = values[index];
+                label.text = m_inputTexts[index][currentInput];
                 switch (currentInput)
                 {
                     case ArmWrestlingBehavior.Inputs.UP:
-                        m_iconP1.sprite = m_p1Icons.UpIcon;
+                        icon.sprite = m_icons[index].UpIcon;
                         break;
                     case ArmWrestlingBehavior.Inputs.DOWN:
-                        m_iconP1.sprite = m_p1Icons.DownIcon;
+                        icon.sprite = m_icons[index].DownIcon;
                         break;
                     case ArmWrestlingBehavior.Inputs.LEFT:
-                        m_iconP1.sprite = m_p1Icons.LeftIcon;
+                        icon.sprite = m_icons[index].LeftIcon;
                         break;
                     case ArmWrestlingBehavior.Inputs.RIGHT:
-                        m_iconP1.sprite = m_p1Icons.RightIcon;
-                        break;
-                }
-            }
-            else
-            {
-                m_textP2.text = m_listIconsP2[currentInput];
-                switch (currentInput)
-                {
-                    case ArmWrestlingBehavior.Inputs.UP:
-                        m_iconP2.sprite = m_p2Icons.UpIcon;
-                        break;
-                    case ArmWrestlingBehavior.Inputs.DOWN:
-                        m_iconP2.sprite = m_p2Icons.DownIcon;
-                        break;
-                    case ArmWrestlingBehavior.Inputs.LEFT:
-                        m_iconP2.sprite = m_p2Icons.LeftIcon;
-                        break;
-                    case ArmWrestlingBehavior.Inputs.RIGHT:
-                        m_iconP2.sprite = m_p2Icons.RightIcon;
+                        icon.sprite = m_icons[index].RightIcon;
                         break;
                 }
             }

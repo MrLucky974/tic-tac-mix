@@ -1,14 +1,20 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 
 namespace RapidPrototyping.TicTacMix.ArmWresling
 {
-    public class ArmWrestlingBehavior : MonoBehaviour
+    public class ArmWrestlingBehavior : MonoBehaviour, IPlayerControls
     {
-        [SerializeField] ArmWreslingUIManager m_uiManager;
-        [SerializeField] ArmWreslingGameManager m_gameManager;
+        [Header("Input")]
+        [SerializeField] private PlayerInput m_playerInput;
         [SerializeField] private int m_playerIndex;
+
+        [Header("References")]
+        [SerializeField] private ArmWreslingUIManager m_uiManager;
+        [SerializeField] private ArmWreslingGameManager m_gameManager;
+        
         public enum Inputs
         {
             UP,
@@ -16,135 +22,126 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
             LEFT,
             RIGHT
         }
-        Dictionary<Inputs, Vector2> m_dictionary = new();
+        private readonly Inputs[] inputs =
+        {
+            Inputs.UP,
+            Inputs.DOWN,
+            Inputs.LEFT,
+            Inputs.RIGHT
+        };
 
-        private Inputs m_p1Inputs;
-        private Inputs m_p2Inputs;
+        private readonly Dictionary<Inputs, Vector2> m_dictionary = new();
 
-        private int m_Score;
-        private int m_beforChangeP1 = 5;
-        private int m_beforChangeP2 = 5;
-        void Start()
+        private Inputs m_targetInput;
+        private int m_remainingActions = 5;
+
+        #region Input Variables
+
+        private Vector2 m_movementInput;
+        private bool m_movementPressedThisFrame;
+
+        #endregion
+
+        private void Start()
         {
             InitDictionary();
 
+            m_playerInput.SwitchCurrentControlScheme(m_playerInput.defaultControlScheme);
+            InputUser.PerformPairingWithDevice(Keyboard.current, m_playerInput.user, InputUserPairingOptions.None);
+            InputUser.PerformPairingWithDevice(Mouse.current, m_playerInput.user, InputUserPairingOptions.None);
+            if (m_playerIndex > 0)
+            {
+                if (Gamepad.all.Count >= m_playerIndex)
+                {
+                    var gamepad = Gamepad.all[m_playerIndex - 1];
+                    InputUser.PerformPairingWithDevice(gamepad, m_playerInput.user, InputUserPairingOptions.None);
+                }
+            }
+
             // Initialize the starting keys for each player
-            m_p1Inputs = Inputs.UP;
-            m_p2Inputs = Inputs.RIGHT;
+            m_targetInput = m_playerIndex == 0 ? Inputs.UP : Inputs.RIGHT;
 
-            // Update the UI
-            if (m_playerIndex == 0)
-            {
-                m_uiManager.ShowRightIcon(m_p1Inputs, this);
-            }
-            else if (m_playerIndex == 1)
-            {
-                m_uiManager.ShowRightIcon(m_p2Inputs, this);
-            }
+            // Initialize the user interface
+            m_uiManager.ShowRightIcon(m_targetInput, this);
         }
 
-        void Update()
+        private void Update()
         {
-            if (m_playerIndex == 0)
+            if (m_movementPressedThisFrame)
             {
-                var input = InputManager.InputActions.P1Gameplay;
-                if (input.Movement.WasPressedThisFrame())
+                if (ValidInput(m_movementInput))
                 {
-                    var movement = input.Movement.ReadValue<Vector2>();
-                    ValidInput(m_p1Inputs, movement, m_playerIndex);
-                    m_beforChangeP1--;
-                    Debug.Log(m_beforChangeP1);
-                    ChangingInput(m_beforChangeP1, m_p1Inputs);
-                }
-
-            }
-            else
-            {
-                var input = InputManager.InputActions.P2Gameplay;
-                if (input.Movement.WasPressedThisFrame())
-                {
-                    var movement = input.Movement.ReadValue<Vector2>();
-                    ValidInput(m_p2Inputs, movement, m_playerIndex);
-                    m_beforChangeP2--;
-                    Debug.Log(m_beforChangeP2);
-                    ChangingInput(m_beforChangeP2, m_p2Inputs);
-                }
-            }
-        }
-        void InitDictionary()
-        {
-            m_dictionary.Add(Inputs.UP, new Vector2(0, 1));
-            m_dictionary.Add(Inputs.DOWN, new Vector2(0, -1));
-            m_dictionary.Add(Inputs.LEFT, new Vector2(-1, 0));
-            m_dictionary.Add(Inputs.RIGHT, new Vector2(1, 0));
-        }
-
-        void ChangingInput(int current, Inputs playerinput)
-        {
-            if (current <= 0)
-            {
-                if (playerinput == m_p1Inputs)
-                {
-                    m_p1Inputs = (Inputs)Random.Range(0, 4);
-                    m_uiManager.ShowRightIcon(m_p1Inputs, this);
-                    Debug.Log(GetPlayerIndex());
-                    Debug.Log($"current input for p1 {playerinput.ToString()}, new input for p1 {m_p1Inputs.ToString()}");
-                }
-                else
-                {
-                    m_p2Inputs = (Inputs)Random.Range(0, 4);
-                    m_uiManager.ShowRightIcon(m_p2Inputs, this);
-
-                    Debug.Log(GetPlayerIndex());
-                    Debug.Log($"current input for p2 : {playerinput.ToString()}, new input for p2 {m_p2Inputs.ToString()}");
-                }
-
-                if (m_beforChangeP1 == current)
-                {
-                    m_beforChangeP1 = Random.Range(10, 30);
-                }
-                else
-                {
-                    m_beforChangeP2 = Random.Range(10, 30);
+                    m_remainingActions--;
+                    if (m_remainingActions <= 0)
+                    {
+                        m_remainingActions = Random.Range(5, 10);
+                        int index = Random.Range(0, inputs.Length);
+                        m_targetInput = inputs[index];
+                        
+                        m_uiManager.ShowRightIcon(m_targetInput, this);
+                    }
                 }
             }
         }
 
-        public bool GetPlayerIndex()
+        private void LateUpdate()
         {
-            bool IsPlayer1 = false;
-            if (m_playerIndex == 0)
-            {
-                IsPlayer1 = true;
-            }
-            return IsPlayer1;
+            m_movementPressedThisFrame = false;
         }
-        void ValidInput(Inputs currentInput, Vector2 playerInput, int playerindex)
+
+        private void InitDictionary()
         {
-            Vector2 value = new Vector2(0, 0);
-            int count = 0;
-            foreach (Inputs inputs in m_dictionary.Keys)
+            m_dictionary.Add(Inputs.UP, Vector2.up);
+            m_dictionary.Add(Inputs.DOWN, Vector2.down);
+            m_dictionary.Add(Inputs.LEFT, Vector2.left);
+            m_dictionary.Add(Inputs.RIGHT, Vector2.right);
+        }
+
+        public int GetPlayerIndex()
+        {
+            return m_playerIndex;
+        }
+        
+        private bool ValidInput(Vector2 playerInput)
+        {
+            Vector2 value = Vector2.zero;
+            foreach (Inputs input in m_dictionary.Keys)
             {
-                if (inputs == currentInput)
+                if (input == m_targetInput)
                 {
-                    value = m_dictionary.ElementAt(count).Value;
+                    value = m_dictionary[input];
+                    break;
                 }
-                count++;
             }
 
             if (playerInput == value)
             {
-                if (playerindex == 0)
+                if (m_playerIndex == 0)
                 {
                     Debug.Log("right input for player 1");
                     m_gameManager.IncreaseScore();
+                    return true;
                 }
-                else if (playerindex == 1)
+                else if (m_playerIndex == 1)
                 {
                     Debug.Log("right input for player 2");
                     m_gameManager.DecreaseScore();
+                    return true;
                 }
             }
+
+            return false;
+        }
+
+        public void OnMovement(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
+        {
+            m_movementInput = ctx.ReadValue<Vector2>();
+            m_movementPressedThisFrame |= ctx.action.WasPressedThisFrame();
+        }
+
+        public void OnPrimary(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
+        {
+            // noop
         }
     }
 }
