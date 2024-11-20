@@ -1,5 +1,7 @@
 using CartoonFX;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
 
 namespace RapidPrototyping.TicTacMix.Tanks
 {
@@ -7,6 +9,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
     {
         [Header("Settings")]
         [SerializeField] private int m_playerIndex;
+        [SerializeField] private PlayerInput m_playerInput;
 
         [Header("References")]
         [SerializeField] private TankCharacter m_character;
@@ -16,8 +19,23 @@ namespace RapidPrototyping.TicTacMix.Tanks
         [Header("Effects")]
         [SerializeField] private CFXR_Effect m_explosionEffect;
 
+        private Vector2 m_movementInput;
+        private bool m_primaryWasPressedThisFrame;
+
         private void Start()
         {
+            m_playerInput.SwitchCurrentControlScheme(m_playerInput.defaultControlScheme);
+            InputUser.PerformPairingWithDevice(Keyboard.current, m_playerInput.user, InputUserPairingOptions.None);
+            InputUser.PerformPairingWithDevice(Mouse.current, m_playerInput.user, InputUserPairingOptions.None);
+            if (m_playerIndex > 0)
+            {
+                if (Gamepad.all.Count >= m_playerIndex)
+                {
+                    var gamepad = Gamepad.all[m_playerIndex - 1];
+                    InputUser.PerformPairingWithDevice(gamepad, m_playerInput.user, InputUserPairingOptions.None);
+                }
+            }
+
             m_cannon.Initialize();
             m_character.Initialize(m_cannon.Cannon);
 
@@ -35,6 +53,16 @@ namespace RapidPrototyping.TicTacMix.Tanks
             m_health.OnDeath -= HandleDeath;
         }
 
+        public void OnMovement(InputAction.CallbackContext ctx)
+        {
+            m_movementInput = ctx.ReadValue<Vector2>();
+        }
+
+        public void OnPrimary(InputAction.CallbackContext ctx)
+        {
+            m_primaryWasPressedThisFrame |= ctx.action.WasPressedThisFrame();
+        }
+
         private void Update()
         {
             if (GameManager.GameRunning is false)
@@ -42,48 +70,26 @@ namespace RapidPrototyping.TicTacMix.Tanks
 
             var deltaTime = Time.deltaTime;
 
-            if (m_playerIndex == 0)
+            var cannonInput = new CannonInput
             {
-                var input = InputManager.InputActions.P1Gameplay;
-                var movement = input.Movement.ReadValue<Vector2>();
+                Turn = m_movementInput.x,
+                Shoot = m_primaryWasPressedThisFrame,
+            };
+            m_cannon.UpdateInput(cannonInput);
+            m_cannon.UpdateCannon(deltaTime);
 
-                var cannonInput = new CannonInput
-                {
-                    Turn = movement.x,
-                    Shoot = input.Primary.WasPressedThisFrame(),
-                };
-                m_cannon.UpdateInput(cannonInput);
-                m_cannon.UpdateCannon(deltaTime);
-
-                var characterInput = new CharacterInput
-                {
-                    Movement = movement.y,
-                    Rotation = m_cannon.Cannon.rotation,
-                };
-                m_character.UpdateInput(characterInput);
-                m_character.UpdateCharacter(deltaTime);
-            }
-            else
+            var characterInput = new CharacterInput
             {
-                var input = InputManager.InputActions.P2Gameplay;
-                var movement = input.Movement.ReadValue<Vector2>();
+                Movement = m_movementInput.y,
+                Rotation = m_cannon.Cannon.rotation,
+            };
+            m_character.UpdateInput(characterInput);
+            m_character.UpdateCharacter(deltaTime);
+        }
 
-                var cannonInput = new CannonInput
-                {
-                    Turn = movement.x,
-                    Shoot = input.Primary.WasPressedThisFrame(),
-                };
-                m_cannon.UpdateInput(cannonInput);
-                m_cannon.UpdateCannon(deltaTime);
-
-                var characterInput = new CharacterInput
-                {
-                    Movement = movement.y,
-                    Rotation = m_cannon.Cannon.rotation,
-                };
-                m_character.UpdateInput(characterInput);
-                m_character.UpdateCharacter(deltaTime);
-            }
+        private void LateUpdate()
+        {
+            m_primaryWasPressedThisFrame = false;
         }
 
         private void HandleDeath()
