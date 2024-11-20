@@ -16,4 +16,4 @@ MonoBehaviour:
   Name: Arm Wrestling
   Scenes:
   - m_sceneAsset: {fileID: 102900000, guid: 0a0c770d59094e14089f849ea8ed65cb, type: 3}
-    m_sceneName: ArmWreslingScene
+    m_sceneName: ArmWrestlingScene
