@@ -143,17 +143,17 @@ namespace RapidPrototyping.TicTacMix.Main
 
         private void MoveCursor()
         {
-            if (m_movementPressedThisFrame)
+            if (m_movementInput.magnitude > 0f && m_movementCoroutine == null)
             {
-                var movement = m_movementInput;
-                if (movement.x != 0f)
+                if (m_movementInput.x != 0f)
                 {
-                    m_gridPosition.x += Mathf.CeilToInt(movement.x);
+                    m_gridPosition.x += Mathf.CeilToInt(m_movementInput.x);
                 }
-                else if (movement.y != 0f)
+                else if (m_movementInput.y != 0f)
                 {
-                    m_gridPosition.y -= Mathf.CeilToInt(movement.y);
+                    m_gridPosition.y -= Mathf.CeilToInt(m_movementInput.y);
                 }
+
                 m_gridPosition.x = Mathf.Clamp(m_gridPosition.x, 0, 2);
                 m_gridPosition.y = Mathf.Clamp(m_gridPosition.y, 0, 2);
                 GameDataHandler.DataHolder.GridPosition = m_gridPosition;
@@ -201,6 +201,7 @@ namespace RapidPrototyping.TicTacMix.Main
             m_cursor.rectTransform.anchoredPosition = targetPosition;
 
             m_canSelectMinigame = true;
+            m_movementCoroutine = null;
         }
 
         private void AnimateCursor()

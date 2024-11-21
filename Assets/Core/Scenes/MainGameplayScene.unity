@@ -3213,20 +3213,12 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: b36b22ae-7992-4d29-950d-2d010b06e0a6
-    m_ActionName: P1Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+    m_ActionId: ab9cacfa-635a-45c6-b9f9-0c68bd87e199
+    m_ActionName: Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/dpad]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: cda3f381-d597-460c-9478-f0e1c662c5de
-    m_ActionName: P1Gameplay/Primary[/Keyboard/f]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 593a94a6-f992-4edf-b02a-adb84c1ff520
-    m_ActionName: P2Gameplay/Movement[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: bf5ecb18-983e-4d7e-a766-ab26c9e5de61
-    m_ActionName: P2Gameplay/Primary[/Keyboard/numpad0]
+    m_ActionId: 5694404d-bf09-4a96-9c2b-a1bf01eb7ab2
+    m_ActionName: Gameplay/Primary[/Keyboard/f,/Keyboard/numpad0,/XInputControllerWindows/buttonSouth]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1026076961}
@@ -3241,8 +3233,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: ab9cacfa-635a-45c6-b9f9-0c68bd87e199
-    m_ActionName: Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/dpad]
+    m_ActionId: de383272-5e34-4d53-9f74-9bd3460908db
+    m_ActionName: Tic Tac Toe/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/dpad]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1026076961}
@@ -3257,11 +3249,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 5694404d-bf09-4a96-9c2b-a1bf01eb7ab2
-    m_ActionName: Gameplay/Primary[/Keyboard/f,/Keyboard/numpad0,/XInputControllerWindows/buttonSouth]
-  m_NeverAutoSwitchControlSchemes: 0
+    m_ActionId: 8b5d02a0-32ed-4ff7-b8a9-90c52fc0f329
+    m_ActionName: Tic Tac Toe/Primary[/Keyboard/f,/Keyboard/numpad0,/XInputControllerWindows/buttonSouth]
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Player 1
-  m_DefaultActionMap: Gameplay
+  m_DefaultActionMap: Tic Tac Toe
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &1050300114
