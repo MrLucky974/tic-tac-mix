@@ -131,7 +131,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5901121}
-  - component: {fileID: 5901122}
   - component: {fileID: 5901120}
   - component: {fileID: 5901119}
   m_Layer: 0
@@ -174,7 +173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2037aea9ef1beb418c86201b59a739c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerInput: {fileID: 5901122}
   _isPlayerO: 1
   _keyToTake: 273
   _appearingCake: {fileID: 0}
@@ -202,87 +200,6 @@ Transform:
   - {fileID: 471115431}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5901122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5901118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 646e2a29696ff0b4993c7c864f22bac2,
-    type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b36b22ae-7992-4d29-950d-2d010b06e0a6
-    m_ActionName: P1Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: cda3f381-d597-460c-9478-f0e1c662c5de
-    m_ActionName: P1Gameplay/Primary[/Keyboard/f]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 593a94a6-f992-4edf-b02a-adb84c1ff520
-    m_ActionName: P2Gameplay/Movement[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: bf5ecb18-983e-4d7e-a766-ab26c9e5de61
-    m_ActionName: P2Gameplay/Primary[/Keyboard/numpad0]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5901120}
-        m_TargetAssemblyTypeName: RapidPrototyping.TicTacMix.Voleur.PlayerController,
-          Assembly-CSharp
-        m_MethodName: OnMovement
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ab9cacfa-635a-45c6-b9f9-0c68bd87e199
-    m_ActionName: Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/dpad,/XInputControllerWindows/leftStick]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5901120}
-        m_TargetAssemblyTypeName: RapidPrototyping.TicTacMix.Voleur.PlayerController,
-          Assembly-CSharp
-        m_MethodName: OnPrimary
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 5694404d-bf09-4a96-9c2b-a1bf01eb7ab2
-    m_ActionName: Gameplay/Primary[/Keyboard/f,/Keyboard/numpad0,/XInputControllerWindows/buttonSouth]
-  m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Player 2
-  m_DefaultActionMap: Gameplay
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &45885301
 GameObject:
   m_ObjectHideFlags: 0
@@ -1381,7 +1298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2037aea9ef1beb418c86201b59a739c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerInput: {fileID: 0}
   _isPlayerO: 1
   _keyToTake: 273
   _appearingCake: {fileID: 0}
@@ -2259,7 +2175,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 73, y: -70}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 250, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &750914151
 MonoBehaviour:
@@ -2281,7 +2197,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Steal : Up Arrow'
+  m_text: 'Steal : Right Ctrl / A'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 395c5197cfa285c4c8f692b38327c9c0, type: 2}
   m_sharedMaterial: {fileID: -259145782516613734, guid: 395c5197cfa285c4c8f692b38327c9c0,
@@ -2495,7 +2411,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Steal : Z'
+  m_text: 'Steal : F'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 395c5197cfa285c4c8f692b38327c9c0, type: 2}
   m_sharedMaterial: {fileID: -259145782516613734, guid: 395c5197cfa285c4c8f692b38327c9c0,
@@ -3482,7 +3398,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1310889646}
-  - component: {fileID: 1310889647}
   - component: {fileID: 1310889645}
   - component: {fileID: 1310889644}
   m_Layer: 0
@@ -3525,7 +3440,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2037aea9ef1beb418c86201b59a739c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerInput: {fileID: 1310889647}
   _isPlayerO: 0
   _keyToTake: 119
   _appearingCake: {fileID: 0}
@@ -3553,87 +3467,6 @@ Transform:
   - {fileID: 2118598774}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1310889647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1310889643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 646e2a29696ff0b4993c7c864f22bac2,
-    type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b36b22ae-7992-4d29-950d-2d010b06e0a6
-    m_ActionName: P1Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: cda3f381-d597-460c-9478-f0e1c662c5de
-    m_ActionName: P1Gameplay/Primary[/Keyboard/f]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 593a94a6-f992-4edf-b02a-adb84c1ff520
-    m_ActionName: P2Gameplay/Movement[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: bf5ecb18-983e-4d7e-a766-ab26c9e5de61
-    m_ActionName: P2Gameplay/Primary[/Keyboard/numpad0]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1310889645}
-        m_TargetAssemblyTypeName: RapidPrototyping.TicTacMix.Voleur.PlayerController,
-          Assembly-CSharp
-        m_MethodName: OnMovement
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ab9cacfa-635a-45c6-b9f9-0c68bd87e199
-    m_ActionName: Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/dpad,/XInputControllerWindows/leftStick]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1310889645}
-        m_TargetAssemblyTypeName: RapidPrototyping.TicTacMix.Voleur.PlayerController,
-          Assembly-CSharp
-        m_MethodName: OnPrimary
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 5694404d-bf09-4a96-9c2b-a1bf01eb7ab2
-    m_ActionName: Gameplay/Primary[/Keyboard/f,/Keyboard/numpad0,/XInputControllerWindows/buttonSouth]
-  m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Player 1
-  m_DefaultActionMap: Gameplay
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &1336586594
 GameObject:
   m_ObjectHideFlags: 0
@@ -4842,7 +4675,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -5101,7 +4934,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2037aea9ef1beb418c86201b59a739c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerInput: {fileID: 0}
   _isPlayerO: 0
   _keyToTake: 119
   _appearingCake: {fileID: 0}

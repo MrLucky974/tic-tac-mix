@@ -39,7 +39,7 @@
                 {
                     "name": "",
                     "id": "aadd12fa-59d5-460a-a40c-8a3e6e85d3c8",
-                    "path": "<Keyboard>/numpad0",
+                    "path": "<Keyboard>/rightCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "Player 2",
@@ -351,7 +351,7 @@
                 {
                     "name": "",
                     "id": "1a3c6134-8779-4119-8330-30ca4d0f6e78",
-                    "path": "<Keyboard>/numpad0",
+                    "path": "<Keyboard>/rightCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "Player 2",
@@ -630,7 +630,7 @@
                 {
                     "name": "",
                     "id": "25e66472-0314-47c6-a0f2-11ae34245384",
-                    "path": "<Keyboard>/numpad0",
+                    "path": "<Keyboard>/rightCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "Player 2",
@@ -646,6 +646,144 @@
                     "processors": "",
                     "groups": "Player 1;Player 2",
                     "action": "Primary",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Doors",
+            "id": "0aa66364-5f79-4be8-b27d-7b889016f922",
+            "actions": [
+                {
+                    "name": "Movement",
+                    "type": "Value",
+                    "id": "931bf65a-ecb8-40b3-a75b-6bacf2c73406",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "WASD",
+                    "id": "fa1da854-7b34-4938-8385-fe3150438ea8",
+                    "path": "2DVector(mode=1)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "a99eb858-c0fd-4afd-b76d-c102fc7a6a24",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player 1",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "2972cc2e-8472-4390-a7a1-f14cd57f7b19",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player 1",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "02078b18-02c6-45ea-8f39-47b12096ebb8",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player 1",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "a605cf01-57a8-4762-9e90-9fa99935771b",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player 1",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Arrows",
+                    "id": "f341ae95-efa5-41ce-8c95-3a0f0ff648d5",
+                    "path": "2DVector(mode=1)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "29a45db5-5022-4482-829d-9fd3c6398208",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player 2",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "1317bca9-e6ec-4ac0-ae22-349e6eeec326",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player 2",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "1800547a-e288-4eb8-9193-8b88762406ec",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player 2",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "28f39f60-e510-4c9d-b316-a2126462afe2",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player 2",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "2acef98f-67e1-4f1a-85b3-9acca3fddfb8",
+                    "path": "<Gamepad>/dpad",
+                    "interactions": "",
+                    "processors": "NormalizeVector2",
+                    "groups": "Player 1;Player 2",
+                    "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

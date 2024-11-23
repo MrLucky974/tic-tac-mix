@@ -1,15 +1,11 @@
+using RapidPrototyping.Utils.Input;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Users;
 
 namespace RapidPrototyping.TicTacMix.AvionEnPapier
 {
-    public class PaperPlane : MonoBehaviour, IPlayerControls
+    public class PaperPlane : MonoBehaviour, IPlayerPrimaryControls
     {
-        [Header("Input")]
-        [SerializeField] private PlayerInput m_playerInput;
-
         [Header("Move")]
         private Rigidbody _rb;
         [SerializeField] private float _jumpForce;
@@ -40,17 +36,7 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
 
         private void Start()
         {
-            m_playerInput.SwitchCurrentControlScheme(m_playerInput.defaultControlScheme);
-            InputUser.PerformPairingWithDevice(Keyboard.current, m_playerInput.user, InputUserPairingOptions.None);
-            InputUser.PerformPairingWithDevice(Mouse.current, m_playerInput.user, InputUserPairingOptions.None);
-            if (_isPlayerO)
-            {
-                if (Gamepad.all.Count >= 1)
-                {
-                    var gamepad = Gamepad.all[0];
-                    InputUser.PerformPairingWithDevice(gamepad, m_playerInput.user, InputUserPairingOptions.None);
-                }
-            }
+            GameInputHandler.SetReciever(gameObject, _isPlayerO ? 1 : 0);
 
             _gameManager = FindObjectOfType<GameManager>();
             _spawner = FindObjectOfType<Spawner>();
@@ -138,11 +124,6 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
         {
             yield return new WaitForSeconds(0.4f);
             _spawner.SpawnR();
-        }
-
-        public void OnMovement(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
-        {
-            // noop
         }
 
         public void OnPrimary(UnityEngine.InputSystem.InputAction.CallbackContext ctx)

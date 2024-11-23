@@ -1,14 +1,12 @@
+using RapidPrototyping.Utils.Input;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Users;
 
 namespace RapidPrototyping.TicTacMix.ArmWresling
 {
-    public class ArmWrestlingBehavior : MonoBehaviour, IPlayerControls
+    public class ArmWrestlingBehavior : MonoBehaviour, IPlayerMovementControls
     {
         [Header("Input")]
-        [SerializeField] private PlayerInput m_playerInput;
         [SerializeField] private int m_playerIndex;
 
         [Header("References")]
@@ -46,17 +44,7 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
         {
             InitDictionary();
 
-            m_playerInput.SwitchCurrentControlScheme(m_playerInput.defaultControlScheme);
-            InputUser.PerformPairingWithDevice(Keyboard.current, m_playerInput.user, InputUserPairingOptions.None);
-            InputUser.PerformPairingWithDevice(Mouse.current, m_playerInput.user, InputUserPairingOptions.None);
-            if (m_playerIndex > 0)
-            {
-                if (Gamepad.all.Count >= m_playerIndex)
-                {
-                    var gamepad = Gamepad.all[m_playerIndex - 1];
-                    InputUser.PerformPairingWithDevice(gamepad, m_playerInput.user, InputUserPairingOptions.None);
-                }
-            }
+            GameInputHandler.SetReciever(gameObject, m_playerIndex);
 
             // Initialize the starting keys for each player
             m_targetInput = m_playerIndex == 0 ? Inputs.UP : Inputs.RIGHT;
@@ -118,13 +106,11 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
             {
                 if (m_playerIndex == 0)
                 {
-                    Debug.Log("right input for player 1");
                     m_gameManager.IncreaseScore();
                     return true;
                 }
                 else if (m_playerIndex == 1)
                 {
-                    Debug.Log("right input for player 2");
                     m_gameManager.DecreaseScore();
                     return true;
                 }

@@ -1,13 +1,13 @@
 using LuckiusDev.Utils;
+using RapidPrototyping.Utils.Input;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Users;
 
 namespace RapidPrototyping.TicTacMix.MysteryDoors
 {
-    public class Player : MonoBehaviour, IPlayerControls
+    public class Player : MonoBehaviour, IPlayerMovementControls
     {
         public enum AnimationState
         {
@@ -18,7 +18,6 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
 
         [Header("Settings")]
         [SerializeField] private int m_playerIndex;
-        [SerializeField] private PlayerInput m_playerInput;
 
         [Space]
 
@@ -61,17 +60,7 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
             m_playerIndex = playerIndex;
             m_offset = playerIndex == 0 ? 0f : 1f;
 
-            m_playerInput.SwitchCurrentControlScheme($"Player {m_playerIndex + 1}");
-            InputUser.PerformPairingWithDevice(Keyboard.current, m_playerInput.user, InputUserPairingOptions.None);
-            InputUser.PerformPairingWithDevice(Mouse.current, m_playerInput.user, InputUserPairingOptions.None);
-            if (m_playerIndex > 0)
-            {
-                if (Gamepad.all.Count >= m_playerIndex)
-                {
-                    var gamepad = Gamepad.all[m_playerIndex - 1];
-                    InputUser.PerformPairingWithDevice(gamepad, m_playerInput.user, InputUserPairingOptions.None);
-                }
-            }
+            GameInputHandler.SetReciever(gameObject, m_playerIndex);
 
             transform.position = currentStage.GetPosition(m_offset);
             m_spriteRenderer.color = playerIndex == 0 ? m_blueColor : m_redColor;
@@ -206,11 +195,6 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
         {
             m_movementInput = ctx.ReadValue<Vector2>();
             m_movementActionsPressedThisFrame = ctx.action.WasPressedThisFrame();
-        }
-
-        public void OnPrimary(InputAction.CallbackContext ctx)
-        {
-            // noop
         }
 
         #endregion

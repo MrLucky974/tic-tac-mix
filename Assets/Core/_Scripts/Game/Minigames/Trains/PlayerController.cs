@@ -1,16 +1,12 @@
+using RapidPrototyping.Utils.Input;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Users;
 
 namespace RapidPrototyping.TicTacMix.Trains
 {
-    public class PlayerController : MonoBehaviour, IPlayerControls
+    public class PlayerController : MonoBehaviour, IPlayerMovementControls
     {
-        [Header("Input")]
-        [SerializeField] private PlayerInput m_playerInput;
-
         [Header("Player")]
         public bool _isPlayerO;
 
@@ -52,17 +48,7 @@ namespace RapidPrototyping.TicTacMix.Trains
 
         private void Start()
         {
-            m_playerInput.SwitchCurrentControlScheme(m_playerInput.defaultControlScheme);
-            InputUser.PerformPairingWithDevice(Keyboard.current, m_playerInput.user, InputUserPairingOptions.None);
-            InputUser.PerformPairingWithDevice(Mouse.current, m_playerInput.user, InputUserPairingOptions.None);
-            if (_isPlayerO)
-            {
-                if (Gamepad.all.Count >= 1)
-                {
-                    var gamepad = Gamepad.all[0];
-                    InputUser.PerformPairingWithDevice(gamepad, m_playerInput.user, InputUserPairingOptions.None);
-                }
-            }
+            GameInputHandler.SetReciever(gameObject, _isPlayerO ? 1 : 0);
 
             _gameManager = FindObjectOfType<GameManager>();
            // Grow();
@@ -142,11 +128,6 @@ namespace RapidPrototyping.TicTacMix.Trains
         public void OnMovement(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
         {
             m_movementInput = ctx.ReadValue<Vector2>();
-        }
-
-        public void OnPrimary(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
-        {
-            // noop
         }
     }
 }

@@ -1,4 +1,5 @@
 using LuckiusDev.Utils;
+using RapidPrototyping.Utils.Input;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -61,6 +62,8 @@ namespace RapidPrototyping.TicTacMix.ArmWresling
 
         private void Start()
         {
+            GameInputHandler.SetActionMap(GameInputHandler.ActionMapIndex.Doors);
+
             m_timer = new CountdownTimer(3f);
             m_timer.OnTimerStop += () =>
             {

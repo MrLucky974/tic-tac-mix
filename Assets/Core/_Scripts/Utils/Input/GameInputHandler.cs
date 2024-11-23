@@ -1,5 +1,4 @@
 using LuckiusDev.Utils;
-using RapidPrototyping.TicTacMix;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -151,9 +150,10 @@ namespace RapidPrototyping.Utils.Input
 
         public enum ActionMapIndex
         {
-            Default = 0,
+            Default   = 0,
             TicTacToe = 1,
             Tanks     = 2,
+            Doors     = 3,
         }
 
         public static void SetActionMap(ActionMapIndex index)
@@ -168,6 +168,9 @@ namespace RapidPrototyping.Utils.Input
                 case ActionMapIndex.Tanks:
                     mapIndex = "Tanks";
                     break;
+                case ActionMapIndex.Doors:
+                    mapIndex = "Doors";
+                    break;
             }
 
             foreach (var listener in Instance.m_listeners)
@@ -176,7 +179,7 @@ namespace RapidPrototyping.Utils.Input
             }
         }
 
-        public static void Register(IPlayerControls player, int playerIndex = 0)
+        public static void SetReciever(GameObject player, int playerIndex = 0)
         {
             int listenerCount = Instance.m_listeners.Length;
 
@@ -188,28 +191,7 @@ namespace RapidPrototyping.Utils.Input
 
             var listener = Instance.m_listeners[playerIndex];
             listener.Register(player);
-        }
-
-        public static void Unregister(int playerIndex = 0)
-        {
-            int listenerCount = Instance.m_listeners.Length;
-
-            if (playerIndex < 0 && playerIndex >= listenerCount)
-            {
-                Debug.LogError("");
-                return;
-            }
-
-            var listener = Instance.m_listeners[playerIndex];
-            listener.Unregister();
-        }
-
-        public static void UnregisterAll()
-        {
-            foreach (var listener in Instance.m_listeners)
-            {
-                listener.Unregister();
-            }
+            Debug.Log($"Setting reciever for player index {playerIndex} to {player}", listener);
         }
     }
 }

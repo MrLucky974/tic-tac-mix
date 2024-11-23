@@ -1,15 +1,11 @@
+using RapidPrototyping.Utils.Input;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Users;
 
 namespace RapidPrototyping.TicTacMix.Voleur
 {
-    public class PlayerController : MonoBehaviour, IPlayerControls
+    public class PlayerController : MonoBehaviour, IPlayerPrimaryControls
     {
-        [Header("Input")]
-        [SerializeField] private PlayerInput m_playerInput;
-
         [Header("PlayerTakeCake")]
         public bool _isPlayerO;
 
@@ -36,17 +32,7 @@ namespace RapidPrototyping.TicTacMix.Voleur
 
         private void Start()
         {
-            m_playerInput.SwitchCurrentControlScheme(m_playerInput.defaultControlScheme);
-            InputUser.PerformPairingWithDevice(Keyboard.current, m_playerInput.user, InputUserPairingOptions.None);
-            InputUser.PerformPairingWithDevice(Mouse.current, m_playerInput.user, InputUserPairingOptions.None);
-            if (_isPlayerO)
-            {
-                if (Gamepad.all.Count >= 1)
-                {
-                    var gamepad = Gamepad.all[0];
-                    InputUser.PerformPairingWithDevice(gamepad, m_playerInput.user, InputUserPairingOptions.None);
-                }
-            }
+            GameInputHandler.SetReciever(gameObject, _isPlayerO ? 1 : 0);
 
             _animator = GetComponent<Animator>();
         }
@@ -97,15 +83,9 @@ namespace RapidPrototyping.TicTacMix.Voleur
             _isTakingCake = false;
         }
 
-        public void OnMovement(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
-        {
-            var input = ctx.ReadValue<Vector2>();
-            m_movementPressedThisFrame = (input.y > 0f && ctx.action.WasPressedThisFrame()) | m_movementPressedThisFrame;
-        }
-
         public void OnPrimary(UnityEngine.InputSystem.InputAction.CallbackContext ctx)
         {
-            // noop
+            m_movementPressedThisFrame |= ctx.action.WasPressedThisFrame();
         }
     }
 }

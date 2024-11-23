@@ -24,7 +24,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
         private void Start()
         {
             Debug.Log($"{name} Start()", this);
-            GameInputHandler.Register(this, m_playerIndex);
+            GameInputHandler.SetReciever(gameObject, m_playerIndex);
 
             m_cannon.Initialize();
             m_character.Initialize(m_cannon.Cannon);
@@ -40,7 +40,6 @@ namespace RapidPrototyping.TicTacMix.Tanks
 
         private void OnDestroy()
         {
-            GameInputHandler.Unregister(m_playerIndex);
             m_health.OnDeath -= HandleDeath;
         }
 

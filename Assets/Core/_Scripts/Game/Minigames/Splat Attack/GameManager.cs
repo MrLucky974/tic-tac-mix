@@ -1,4 +1,5 @@
 using LuckiusDev.Utils;
+using RapidPrototyping.Utils.Input;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -52,6 +53,9 @@ namespace RapidPrototyping.TicTacMix.SplatAttack
         public override void Initialize()
         {
             base.Initialize();
+
+            GameInputHandler.SetActionMap(GameInputHandler.ActionMapIndex.Default);
+
             m_worldRect = JMath.GetWorldSpaceRect(m_outline);
             InitializeCoverageCalculation();
 

@@ -1,6 +1,5 @@
+using RapidPrototyping.Utils.Input;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Users;
 using UnityEngine.UI;
 
 namespace RapidPrototyping.TicTacMix.Targets
@@ -9,7 +8,6 @@ namespace RapidPrototyping.TicTacMix.Targets
     {
         [Header("Settings")]
         [SerializeField] private int m_playerIndex;
-        [SerializeField] private PlayerInput m_playerInput;
 
         [Space]
 
@@ -47,17 +45,7 @@ namespace RapidPrototyping.TicTacMix.Targets
             UpdateWeapon();
             GameManager.Instance.OnGameEnded += HandleGameEnded;
 
-            m_playerInput.SwitchCurrentControlScheme(m_playerInput.defaultControlScheme);
-            InputUser.PerformPairingWithDevice(Keyboard.current, m_playerInput.user, InputUserPairingOptions.None);
-            InputUser.PerformPairingWithDevice(Mouse.current, m_playerInput.user, InputUserPairingOptions.None);
-            if (m_playerIndex > 0)
-            {
-                if (Gamepad.all.Count >= m_playerIndex)
-                {
-                    var gamepad = Gamepad.all[m_playerIndex - 1];
-                    InputUser.PerformPairingWithDevice(gamepad, m_playerInput.user, InputUserPairingOptions.None);
-                }
-            }
+            GameInputHandler.SetReciever(gameObject, m_playerIndex);
         }
 
         private void HandleGameEnded(GameData data)

@@ -24,8 +24,8 @@ namespace RapidPrototyping.Utils.Input
             get { return m_playerInput; }
         }
 
-        private IPlayerControls m_playerControls;
-        public IPlayerControls PlayerControls
+        private GameObject m_playerControls;
+        public GameObject PlayerControls
         {
             get { return m_playerControls; }
         }
@@ -87,7 +87,7 @@ namespace RapidPrototyping.Utils.Input
             m_playerInput.notificationBehavior = PlayerNotifications.InvokeCSharpEvents;
         }
 
-        public void Register(IPlayerControls player)
+        public void Register(GameObject player)
         {
             if (player == null)
             {
@@ -96,11 +96,6 @@ namespace RapidPrototyping.Utils.Input
             }
 
             m_playerControls = player;
-        }
-
-        public void Unregister()
-        {
-            m_playerControls = null;
         }
 
         public void SetInputMap(string actionMap)
@@ -163,17 +158,30 @@ namespace RapidPrototyping.Utils.Input
 
         private void OnMovementInternal(InputAction.CallbackContext ctx)
         {
-            m_playerControls?.OnMovement(ctx);
+            if (m_playerControls == null)
+            {
+                return;
+            }
+
+            var components = m_playerControls.GetComponentsInChildren<IPlayerMovementControls>();
+            foreach (var component in components)
+            {
+                component?.OnMovement(ctx);
+            }
         }
 
         private void OnPrimaryInternal(InputAction.CallbackContext ctx)
         {
-            m_playerControls?.OnPrimary(ctx);
-        }
+            if (m_playerControls == null)
+            {
+                return;
+            }
 
-        internal GameObject GetPlayerControlsGameObject()
-        {
-            return (m_playerControls as MonoBehaviour)?.gameObject;
+            var components = m_playerControls.GetComponentsInChildren<IPlayerPrimaryControls>();
+            foreach (var component in components)
+            {
+                component?.OnPrimary(ctx);
+            }
         }
 
         public static InputListener Create()
@@ -223,7 +231,7 @@ namespace RapidPrototyping.Utils.Input
             DrawHorizontalLabel("Current Control Scheme", listener.PlayerInput.currentControlScheme, grayStyle);
 
             // Display "Connected GameObject" and its value in one horizontal group
-            var playerControlsGameObject = listener.GetPlayerControlsGameObject();
+            var playerControlsGameObject = listener.PlayerControls;
             string gameObjectName = playerControlsGameObject != null ? playerControlsGameObject.name : "None";
             GUILayout.Space(10);
             DrawHorizontalLabel("Connected GameObject", gameObjectName, grayStyle);

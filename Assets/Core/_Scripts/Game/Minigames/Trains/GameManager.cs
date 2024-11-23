@@ -1,4 +1,5 @@
 using LuckiusDev.Utils;
+using RapidPrototyping.Utils.Input;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -45,6 +46,7 @@ namespace RapidPrototyping.TicTacMix.Trains
             _canSpawn = false;
             StartCoroutine(Countdown());
 
+            GameInputHandler.SetActionMap(GameInputHandler.ActionMapIndex.Default);
             m_timer = new CountdownTimer(3f);
             m_timer.OnTimerStop += () =>
             {

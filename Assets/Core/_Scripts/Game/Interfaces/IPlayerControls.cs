@@ -1,10 +1,6 @@
-using UnityEngine.InputSystem;
-
 namespace RapidPrototyping.TicTacMix
 {
-    public interface IPlayerControls
+    public interface IPlayerControls : IPlayerMovementControls, IPlayerPrimaryControls
     {
-        public void OnMovement(InputAction.CallbackContext ctx);
-        public void OnPrimary(InputAction.CallbackContext ctx);
     }
 }
