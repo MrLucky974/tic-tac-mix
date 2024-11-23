@@ -1,7 +1,7 @@
 using CartoonFX;
+using RapidPrototyping.Utils.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Users;
 
 namespace RapidPrototyping.TicTacMix.Tanks
 {
@@ -9,7 +9,6 @@ namespace RapidPrototyping.TicTacMix.Tanks
     {
         [Header("Settings")]
         [SerializeField] private int m_playerIndex;
-        [SerializeField] private PlayerInput m_playerInput;
 
         [Header("References")]
         [SerializeField] private TankCharacter m_character;
@@ -24,17 +23,8 @@ namespace RapidPrototyping.TicTacMix.Tanks
 
         private void Start()
         {
-            m_playerInput.SwitchCurrentControlScheme(m_playerInput.defaultControlScheme);
-            InputUser.PerformPairingWithDevice(Keyboard.current, m_playerInput.user, InputUserPairingOptions.None);
-            InputUser.PerformPairingWithDevice(Mouse.current, m_playerInput.user, InputUserPairingOptions.None);
-            if (m_playerIndex > 0)
-            {
-                if (Gamepad.all.Count >= m_playerIndex)
-                {
-                    var gamepad = Gamepad.all[m_playerIndex - 1];
-                    InputUser.PerformPairingWithDevice(gamepad, m_playerInput.user, InputUserPairingOptions.None);
-                }
-            }
+            Debug.Log($"{name} Start()", this);
+            GameInputHandler.Register(this, m_playerIndex);
 
             m_cannon.Initialize();
             m_character.Initialize(m_cannon.Cannon);
@@ -50,6 +40,7 @@ namespace RapidPrototyping.TicTacMix.Tanks
 
         private void OnDestroy()
         {
+            GameInputHandler.Unregister(m_playerIndex);
             m_health.OnDeath -= HandleDeath;
         }
 

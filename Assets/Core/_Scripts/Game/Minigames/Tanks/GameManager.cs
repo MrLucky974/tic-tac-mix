@@ -1,4 +1,5 @@
 using LuckiusDev.Utils;
+using RapidPrototyping.Utils.Input;
 using UnityEngine;
 
 namespace RapidPrototyping.TicTacMix.Tanks
@@ -22,6 +23,8 @@ namespace RapidPrototyping.TicTacMix.Tanks
         public override void Initialize()
         {
             base.Initialize();
+            GameInputHandler.SetActionMap(GameInputHandler.ActionMapIndex.Tanks);
+
             m_timer = new CountdownTimer(3f);
             m_timer.OnTimerStop += () =>
             {

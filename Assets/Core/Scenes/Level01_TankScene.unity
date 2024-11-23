@@ -5127,6 +5127,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1224330214 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1450236997063720062, guid: 3cc0584d9ab07c34081532c406571b56,
+    type: 3}
+  m_PrefabInstance: {fileID: 8574073015942415177}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb15457fb45ed764dad48bd0257f288a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1242517123
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9288,6 +9300,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1450236997063720062, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_playerInput
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5182265070086672864, guid: 3cc0584d9ab07c34081532c406571b56,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9337,6 +9354,141 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_DefaultActionMap
+      value: Default
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_ActionId
+      value: ab9cacfa-635a-45c6-b9f9-0c68bd87e199
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionId
+      value: 5694404d-bf09-4a96-9c2b-a1bf01eb7ab2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionId
+      value: de383272-5e34-4d53-9f74-9bd3460908db
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionId
+      value: 8b5d02a0-32ed-4ff7-b8a9-90c52fc0f329
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionId
+      value: 0e32aee0-d2a1-4f9d-8e3c-6ac8427a4634
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
+      value: 9f02b5bb-226a-44f9-ba54-8302a7fab3a1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_ActionName
+      value: Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionName
+      value: Gameplay/Primary[/Keyboard/f,/Keyboard/numpad0]
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionName
+      value: Tic Tac Toe/Movement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionName
+      value: Tic Tac Toe/Primary
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionName
+      value: Tanks/Movement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
+      value: Tanks/Primary
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1224330214}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1224330214}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnMovement
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnPrimary
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RapidPrototyping.TicTacMix.Tanks.Tank, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RapidPrototyping.TicTacMix.Tanks.Tank, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809954839167864813, guid: 3cc0584d9ab07c34081532c406571b56,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8495879053126320781, guid: 3cc0584d9ab07c34081532c406571b56,
         type: 3}
