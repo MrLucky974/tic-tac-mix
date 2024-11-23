@@ -507,18 +507,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "79dd60c4-27ec-489f-8cc8-60433f0c134c",
-                    "path": "<Gamepad>/dpad",
-                    "interactions": "",
-                    "processors": "NormalizeVector2",
-                    "groups": "Player 1;Player 2",
-                    "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "Gamepad",
+                    "name": "Stick",
                     "id": "609cef95-0221-4f72-be64-cab3569212c6",
                     "path": "2DVector(mode=1)",
                     "interactions": "",
@@ -564,6 +553,61 @@
                 {
                     "name": "right",
                     "id": "758a887e-2007-4b66-ad96-6eb35b51f8be",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player 1;Player 2",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "D-Pad",
+                    "id": "7e9d6a4a-0261-44b7-a423-e7283ba71bdc",
+                    "path": "2DVector(mode=1)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "d9a90a24-e312-48ce-a060-28da3a4d2e80",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player 1;Player 2",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "cb4420b3-8e5f-4e3a-8111-ea97696bca57",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player 1;Player 2",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "bab58b89-52f1-4fd0-b8e8-c5810a9c388c",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player 1;Player 2",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "9e8793f2-6ab3-4c0b-866a-d70cd155dbcd",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",

@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace RapidPrototyping.Utils.Input
 {
+    [DefaultExecutionOrder(-1000)]
     [RequireComponent(typeof(PlayerInputManager)), DisallowMultipleComponent]
     public sealed class GameInputHandler : PersistentSingleton<GameInputHandler>
     {
@@ -12,6 +13,8 @@ namespace RapidPrototyping.Utils.Input
 
         [SerializeField] private PlayerInputManager m_inputManager;
         [SerializeField] private InputActionAsset m_inputActions;
+        [Space]
+        [SerializeField] private InputListener m_inputListenerPrefab;
 
         private InputListener[] m_listeners;
 
@@ -25,8 +28,10 @@ namespace RapidPrototyping.Utils.Input
             InputSystem.onDeviceChange -= OnDeviceChange;
         }
 
-        private void Start()
+        protected override void Awake()
         {
+            base.Awake();
+
             if (m_inputManager == null)
                 m_inputManager = GetComponent<PlayerInputManager>();
 
@@ -39,13 +44,26 @@ namespace RapidPrototyping.Utils.Input
             }
 
             m_listeners = new InputListener[count];
-            for (int i = 0; i < count; i++)
+            if (m_inputListenerPrefab != null)
             {
-                var listener = InputListener.Create();
-                listener.transform.SetParent(transform);
-                m_listeners[i] = listener;
-                listener.Initialize(m_inputActions);
+                for (int i = 0; i < count; i++)
+                {
+                    var listener = Instantiate(m_inputListenerPrefab, transform);
+                    m_listeners[i] = listener;
+                    listener.Initialize();
+                }
             }
+            else
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    var listener = InputListener.Create();
+                    listener.transform.SetParent(transform);
+                    m_listeners[i] = listener;
+                    listener.Initialize(m_inputActions);
+                }
+            }
+            
             DeterminePlayerControls();
         }
 

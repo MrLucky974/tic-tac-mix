@@ -668,6 +668,8 @@ MonoBehaviour:
   m_inputManager: {fileID: 1897129058}
   m_inputActions: {fileID: -944628639613478452, guid: 646e2a29696ff0b4993c7c864f22bac2,
     type: 3}
+  m_inputListenerPrefab: {fileID: 8978521039478274280, guid: 5510fe5c157869041b7ef39b166db465,
+    type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

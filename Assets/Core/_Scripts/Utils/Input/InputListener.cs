@@ -3,23 +3,56 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 
+
+
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 namespace RapidPrototyping.Utils.Input
 {
     [RequireComponent(typeof(PlayerInput)), DisallowMultipleComponent]
-    public sealed class InputListener : MonoBehaviour, IPlayerControls
+    public sealed class InputListener : MonoBehaviour
     {
         private const string MOVEMENT_ACTION_IDENTIFIER = "Movement";
         private const string PRIMARY_ACTION_IDENTIFIER = "Primary";
 
         [SerializeField] private PlayerInput m_playerInput;
+        public PlayerInput PlayerInput
+        {
+            get { return m_playerInput; }
+        }
+
         private IPlayerControls m_playerControls;
+        public IPlayerControls PlayerControls
+        {
+            get { return m_playerControls; }
+        }
+
+        private InputActionMap m_currentActionMap;
 
         public void Initialize(InputActionAsset inputActions)
         {
-            m_playerInput.actions = inputActions;
-            var index = m_playerInput.playerIndex + 1;
-            m_playerInput.SwitchCurrentControlScheme($"Player {index}");
+            // NOTE: This method is called after Awake().
             Debug.Log($"Initialize() {name}");
+            if (inputActions != null)
+            {
+                m_playerInput.actions = inputActions;
+            }
+            var index = m_playerInput.playerIndex + 1;
+
+            // Set initial control scheme
+            string controlScheme = $"Player {index}";
+            m_playerInput.SwitchCurrentControlScheme(controlScheme);
+
+            // Set initial action map
+            SetInputMap("Default");
+        }
+
+        public void Initialize()
+        {
+            Initialize(null);
         }
 
         private void Awake()
@@ -31,28 +64,27 @@ namespace RapidPrototyping.Utils.Input
 
             var index = m_playerInput.playerIndex + 1;
             name = $"InputListener_{index:000}";
+            Debug.Log($"{name} is Awake()");
 
             m_playerInput.neverAutoSwitchControlSchemes = true;
             m_playerInput.notificationBehavior = PlayerNotifications.InvokeCSharpEvents;
-            
-            Debug.Log($"{name} is Awake()");
         }
 
-        private void Start()
+        private void OnEnable()
         {
-            // Subscribe to input events
             SubscribeToInputActions();
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
-            UnsubscribeToInputActions();
+            UnsubscribeFromInputActions();
         }
 
         private void Reset()
         {
             m_playerInput = GetComponent<PlayerInput>();
             m_playerInput.neverAutoSwitchControlSchemes = true;
+            m_playerInput.notificationBehavior = PlayerNotifications.InvokeCSharpEvents;
         }
 
         public void Register(IPlayerControls player)
@@ -73,7 +105,15 @@ namespace RapidPrototyping.Utils.Input
 
         public void SetInputMap(string actionMap)
         {
+            // Unsubscribe from old action map
+            UnsubscribeFromInputActions();
+
+            // Switch to new action map
             m_playerInput.SwitchCurrentActionMap(actionMap);
+            m_currentActionMap = m_playerInput.actions.FindActionMap(actionMap);
+
+            // Subscribe to new action map
+            SubscribeToInputActions();
         }
 
         public void PairDevice(InputDevice device)
@@ -83,56 +123,121 @@ namespace RapidPrototyping.Utils.Input
 
         private void SubscribeToInputActions()
         {
-            // Ensure actions exist before subscribing
-            var movementAction = m_playerInput.actions[MOVEMENT_ACTION_IDENTIFIER];
-            var primaryAction = m_playerInput.actions[PRIMARY_ACTION_IDENTIFIER];
+            if (m_currentActionMap == null) return;
+
+            var movementAction = m_currentActionMap.FindAction(MOVEMENT_ACTION_IDENTIFIER);
+            var primaryAction = m_currentActionMap.FindAction(PRIMARY_ACTION_IDENTIFIER);
 
             if (movementAction != null)
             {
-                movementAction.performed += ctx => OnMovement(ctx);
-                movementAction.canceled += ctx => OnMovement(ctx);
+                movementAction.performed += OnMovementInternal;
+                movementAction.canceled += OnMovementInternal;
             }
 
             if (primaryAction != null)
             {
-                primaryAction.performed += ctx => OnPrimary(ctx);
-                primaryAction.canceled += ctx => OnPrimary(ctx);
+                primaryAction.performed += OnPrimaryInternal;
+                primaryAction.canceled += OnPrimaryInternal;
             }
         }
 
-        private void UnsubscribeToInputActions()
+        private void UnsubscribeFromInputActions()
         {
-            var movementAction = m_playerInput.actions[MOVEMENT_ACTION_IDENTIFIER];
-            var primaryAction = m_playerInput.actions[PRIMARY_ACTION_IDENTIFIER];
+            if (m_currentActionMap == null) return;
+
+            var movementAction = m_currentActionMap.FindAction(MOVEMENT_ACTION_IDENTIFIER);
+            var primaryAction = m_currentActionMap.FindAction(PRIMARY_ACTION_IDENTIFIER);
 
             if (movementAction != null)
             {
-                movementAction.performed -= ctx => OnMovement(ctx);
-                movementAction.canceled -= ctx => OnMovement(ctx);
+                movementAction.performed -= OnMovementInternal;
+                movementAction.canceled -= OnMovementInternal;
             }
 
             if (primaryAction != null)
             {
-                primaryAction.performed -= ctx => OnPrimary(ctx);
-                primaryAction.canceled -= ctx => OnPrimary(ctx);
+                primaryAction.performed -= OnPrimaryInternal;
+                primaryAction.canceled -= OnPrimaryInternal;
             }
         }
 
-        public void OnMovement(InputAction.CallbackContext ctx)
+        private void OnMovementInternal(InputAction.CallbackContext ctx)
         {
             m_playerControls?.OnMovement(ctx);
         }
 
-        public void OnPrimary(InputAction.CallbackContext ctx)
+        private void OnPrimaryInternal(InputAction.CallbackContext ctx)
         {
             m_playerControls?.OnPrimary(ctx);
+        }
+
+        internal GameObject GetPlayerControlsGameObject()
+        {
+            return (m_playerControls as MonoBehaviour)?.gameObject;
         }
 
         public static InputListener Create()
         {
             GameObject go = new();
-            var listener = go.AddComponent<InputListener>();
-            return listener;
+            return go.AddComponent<InputListener>();
         }
     }
+
+#if UNITY_EDITOR
+
+    [CustomEditor(typeof(InputListener))]
+    public class InputListenerInspector : Editor
+    {
+        private void OnEnable()
+        {
+            EditorApplication.update += OnUpdate;
+        }
+
+        private void OnDisable()
+        {
+            EditorApplication.update -= OnUpdate;
+        }
+
+        private void OnUpdate()
+        {
+            Repaint();
+        }
+
+        public override void OnInspectorGUI()
+        {
+            var listener = (InputListener)target;
+            DrawDefaultInspector();
+
+            // Add "Debug" header
+            GUILayout.Space(10);
+            GUILayout.Label("Debug", EditorStyles.boldLabel);
+
+            // Create gray style
+            GUIStyle grayStyle = new GUIStyle { normal = { textColor = Color.gray } };
+
+            // Display "Current Action Map" and its name in one horizontal group
+            string currentActionMapName = listener.PlayerInput.currentActionMap != null ? listener.PlayerInput.currentActionMap.name : "None";
+            DrawHorizontalLabel("Current Action Map", currentActionMapName, grayStyle);
+
+            GUILayout.Space(10);
+            DrawHorizontalLabel("Current Control Scheme", listener.PlayerInput.currentControlScheme, grayStyle);
+
+            // Display "Connected GameObject" and its value in one horizontal group
+            var playerControlsGameObject = listener.GetPlayerControlsGameObject();
+            string gameObjectName = playerControlsGameObject != null ? playerControlsGameObject.name : "None";
+            GUILayout.Space(10);
+            DrawHorizontalLabel("Connected GameObject", gameObjectName, grayStyle);
+        }
+
+        // Helper method to draw two labels horizontally
+        private void DrawHorizontalLabel(string label, string value, GUIStyle style)
+        {
+            GUILayout.BeginHorizontal();
+            GUILayout.Label(label, style);
+            GUILayout.Label(value, style);
+            GUILayout.EndHorizontal();
+        }
+    }
+
+#endif
 }
