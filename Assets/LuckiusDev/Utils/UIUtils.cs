@@ -30,5 +30,23 @@ namespace LuckiusDev.Utils
             float currentValue = slider.value;
             slider.value = Mathf.Lerp(currentValue, targetValue, delta);
         }
+
+        public static void Open(this CanvasGroup group)
+        {
+            group.alpha = 1f;
+            group.interactable = true;
+            group.blocksRaycasts = true;
+            var transform = group.GetComponent<RectTransform>();
+            transform.localScale = Vector3.one;
+        }
+
+        public static void Close(this CanvasGroup group)
+        {
+            group.alpha = 0f;
+            group.interactable = false;
+            group.blocksRaycasts = false;
+            var transform = group.GetComponent<RectTransform>();
+            transform.localScale = Vector3.zero;
+        }
     }
 }

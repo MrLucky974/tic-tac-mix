@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using LuckiusDev.Utils;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -39,6 +40,11 @@ namespace RapidPrototyping.TicTacMix.Main
         private Coroutine m_movementCoroutine;
         private bool m_canSelectMinigame = true;
 
+        [Header("Settings")]
+        [SerializeField] private CanvasGroup m_settingsGroup;
+
+        private bool m_lockInput = false;
+
         #region Input Variables
 
         private Vector2 m_movementInput;
@@ -61,6 +67,21 @@ namespace RapidPrototyping.TicTacMix.Main
 
             UpdateGrid(GridManager.Grid);
             HandlePlayerTurn(GameDataHandler.CurrentTurn);
+        }
+
+        private void Update()
+        {
+            if (m_lockInput)
+                return;
+
+            MoveCursor();
+            HandlePrimaryPressed();
+        }
+
+        private void LateUpdate()
+        {
+            m_movementPressedThisFrame = false;
+            m_primaryPressedThisFrame = false;
         }
 
         private void HandlePlayerTurn(GameDataHandler.Turn turn)
@@ -136,11 +157,6 @@ namespace RapidPrototyping.TicTacMix.Main
             }
         }
 
-        private void Update()
-        {
-            MoveCursor();
-        }
-
         private void MoveCursor()
         {
             if (m_movementInput.magnitude > 0f && m_movementCoroutine == null)
@@ -159,7 +175,10 @@ namespace RapidPrototyping.TicTacMix.Main
                 GameDataHandler.DataHolder.GridPosition = m_gridPosition;
                 AnimateCursor();
             }
+        }
 
+        private void HandlePrimaryPressed()
+        {
             if (m_primaryPressedThisFrame && m_canSelectMinigame)
             {
                 bool cellEmpty = GridManager.IsCellEmpty(m_gridPosition.x,
@@ -167,14 +186,9 @@ namespace RapidPrototyping.TicTacMix.Main
                 if (cellEmpty)
                 {
                     GameDataHandler.SelectRandomMinigame();
+                    m_canSelectMinigame = false;
                 }
             }
-        }
-
-        private void LateUpdate()
-        {
-            m_movementPressedThisFrame = false;
-            m_primaryPressedThisFrame = false;
         }
 
         private IEnumerator UpdateCursorPosition()
@@ -214,6 +228,8 @@ namespace RapidPrototyping.TicTacMix.Main
             m_movementCoroutine = StartCoroutine(nameof(UpdateCursorPosition));
         }
 
+        #region Input Event Handlers
+
         public void OnMovement(InputAction.CallbackContext ctx)
         {
             m_movementInput = ctx.ReadValue<Vector2>();
@@ -223,6 +239,20 @@ namespace RapidPrototyping.TicTacMix.Main
         public void OnPrimary(InputAction.CallbackContext ctx)
         {
             m_primaryPressedThisFrame |= ctx.action.WasPressedThisFrame();
+        }
+
+        #endregion
+
+        public void OpenSettingsMenu()
+        {
+            m_settingsGroup.Open();
+            m_lockInput = true;
+        }
+
+        public void CloseSettingsMenu()
+        {
+            m_settingsGroup.Close();
+            m_lockInput = false;
         }
     }
 }
