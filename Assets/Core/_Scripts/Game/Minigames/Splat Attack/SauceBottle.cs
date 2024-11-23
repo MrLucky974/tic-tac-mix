@@ -1,6 +1,5 @@
+using RapidPrototyping.Utils.Input;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Users;
 
 namespace RapidPrototyping.TicTacMix.SplatAttack
 {
@@ -11,7 +10,6 @@ namespace RapidPrototyping.TicTacMix.SplatAttack
 
         [Header("Settings")]
         [SerializeField] private PlayerIdentifier m_identifier;
-        [SerializeField] private PlayerInput m_playerInput;
 
         [Header("References")]
         [SerializeField] private Splat m_splatPrefab;
@@ -41,17 +39,8 @@ namespace RapidPrototyping.TicTacMix.SplatAttack
 
         private void Start()
         {
-            m_playerInput.SwitchCurrentControlScheme(m_playerInput.defaultControlScheme);
-            InputUser.PerformPairingWithDevice(Keyboard.current, m_playerInput.user, InputUserPairingOptions.None);
-            InputUser.PerformPairingWithDevice(Mouse.current, m_playerInput.user, InputUserPairingOptions.None);
-            if (m_identifier == PlayerIdentifier.PLAYER_TWO)
-            {
-                if (Gamepad.all.Count >= 1)
-                {
-                    var gamepad = Gamepad.all[0];
-                    InputUser.PerformPairingWithDevice(gamepad, m_playerInput.user, InputUserPairingOptions.None);
-                }
-            }
+            int playerIndex = m_identifier == PlayerIdentifier.PLAYER_ONE ? 0 : 1;
+            GameInputHandler.SetReciever(gameObject, playerIndex);
 
             // Set the player color based on the identifier
             var color = GameManager.GetColor(m_identifier);

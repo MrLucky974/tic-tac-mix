@@ -1335,8 +1335,158 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
         type: 3}
+      propertyPath: m_DefaultActionMap
+      value: Default
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
       propertyPath: m_DefaultControlScheme
       value: Player 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_ActionId
+      value: ab9cacfa-635a-45c6-b9f9-0c68bd87e199
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionId
+      value: 5694404d-bf09-4a96-9c2b-a1bf01eb7ab2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionId
+      value: de383272-5e34-4d53-9f74-9bd3460908db
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionId
+      value: 8b5d02a0-32ed-4ff7-b8a9-90c52fc0f329
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionId
+      value: 0e32aee0-d2a1-4f9d-8e3c-6ac8427a4634
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
+      value: 9f02b5bb-226a-44f9-ba54-8302a7fab3a1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionId
+      value: 931bf65a-ecb8-40b3-a75b-6bacf2c73406
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_ActionName
+      value: Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/dpad,/XInputControllerWindows/leftStick]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionName
+      value: Gameplay/Primary[/Keyboard/f,/Keyboard/numpad0,/XInputControllerWindows/buttonSouth]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionName
+      value: Tic Tac Toe/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/dpad]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionName
+      value: Tic Tac Toe/Primary[/Keyboard/f,/Keyboard/numpad0,/XInputControllerWindows/buttonSouth]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionName
+      value: Tanks/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/leftStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftTrigger,/XInputControllerWindows/rightTrigger,/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/down]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
+      value: Tanks/Primary[/Keyboard/f,/Keyboard/numpad0,/XInputControllerWindows/buttonSouth]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[6].m_ActionName
+      value: Doors/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/dpad]
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 821292750}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 821292750}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnMovement
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnPrimary
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RapidPrototyping.TicTacMix.SplatAttack.SauceBottle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RapidPrototyping.TicTacMix.SplatAttack.SauceBottle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916825205574340500, guid: 7f43d6638f90d7943995c1711f03a120,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2766293691185617447, guid: 7f43d6638f90d7943995c1711f03a120,
         type: 3}
@@ -1350,34 +1500,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7039438723299976907, guid: 7f43d6638f90d7943995c1711f03a120,
         type: 3}
-      propertyPath: m_splatSounds.Array.size
-      value: 4
+      propertyPath: m_playerInput
+      value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 7039438723299976907, guid: 7f43d6638f90d7943995c1711f03a120,
-        type: 3}
-      propertyPath: m_splatSounds.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: ad18305f9ed0b134b9ca2bc16a29d42e, type: 3}
-    - target: {fileID: 7039438723299976907, guid: 7f43d6638f90d7943995c1711f03a120,
-        type: 3}
-      propertyPath: m_splatSounds.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: 9616ddf9ec2648c4ba082590cca3cf47, type: 3}
-    - target: {fileID: 7039438723299976907, guid: 7f43d6638f90d7943995c1711f03a120,
-        type: 3}
-      propertyPath: m_splatSounds.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: 0939098e1d421d84d880f3a9f8005bb1, type: 3}
-    - target: {fileID: 7039438723299976907, guid: 7f43d6638f90d7943995c1711f03a120,
-        type: 3}
-      propertyPath: m_splatSounds.Array.data[3]
-      value: 
-      objectReference: {fileID: 8300000, guid: 1826b3624dc56784982bf90d5cee0254, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f43d6638f90d7943995c1711f03a120, type: 3}
+--- !u!114 &821292750 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7039438723299976907, guid: 7f43d6638f90d7943995c1711f03a120,
+    type: 3}
+  m_PrefabInstance: {fileID: 821292749}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67df98d55d14a1e4fb362aea6aec5feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &921116250
 GameObject:
   m_ObjectHideFlags: 0

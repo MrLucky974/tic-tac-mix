@@ -1,19 +1,16 @@
 ﻿using LuckiusDev.Utils;
+using RapidPrototyping.Utils.Input;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Users;
 using UnityEngine.UI;
 
 namespace RapidPrototyping.TicTacMix.Main
 {
     public class GameCanvas : MonoBehaviour, IPlayerControls
     {
-        [Header("Input")]
-        [SerializeField] private PlayerInput m_playerInput;
-
         [Header("Main")]
         [SerializeField] private Vector2 m_worldCellSize;
 
@@ -99,8 +96,6 @@ namespace RapidPrototyping.TicTacMix.Main
 
                     // Update cursor color
                     m_cursor.color = m_crossColor;
-
-                    m_playerInput.SwitchCurrentControlScheme("Player 1");
                     break;
                 case GameDataHandler.Turn.PLAYER_2:
                     // Update information labels text
@@ -113,18 +108,11 @@ namespace RapidPrototyping.TicTacMix.Main
 
                     // Update cursor color
                     m_cursor.color = m_circleColor;
-
-                    m_playerInput.SwitchCurrentControlScheme("Player 2");
-                    if (Gamepad.all.Count >= 1)
-                    {
-                        var gamepad = Gamepad.all[0];
-                        InputUser.PerformPairingWithDevice(gamepad, m_playerInput.user, InputUserPairingOptions.None);
-                    }
                     break;
             }
 
-            InputUser.PerformPairingWithDevice(Keyboard.current, m_playerInput.user, InputUserPairingOptions.None);
-            InputUser.PerformPairingWithDevice(Mouse.current, m_playerInput.user, InputUserPairingOptions.None);
+            GameInputHandler.SetReciever(gameObject, turn == GameDataHandler.Turn.PLAYER_2 ? 1 : 0);
+            GameInputHandler.SetActionMap(GameInputHandler.ActionMapIndex.TicTacToe);
         }
 
         private void UpdateGrid(GridManager.Symbol[] grid)

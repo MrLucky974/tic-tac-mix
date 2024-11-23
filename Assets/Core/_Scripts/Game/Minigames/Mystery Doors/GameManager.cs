@@ -1,4 +1,5 @@
 using LuckiusDev.Utils;
+using RapidPrototyping.Utils.Input;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -47,6 +48,8 @@ namespace RapidPrototyping.TicTacMix.MysteryDoors
 
             // Generate the tower
             GenerateTower();
+
+            GameInputHandler.SetActionMap(GameInputHandler.ActionMapIndex.Doors);
 
             // Spawn the players in the top floor
             SetupPlayers();

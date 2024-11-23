@@ -95,7 +95,6 @@ GameObject:
   - component: {fileID: 5686291656462697693}
   - component: {fileID: 2625071664541012855}
   - component: {fileID: 1187611044657904515}
-  - component: {fileID: 6635185603428043701}
   - component: {fileID: 5377586974075744185}
   m_Layer: 0
   m_Name: Player
@@ -182,87 +181,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 7
---- !u!114 &6635185603428043701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5193072819991922289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 646e2a29696ff0b4993c7c864f22bac2,
-    type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b36b22ae-7992-4d29-950d-2d010b06e0a6
-    m_ActionName: P1Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: cda3f381-d597-460c-9478-f0e1c662c5de
-    m_ActionName: P1Gameplay/Primary[/Keyboard/f]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 593a94a6-f992-4edf-b02a-adb84c1ff520
-    m_ActionName: P2Gameplay/Movement[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: bf5ecb18-983e-4d7e-a766-ab26c9e5de61
-    m_ActionName: P2Gameplay/Primary[/Keyboard/numpad0]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5377586974075744185}
-        m_TargetAssemblyTypeName: RapidPrototyping.TicTacMix.MysteryDoors.Player,
-          Assembly-CSharp
-        m_MethodName: OnMovement
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ab9cacfa-635a-45c6-b9f9-0c68bd87e199
-    m_ActionName: Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/dpad]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5377586974075744185}
-        m_TargetAssemblyTypeName: RapidPrototyping.TicTacMix.MysteryDoors.Player,
-          Assembly-CSharp
-        m_MethodName: OnPrimary
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 5694404d-bf09-4a96-9c2b-a1bf01eb7ab2
-    m_ActionName: Gameplay/Primary[/Keyboard/f,/Keyboard/numpad0,/XInputControllerWindows/buttonSouth]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: Player 1
-  m_DefaultActionMap: Gameplay
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &5377586974075744185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,7 +194,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerIndex: 0
-  m_playerInput: {fileID: 6635185603428043701}
   m_blueColor: {r: 0.42352945, g: 0.58431375, b: 0.6901961, a: 1}
   m_redColor: {r: 0.69411767, g: 0.30980393, b: 0.2627451, a: 1}
   m_speed: 6
@@ -288,3 +205,4 @@ MonoBehaviour:
   m_walkFramePerSecond: 5
   m_doorSprite: {fileID: 21300000, guid: 600368d366db7b94b9e570ba8c30500a, type: 3}
   currentStage: {fileID: 0}
+  hoveredDoors: []

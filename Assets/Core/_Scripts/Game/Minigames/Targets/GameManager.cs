@@ -1,4 +1,5 @@
 using LuckiusDev.Utils;
+using RapidPrototyping.Utils.Input;
 using System;
 using UnityEngine;
 
@@ -22,6 +23,8 @@ namespace RapidPrototyping.TicTacMix.Targets
         {
             base.Initialize();
             OnScoreChanged?.Invoke();
+
+            GameInputHandler.SetActionMap(GameInputHandler.ActionMapIndex.Default);
 
             m_timer = new CountdownTimer(3f);
             m_timer.OnTimerStop += () =>
