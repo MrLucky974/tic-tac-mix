@@ -266,9 +266,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55773130}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &58189913
 GameObject:
@@ -4086,9 +4086,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207622945}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &1221979540
 GameObject:
@@ -4853,7 +4853,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 460, y: -95}
+  m_AnchoredPosition: {x: 460, y: -108.854996}
   m_SizeDelta: {x: 840, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1558112391
@@ -5689,7 +5689,7 @@ GameObject:
   - component: {fileID: 1877052014}
   - component: {fileID: 1877052015}
   m_Layer: 0
-  m_Name: '[MENU CANVAS]'
+  m_Name: '[USER INTERFACE]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5728,6 +5728,9 @@ MonoBehaviour:
   - {fileID: 2017679778}
   - {fileID: 1207622947}
   - {fileID: 55773132}
+  m_gameplayScene:
+    m_sceneAsset: {fileID: 102900000, guid: b27cad8e745f19541ab6c2fc272cc175, type: 3}
+    m_sceneName: MainGameplayScene
 --- !u!114 &1877052015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6036,7 +6039,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 460, y: -258.85498}
+  m_AnchoredPosition: {x: 460, y: -286.565}
   m_SizeDelta: {x: 840, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1945019460
@@ -6390,7 +6393,6 @@ GameObject:
   - component: {fileID: 2047419459}
   - component: {fileID: 2047419458}
   - component: {fileID: 2047419457}
-  - component: {fileID: 2047419460}
   - component: {fileID: 2047419461}
   m_Layer: 0
   m_Name: Play Button
@@ -6463,9 +6465,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2047419460}
-        m_TargetAssemblyTypeName: LBB.BRA1NFvCK.SceneLoad, Assembly-CSharp
-        m_MethodName: LoadScene
+      - m_Target: {fileID: 1877052014}
+        m_TargetAssemblyTypeName: LBB.BRA1NFvCK.MainMenuManager, Assembly-CSharp
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6513,21 +6515,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2047419455}
   m_CullTransparentMesh: 1
---- !u!114 &2047419460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2047419455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cfecae5012c1054d8b307ac7be273b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_sceneReference:
-    m_sceneAsset: {fileID: 102900000, guid: b27cad8e745f19541ab6c2fc272cc175, type: 3}
-    m_sceneName: MainGameplayScene
 --- !u!114 &2047419461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6579,7 +6566,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 460, y: -436.565}
+  m_AnchoredPosition: {x: 460, y: -464.27496}
   m_SizeDelta: {x: 840, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2061660641

@@ -1,16 +1,16 @@
+using LuckiusDev.Experiments;
 using LuckiusDev.Utils;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace RapidPrototyping.TicTacMix.Main
 {
     public class GameManager : MonoBehaviour
     {
+        [Header("Scenes")]
         [SerializeField] private SceneReference m_mainMenuScene;
 
-        [Space]
-
+        [Header("Canvas")]
         [SerializeField] private GameCanvas m_gameCanvas;
         [SerializeField] private Canvas m_canvas;
         [SerializeField] private GameObject m_crossWinAnimationPrefab;
@@ -80,7 +80,7 @@ namespace RapidPrototyping.TicTacMix.Main
             if (m_mainMenuScene != null &&
                 string.IsNullOrEmpty(m_mainMenuScene) is false)
             {
-                SceneManager.LoadScene(m_mainMenuScene);
+                SceneTransitionManager.Load(m_mainMenuScene);
             }
         }
 

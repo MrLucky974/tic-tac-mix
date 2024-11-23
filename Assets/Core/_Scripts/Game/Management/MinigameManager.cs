@@ -1,8 +1,8 @@
+using LuckiusDev.Experiments;
 using LuckiusDev.Utils;
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace RapidPrototyping.TicTacMix
 {
@@ -109,7 +109,7 @@ namespace RapidPrototyping.TicTacMix
             Time.timeScale = 1f;
 
             // Load the main gameplay scene based on the configured scene reference.
-            SceneManager.LoadScene(GameDataHandler.MainGameplaySceneReference);
+            SceneTransitionManager.Load(GameDataHandler.MainGameplaySceneReference);
         }
     }
 }

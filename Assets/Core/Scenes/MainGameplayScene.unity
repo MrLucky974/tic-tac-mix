@@ -3087,9 +3087,8 @@ GameObject:
   - component: {fileID: 1026076964}
   - component: {fileID: 1026076961}
   - component: {fileID: 1026076962}
-  - component: {fileID: 1026076963}
   m_Layer: 0
-  m_Name: '[GAME CANVAS]'
+  m_Name: '[USER INTERFACE]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3144,6 +3143,7 @@ MonoBehaviour:
   m_emptySprite: {fileID: 21300000, guid: b53cae36d66962c4691eeef5f51822e3, type: 3}
   m_crossSprite: {fileID: 21300000, guid: 9cc064b63570baf42b152c6c2096457e, type: 3}
   m_circleSprite: {fileID: 21300000, guid: 051f31a993a0d05479d26a09d51f4d78, type: 3}
+  m_settingsGroup: {fileID: 1389653420}
 --- !u!114 &1026076962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3170,21 +3170,6 @@ MonoBehaviour:
       type: 2}
     m_volumeSlider: {fileID: 529971886}
     m_volumeLabel: {fileID: 51688215}
---- !u!114 &1026076963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1026076959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76ead67ad176a784f91441461704c01b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_initialScreenType: 0
-  m_screens:
-  - {fileID: 1389653421}
 --- !u!114 &1026076964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3597,8 +3582,8 @@ GameObject:
   - component: {fileID: 1104949459}
   - component: {fileID: 1104949463}
   - component: {fileID: 1104949462}
-  - component: {fileID: 1104949461}
   - component: {fileID: 1104949460}
+  - component: {fileID: 1104949461}
   m_Layer: 5
   m_Name: Return Button
   m_TagString: Untagged
@@ -4090,7 +4075,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1389653419}
-  - component: {fileID: 1389653421}
   - component: {fileID: 1389653420}
   m_Layer: 0
   m_Name: '[SETTINGS]'
@@ -4131,26 +4115,9 @@ CanvasGroup:
   m_GameObject: {fileID: 1389653418}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!114 &1389653421
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1389653418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ba52545b40501f4daeb2b7f8c841978, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_screenType: 1
-  m_customCanvasGroup: {fileID: 1389653420}
-  onScreenLoad:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1407807111
 GameObject:
   m_ObjectHideFlags: 0
@@ -5290,9 +5257,8 @@ GameObject:
   - component: {fileID: 1876098959}
   - component: {fileID: 1876098962}
   - component: {fileID: 1876098961}
-  - component: {fileID: 1876098960}
   - component: {fileID: 1876098963}
-  - component: {fileID: 1876098964}
+  - component: {fileID: 1876098960}
   m_Layer: 5
   m_Name: Settings Button
   m_TagString: Untagged
@@ -5364,23 +5330,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1876098964}
-        m_TargetAssemblyTypeName: LBB.BRA1NFvCK.UIMenuScreenChange`1[[LBB.BRA1NFvCK.MainMenuScreenType,
-          Assembly-CSharp
-        m_MethodName: ChangeScreen
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1026076961}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+        m_TargetAssemblyTypeName: RapidPrototyping.TicTacMix.Main.GameCanvas, Assembly-CSharp
+        m_MethodName: OpenSettingsMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5442,20 +5395,6 @@ MonoBehaviour:
   m_audio:
     Hover: {fileID: 8300000, guid: 480b51e8fe1761e46b416c0bc3cc8d4b, type: 3}
     Click: {fileID: 8300000, guid: c67084d5732fa344cb2df0a4de5ef62a, type: 3}
---- !u!114 &1876098964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1876098958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3acba81b9b4f064baf1544f02b286a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_menuManager: {fileID: 1026076963}
-  m_menuScreenType: 1
 --- !u!1 &1887017987
 GameObject:
   m_ObjectHideFlags: 0
@@ -5839,9 +5778,8 @@ GameObject:
   - component: {fileID: 2061066726}
   - component: {fileID: 2061066731}
   - component: {fileID: 2061066730}
-  - component: {fileID: 2061066729}
-  - component: {fileID: 2061066728}
   - component: {fileID: 2061066727}
+  - component: {fileID: 2061066729}
   m_Layer: 0
   m_Name: Return Button
   m_TagString: Untagged
@@ -5884,20 +5822,6 @@ MonoBehaviour:
   m_audio:
     Hover: {fileID: 8300000, guid: 480b51e8fe1761e46b416c0bc3cc8d4b, type: 3}
     Click: {fileID: 8300000, guid: 3d40286fd7bf3d1479944ac718b6da9e, type: 3}
---- !u!114 &2061066728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2061066725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3acba81b9b4f064baf1544f02b286a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_menuManager: {fileID: 1026076963}
-  m_menuScreenType: 0
 --- !u!114 &2061066729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5942,10 +5866,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2061066728}
-        m_TargetAssemblyTypeName: LBB.BRA1NFvCK.UIMenuScreenChange`1[[LBB.BRA1NFvCK.MainMenuScreenType,
-          Assembly-CSharp
-        m_MethodName: ChangeScreen
+      - m_Target: {fileID: 1026076961}
+        m_TargetAssemblyTypeName: RapidPrototyping.TicTacMix.Main.GameCanvas, Assembly-CSharp
+        m_MethodName: CloseSettingsMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5954,18 +5877,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1026076961}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &2061066730
 MonoBehaviour:

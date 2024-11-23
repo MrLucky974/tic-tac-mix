@@ -1,8 +1,8 @@
+using LuckiusDev.Experiments;
 using LuckiusDev.Utils;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace RapidPrototyping.TicTacMix
 {
@@ -93,7 +93,7 @@ namespace RapidPrototyping.TicTacMix
             string sceneName = randomMinigame.GetRandomSceneName();
 
             // Load the scene
-            SceneManager.LoadScene(sceneName);
+            SceneTransitionManager.Load(sceneName);
         }
 
         private void InitializeMinigames()
