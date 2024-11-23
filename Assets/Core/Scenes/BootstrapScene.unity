@@ -586,6 +586,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1897129057}
   - component: {fileID: 1897129058}
+  - component: {fileID: 1897129059}
   m_Layer: 0
   m_Name: '[INPUT MANAGER]'
   m_TagString: GameController
@@ -652,6 +653,21 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &1897129059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897129055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd9ccb305df81374ea73bfc3507e3086, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_inputManager: {fileID: 1897129058}
+  m_inputActions: {fileID: -944628639613478452, guid: 646e2a29696ff0b4993c7c864f22bac2,
+    type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
