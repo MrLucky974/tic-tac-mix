@@ -68,7 +68,7 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
 
         private void Fly()
         {
-            _rb.velocity = Vector3.up * _jumpForce;
+            _rb.linearVelocity = Vector3.up * _jumpForce;
             SoundManager.Play(_audioClip[0]);
             _blow.GetComponent<Animator>().SetTrigger("Blow");
         }
@@ -109,7 +109,7 @@ namespace RapidPrototyping.TicTacMix.AvionEnPapier
             Vector3 flip = new Vector3(0, 180, 0);
 
             transform.Rotate(flip);
-            _rb.velocity = Vector3.up * 3;
+            _rb.linearVelocity = Vector3.up * 3;
 
             StartCoroutine(GetFx());
         }

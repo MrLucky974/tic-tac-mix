@@ -57,7 +57,7 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
 
              // Rotation vers la direction du mouvement
             Vector3 moveDirection = new(_horizontal, 0, _vertical);
-            if (moveDirection.magnitude > 0.1f) // Vérifier si on se déplace 
+            if (moveDirection.magnitude > 0.1f) // Vï¿½rifier si on se dï¿½place 
             {
                 Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _rotSpeed); // Ajuste la vitesse de rotation
@@ -69,7 +69,7 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
             // Appliquer le mouvement dans la direction actuelle
             Vector3 direction = new(m_movementInput.x, 0, m_movementInput.y);
             Vector3 moveDirection = _speed * direction.magnitude * transform.forward;
-            _rb.velocity = new Vector3(moveDirection.x, _rb.velocity.y, moveDirection.z);
+            _rb.linearVelocity = new Vector3(moveDirection.x, _rb.linearVelocity.y, moveDirection.z);
         }
 
         private void OnTriggerEnter(Collider other)
@@ -86,7 +86,7 @@ namespace RapidPrototyping.TicTacMix.AttrapeOmbres
             SoundManager.Play(_audioClip[0]);
 
             _score++;
-            _rb.drag ++;
+            _rb.linearDamping ++;
             _rb.mass++;
 
             _scoreText.text = _score.ToString();
